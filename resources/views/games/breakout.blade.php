@@ -159,6 +159,7 @@
 
         function playTheGame() {
             // initial game reset stuff
+            $('body').css({'position':'fixed'});
             bg_music.play()
             sm.removeEventListener('click', playTheGame)
             misses = 1
@@ -336,6 +337,7 @@
         }
 
         function checkHighScore() {
+            $('body').css({'position':'initial'});
             if (localStorage.getItem('gem-miner-score')) {
                 if (score > localStorage.getItem('gem-miner-score')) {
                     localStorage.setItem('gem-miner-score', score)
@@ -349,6 +351,7 @@
         checkHighScore()
 
         function onClick() {
+           
             console.log('clicked')
             // feature detect
             if (typeof DeviceMotionEvent.requestPermission === 'function') {

@@ -39,6 +39,7 @@
 <style>
     body {
         background: url('{{ asset("/assets/bg.jpg")}}') no-repeat;
+        height: 100vh;
         background-size: cover;
     }
 </style>

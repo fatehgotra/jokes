@@ -127,3 +127,16 @@ h1 {
   text-transform: uppercase;
   font-weight: 700;
 }
+
+/*mobile*/
+@media (max-width: 479.98px){
+
+ .button{
+  display: block!important;
+ }
+ .board{
+  width: 391px!important;
+  min-width: 0px!important;
+ }
+
+}
