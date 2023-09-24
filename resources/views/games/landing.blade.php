@@ -48,7 +48,7 @@
 
 <style>
     body {
-        background: url('{{ asset("/assets/space.jpg")}}');
+        background: url('{{ asset("/assets/bg.jpg")}}') no-repeat;
         background-size: cover;
     }
 
