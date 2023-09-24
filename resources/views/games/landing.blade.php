@@ -48,8 +48,8 @@
 
 <style>
     body {
-        background: url('/assets/bg.jpg');
-        height: 100vh;
+        background: url('{{ asset("/assets/space.jpg")}}');
+        background-size: cover;
     }
 
     .container {
