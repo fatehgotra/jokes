@@ -49,7 +49,7 @@
 </div>
 <style>
     body {
-        background: url('../public/assets/bg.jpg');
+        background: url('/assets/bg.jpg');
         height: 100vh;
     }
 </style>
