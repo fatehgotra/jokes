@@ -1,0 +1,86 @@
+.hero-section {
+    position: relative;
+    padding: 10px 0 120px 0 !important;
+}
+.hero-section:after {
+    content: ' ';
+    background-image: url('../images/banner.jpg');
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    width: 100%;
+    border-radius: 0;
+    -webkit-transform: skewY(-0deg);
+    transform: skewY(-0deg);
+}
+.account-pages .form-wizard-header{
+  background-color: #f9fafe;
+  margin-bottom: 15px;
+}
+.form-control{
+  border: 1px solid #d4d7dc;
+}
+.form-control:focus{
+  border-color: #f49e3f;
+  outline: 1px solid #f49e3f;
+}
+.nav.nav-pills li.nav-item {
+  margin: 0 5px;
+}
+.nav-pills>li>a, .nav-tabs>li>a{
+  font-weight: 500;
+  border: 1px solid #d0d2d7 !important;
+  text-transform: uppercase;
+  font-size: 15px;
+  background: #fff !important;
+  color: #222 !important;
+  border-radius: 8px !important;
+  padding: 5px !important;
+}
+.nav-pills>li>a img{
+  border: 1px solid #d0d2d7 !important;
+  padding: 5px;
+  border-radius: 100px;
+  margin-right: 5px;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #000;
+  background-color: #fff !important;
+  border-bottom: 3px solid #f49e3f !important;
+}
+.fs-12{
+  font-size: 12px;
+}
+
+.fs-13{
+  font-size: 13px;
+}
+
+.fs-14{
+  font-size: 14px;
+}
+
+.fs-15{
+  font-size: 15px;
+}
+
+.fs-16{
+  font-size: 16px;
+}
+
+.fs-17{
+  font-size: 17px;
+}
+
+.fs-18{
+  font-size: 18px;
+}
+
+.btn-warning:hover{
+  background-color: #d97834;
+  border-color: #d97834;
+  color: #fff !important;
+}

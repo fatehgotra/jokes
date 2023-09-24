@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap');
+
+button:focus,
+input:focus{
+  outline: none;
+  box-shadow: none;
+}
+a,
+a:hover{
+  text-decoration: none!important;
+  color:#ebeef1!important;
+}
+
+body{
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/*------------------  */
+.wheel-spin-box {
+    position: relative;
+    display: inline-block;
+}
+#spinwheel {
+    position: relative;
+    width: 360px;
+    margin: auto;
+}
+.wheeldotsround {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.wheeldotsround{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.wheeldotsround .wheeldots{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+    z-index: 1;
+}
+.wheeldotsround .wheeldots:nth-child(2n+1){
+    background: #fff;
+}
+
+.wheeldotsround .wheeldots.active-dots{
+    background: #ff8400;
+}
+.wheeldotsround .wheeldots.active-dots:nth-child(2n+1){
+    background: #2660a4;
+}
+
+.wheeldotsround .wheeldots:nth-child(1){
+    left: calc(50% - 4px);
+    top: 3px;
+}
+.wheeldotsround .wheeldots:nth-child(2){
+    right: 25%;
+    top: 7%;
+}
+.wheeldotsround .wheeldots:nth-child(3){
+    right: 7%;
+    top: 25%;
+}
+.wheeldotsround .wheeldots:nth-child(4){
+    right: 3px;
+    top: 50%;
+}
+.wheeldotsround .wheeldots:nth-child(5){
+    right: 8.2%;
+    bottom: 23%;
+}
+.wheeldotsround .wheeldots:nth-child(6){
+    right: 25%;
+    bottom: 7%;
+}
+
+.wheeldotsround .wheeldots:nth-child(7){
+    left: calc(50% - 4px);
+    bottom: 3px;
+}
+.wheeldotsround .wheeldots:nth-child(8){
+    left: 25%;
+    bottom: 7%;
+}
+.wheeldotsround .wheeldots:nth-child(9){
+    left: 8.2%;
+    bottom: 23%;
+}
+.wheeldotsround .wheeldots:nth-child(10){
+    left: 3px;
+    top: 50%;
+}
+.wheeldotsround .wheeldots:nth-child(11){
+    left: 7%;
+    top: 25%;
+}
+.wheeldotsround .wheeldots:nth-child(12){
+    left: 25%;
+    top: 7%;
+}
+
+#spinwheel{
+    position: relative;
+    width: 300px;
+    margin: auto;
+}
+#spinwheel svg{
+    width: 100%;
+    height: 100%;
+    border: 15px solid #CE3816;
+    border-radius: 50%;
+    background: #CE3816;
+}
+.chartholder{
+
+}
+
+.wheel-spin-box .chartholder .slice path{
+  fill: #441ced;
+}
+.wheel-spin-box .chartholder .slice:nth-child(2n+1) path{
+    fill: #F9AA00;
+}
+.wheel-spin-arrow {
+    position: relative;
+    margin-top: -35px;
+    text-align: center;
+    z-index: 1;
+}
+.wheel-spin-arrow svg {
+    max-width: 65px;
+}
+.spin-click-button {
+    background-color: #bd2424;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    padding: 14px 35px;
+    border-radius: 15px;
+}
+.title_spin{
+    color:white;
+    font-weight: bold;
+}
+
+/*btns*/
+.rainbow-btn {
+    margin: 50px auto;
+    /* width: 600px; */
+    text-align: center;
+    position: relative;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    box-sizing: border-box;
+    display: block;
+    z-index: 2;
+    overflow: hidden;
+    padding: 8px;
+    height: 100px; 
+}
+.rainbow-btn:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(115deg,#4fcf70,#fad648,#a767e5,#12bcfe,#44ce7b);
+    background-size: 50% 100%
+}
+.rainbow-btn span {
+    position: relative;
+    z-index: 2;
+    padding: .875rem 0;
+    font-size: 0.8rem;
+    text-decoration: none;
+    align-items: center;
+    background: #df4c38bd;
+    border-radius: 3px;
+    display: block;
+    justify-content: center;
+    box-sizing: border-box;
+    height: 100%;
+    font-size: 40px;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.rainbow-btn:focus:before,
+.rainbow-btn:hover:before {
+    animation: rainbow-btn .75s linear infinite
+}
+
+@keyframes rainbow-btn {
+    to {
+        transform: translateX(-50%)
+    }
+}
+
+.bkbtn{
+    color: white;
+    background-color: black;
+    padding: 2%;
+    text-decoration: none;
+    border: none;
+    border-radius: 20%;
+}
+
+a span {
+    pointer-events: none;
+}
+/*end btns*/
+
+.zoom-in-zoom-out {
+    animation: zoom-in-zoom-out 2s ease-out infinite;
+  }
+  
+  @keyframes zoom-in-zoom-out {
+    0% {
+      transform: scale(1, 1);
+    }
+    50% {
+      transform: scale(1.1, 1.1);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+  }
+
+
+.shake{
+    animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+    0% {
+      transform: translate(1px, -2px) rotate(-1deg);
+    }
+    10% {
+      transform: translate(-1px, 2px) rotate(-1deg);
+    }
+    20% {
+      transform: translate(1px, 2px) rotate(0deg);
+    }
+    30% {
+      transform: translate(3px, 2px) rotate(0deg);
+    }
+    40% {
+      transform: translate(1px, -1px) rotate(1deg);
+    }
+    50% {
+      transform: translate(-1px, -2px) rotate(-1deg);
+    }
+    60% {
+      transform: translate(-3px, 1px) rotate(0deg);
+    }
+    70% {
+      transform: translate(3px, 1px) rotate(-1deg);
+    }
+    80% {
+      transform: translate(-1px, -1px) rotate(1deg);
+    }
+    90% {
+      transform: translate(-3px, 0px) rotate(1deg);
+    }
+    100% {
+      transform: translate(1px, 1px) rotate(0deg);
+    }
+  }
+
+  .gtitle{
+    color:white;
+    font-weight: bold;
+  }
+
+
+  
+  
+
+@media (max-width: 479.98px){
+    #spinwheel {
+        width: 370px;
+    }
+}
