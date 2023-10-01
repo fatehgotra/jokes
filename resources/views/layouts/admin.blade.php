@@ -6,13 +6,13 @@
     <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets_admin/images/favicon.ico') }}">
 
     <!-- App css -->
-    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet" type="text/css" id="light-style" />
-    <link href="{{ asset('assets/css/app-dark.css') }}" rel="stylesheet" type="text/css" id="dark-style" />
-    <link href="{{ asset('assets/css/custom.css1') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets_admin/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets_admin/css/app.css') }}" rel="stylesheet" type="text/css" id="light-style" />
+    <link href="{{ asset('assets_admin/css/app-dark.css') }}" rel="stylesheet" type="text/css" id="dark-style" />
+    <link href="{{ asset('assets_admin/css/custom.css1') }}" rel="stylesheet" type="text/css" />
     @yield('head')
 </head>
 

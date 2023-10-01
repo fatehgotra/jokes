@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 @section('title', "Dashboard")
 @section('head')
-    <link href="{{ asset('assets/css/vendor/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/vendor/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets_admin/css/vendor/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets_admin/css/vendor/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -29,10 +29,10 @@
 @push('scripts')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Datatables js -->
-<script src="{{ asset('assets/js/vendor/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/dataTables.bootstrap4.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets_admin/js/vendor/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets_admin/js/vendor/dataTables.bootstrap4.js') }}"></script>
+<script src="{{ asset('assets_admin/js/vendor/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets_admin/js/vendor/responsive.bootstrap4.min.js') }}"></script>
 
 
 <!-- Datatable Init js -->

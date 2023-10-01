@@ -14,7 +14,7 @@
                     @isset(Auth::guard('user')->user()->avatar)
                         <img src="{{ asset('storage/uploads/user/'.Auth::guard('user')->user()->avatar) }}" alt="user-image" class="rounded-circle">
                     @else
-                        <img src="{{ asset('assets/images/users/avatar.png') }}" alt="user-image" class="rounded-circle">
+                        <img src="{{ asset('assets_admin/images/users/avatar.png') }}" alt="user-image" class="rounded-circle">
                     @endif
                 </span>
                 <span>

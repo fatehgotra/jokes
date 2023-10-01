@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Games')
 @section('content')
-<link rel="stylesheet" href="{{ asset('/assets/css/spin.css') }}">
+<link rel="stylesheet" href="{{ asset('/assets_admin/css/spin.css') }}">
 
 <div class="container">
 
@@ -48,7 +48,7 @@
 
 <style>
     body {
-        background: url('{{ asset("/assets/bg.jpg")}}') no-repeat;
+        background: url('{{ asset("/assets_admin/bg.jpg")}}') no-repeat;
         background-size: cover;
     }
 

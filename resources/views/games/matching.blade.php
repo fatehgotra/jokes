@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Matching')
 @section('content')
-<link rel="stylesheet" href="{{asset('assets/css/matching.css')}}">
+<link rel="stylesheet" href="{{asset('assets_admin/css/matching.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container">
 
@@ -49,7 +49,7 @@
 </div>
 <style>
     body {
-        background: url('{{ asset("/assets/bg.jpg")}}') no-repeat;
+        background: url('{{ asset("/assets_admin/bg.jpg")}}') no-repeat;
         height: 100vh!important;
       
     }

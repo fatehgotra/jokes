@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GamesController;
+use App\Http\Controllers\JokesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[GamesController::class,'home']);
+Route::get('/', [GamesController::class, 'home']);
 
 Route::get('games', [GamesController::class, 'index'])->name('games');
 Route::get('breakout', [GamesController::class, 'breakout'])->name('breakout');
@@ -23,6 +24,11 @@ Route::get('tic-tac-toe', [GamesController::class, 'tictactoe'])->name('tic-tac-
 Route::get('matching', [GamesController::class, 'matching'])->name('matching');
 Route::get('rock-paper-scissor', [GamesController::class, 'rockpaper'])->name('rock-paper-scissor');
 Route::get('planet-defence', [GamesController::class, 'planetDefence'])->name('planet-defence');
+
+
+/* JOKES ROUTE */
+
+Route::get('jokes', [JokesController::class, 'front'])->name('front');
 
 // Route::get('/dashboard', function () {
 //     return view('admin.auth.dashboard');

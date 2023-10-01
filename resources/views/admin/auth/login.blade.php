@@ -8,14 +8,14 @@
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Cloudinc" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets_admin/images/favicon.ico') }}">
 
     <!-- App css -->
-    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="light-style" />
-    <!-- <link href="{{ asset('assets/css/app-dark.min.css') }}" rel="stylesheet" type="text/css" id="dark-style" /> -->
-    <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/style2.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets_admin/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets_admin/css/app.min.css') }}" rel="stylesheet" type="text/css" id="light-style" />
+    <!-- <link href="{{ asset('assets_admin/css/app-dark.min.css') }}" rel="stylesheet" type="text/css" id="dark-style" /> -->
+    <link href="{{ asset('assets_admin/css/custom.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets_admin/css/style2.css') }}" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
@@ -28,7 +28,7 @@
                         <!-- Logo -->
                         <!-- <div class="card-header pt-1 pb-1 text-center bg-dark">
                             <a href="{{ url('/') }}">
-                                <span><img src="{{ asset('assets/welcome.png') }}" alt="logo" class="img-fluid" /></span>
+                                <span><img src="{{ asset('assets_admin/welcome.png') }}" alt="logo" class="img-fluid" /></span>
                             </a>
                         </div> -->
 
@@ -97,8 +97,8 @@
     </footer> -->
 
     <!-- bundle -->
-    <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
-    <script src="{{ asset('assets/js/app.min.js') }}"></script>
+    <script src="{{ asset('assets_admin/js/vendor.min.js') }}"></script>
+    <script src="{{ asset('assets_admin/js/app.min.js') }}"></script>
     <style>
         body.loading {
             visibility:unset;

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'TicTacToe')
 @section('content')
-<link rel="stylesheet" href="{{asset('assets/css/rockpaper.css')}}">
+<link rel="stylesheet" href="{{asset('assets_admin/css/rockpaper.css')}}">
 <div>
 
     <div class="container">
@@ -22,15 +22,15 @@
 
         <div class="game_container">
             <div id="pedra" class="" onclick="pickOption(1)">
-                <img src="{{ asset('/assets/hand-rock-o-512.webp') }}">
+                <img src="{{ asset('/assets_admin/hand-rock-o-512.webp') }}">
                 <span>Rock</span>
             </div>
             <div id="papel" class="" onclick="pickOption(2)">
-                <img src="{{ asset('assets/2055483.png')}} ">
+                <img src="{{ asset('assets_admin/2055483.png')}} ">
                 <span>Paper</span>
             </div>
             <div id="tesoura" class="" onclick="pickOption(3)">
-                <img src="{{ asset('assets/2055485.png')}} ">
+                <img src="{{ asset('assets_admin/2055485.png')}} ">
                 <span>Scissors</span>
             </div>
         </div>
@@ -38,7 +38,7 @@
 </div>
 <style>
     body {
-        background: url('{{ asset("/assets/bg.jpg")}}') no-repeat;
+        background: url('{{ asset("/assets_admin/bg.jpg")}}') no-repeat;
         height: 100vh;
         background-size: cover;
     }

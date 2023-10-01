@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Matching')
 @section('content')
-<link rel="stylesheet" href="{{asset('assets/css/planetdefence.css')}}">
+<link rel="stylesheet" href="{{asset('assets_admin/css/planetdefence.css')}}">
 <div class="bk-w text-center">
 <button class="btn btn-danger bbtn" onclick="{window.location.href='{{ url('games') }}'}">Back</button>
 </div>
@@ -12,7 +12,7 @@
     <style>
         .bk-w{
             color:white;
-            background: url('{{ asset("/assets/space.jpg")}}') no-repeat;
+            background: url('{{ asset("/assets_admin/space.jpg")}}') no-repeat;
             background-size: cover;
         }
         .bbtn{
@@ -31,10 +31,10 @@ window.addEventListener("DOMContentLoaded", game);
 //General sprite load
 var sprite = new Image();
 var spriteExplosion = new Image();
-sprite.src = '{{ asset("/assets/sprite.png") }}';
+sprite.src = '{{ asset("/assets_admin/sprite.png") }}';
 
 window.onload = function() {
-    spriteExplosion.src = '{{ asset("/assets/explosion.png") }}';
+    spriteExplosion.src = '{{ asset("/assets_admin/explosion.png") }}';
 };
 
 //Game

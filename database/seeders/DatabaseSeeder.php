@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Admin;
 use App\Models\Jokes;
+use App\Models\JokesCategory;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -19,6 +20,33 @@ class DatabaseSeeder extends Seeder
     {
         //seed users 
         $faker = \Faker\Factory::create();
+
+        $catIds = [];
+
+        $jokeCategorys = [
+            
+            'Funny local stories',
+            'Grog Jokes',
+            'Local One Liners',
+            'Observational',
+            'Anecdotal',
+            'Situational',
+            'Character',
+            'Ironic',
+            'Deadpan',
+            'Farcical',
+            'Self-deprecating',
+            'Slapstick'
+        ];
+
+        foreach( $jokeCategorys as $jc ){
+            $c = JokesCategory::create([
+                'category' => $jc,
+                'status'   => 1
+            ]);
+
+            $catIds[] = $c->id;
+        }
 
         $jokes = [
             '<p><b>What do a tick and the Eiffel tower have in common?</b></p><p>They’re both Paris sites.</p>',
@@ -47,6 +75,7 @@ class DatabaseSeeder extends Seeder
 
             Jokes::create([
                 'user_id' => $user->id,
+                'category_id' => $faker->randomElement($catIds),
                 'joke'    => $faker->randomElement($jokes),
                 'status'  => $faker->randomElement([0,1]),
             ]);
@@ -70,6 +99,7 @@ class DatabaseSeeder extends Seeder
 
                 Jokes::create([
                     'user_id' => $user->id,
+                    'category_id' => $faker->randomElement($catIds),
                     'joke'    => $faker->randomElement($jokes),
                     'status'  => $faker->randomElement([0,1]),
                 ]);
@@ -93,6 +123,7 @@ class DatabaseSeeder extends Seeder
 
                 Jokes::create([
                     'user_id' => $user->id,
+                    'category_id' => $faker->randomElement($catIds),
                     'joke'    => $faker->randomElement($jokes),
                     'status'  => $faker->randomElement([0,1]),
                 ]);

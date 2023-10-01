@@ -11,6 +11,7 @@ class Jokes extends Model
 
     protected $fillable = [
         'user_id',
+        'category_id',
         'joke',
         'status'
     ];
@@ -18,5 +19,10 @@ class Jokes extends Model
     public function user(){
 
         return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function category(){
+
+        return $this->hasOne(JokesCategory::class,'id','category_id');
     }
 }

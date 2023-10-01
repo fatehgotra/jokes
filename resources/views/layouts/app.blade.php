@@ -1,51 +1,72 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-    <meta charset="utf-8" />
-    <title>@yield('title')</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+<html lang="en">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+  <head>
 
-        
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <!-- Scripts -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
-        <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet"/>
-        @if( Auth::user() )
-        @vite(['resources/css/app.css', 'resources/js/app.js']) 
-        @endif
-    </head>
-    <body class="font-sans antialiased">
-    @if( Auth::user() )
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-     
-            @if( !is_null(Auth::user()) )
-            @include('layouts.navigation')
-            @endif
-           
-            @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-         
-            @if( !is_null(Auth::user()) )
-            <main>
-                {{ $slot }}
-            </main>
-            @endif
-        </div> 
-    @endif
-        @yield('content')
-    </body>
-    @include('guest.includes.script')
+    <title>SHOP N SAVE</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-cyborg-gaming.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<!--
+
+TemplateMo 579 Cyborg Gaming
+
+https://templatemo.com/tm-579-cyborg-gaming
+
+-->
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+   @include('guest.includes.header')
+   
+   @yield('content')
+  
+   @include('guest.includes.script')
+
+   @include('guest.includes.footer')
+
+
+
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  <!-- <script src="assets/js/isotope.min.js1"></script> -->
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/tabs.js"></script>
+  <script src="assets/js/popup.js"></script>
+  <script src="assets/js/custom.js"></script>
+
+
+  </body>
+
 </html>

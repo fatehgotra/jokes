@@ -3,10 +3,10 @@
     <!-- LOGO -->
     <a href="{{ route('admin.dashboard') }}" class="logo text-center logo-light">
         <span class="logo-lg">
-            <img src="{{ asset('assets/welcome.png') }}" alt="logo" height="50px">
+            <img src="{{ asset('assets_admin/welcome.png') }}" alt="logo" height="50px">
         </span>
         <span class="logo-sm">
-            <img src="{{ asset('assets/welcome.png') }}" alt="logo" class="img-fluid" height="50px">
+            <img src="{{ asset('assets_admin/welcome.png') }}" alt="logo" class="img-fluid" height="50px">
         </span>
     </a>
 
@@ -73,6 +73,9 @@
                             </li>
                             <li>
                                 <a href="{{ route('admin.jokes', ['status' => 'unpublished']) }}">UnPublished Jokes</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.jokes.categories') }}">Categories</a>
                             </li>
 
                         </ul>

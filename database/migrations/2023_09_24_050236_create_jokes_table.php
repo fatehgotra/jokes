@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('jokes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_id');
             $table->longText('joke');
             $table->integer('status');
             $table->timestamps();

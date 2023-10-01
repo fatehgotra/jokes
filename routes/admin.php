@@ -87,7 +87,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::post('edit-joke',[JokesController::class,'editJoke'])->name('edit-joke');
     Route::post('mark-joke',[JokesController::class,'markJoke'])->name('mark-joke');
     Route::post('delete-joke',[JokesController::class,'deleteJoke'])->name('delete-joke');
+    Route::get('jokes-categories',[JokesController::class,'adminJokesCategories'])->name('jokes.categories');
 
+       /*
+    |--------------------------------------------------------------------------
+    | Settings > Joke Category Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::post('add_category',[JokesController::class,'addJokeCategory'])->name('add_category');
+    Route::post('edit_category',[JokesController::class,'editJokeCategory'])->name('edit_category');
+    Route::post('delete_category',[JokesController::class,'deleteCategory'])->name('delete_category');
 
     
 });

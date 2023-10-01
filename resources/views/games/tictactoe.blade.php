@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'TicTacToe')
 @section('content')
-<link rel="stylesheet" href="{{asset('assets/css/tictac.css')}}">
+<link rel="stylesheet" href="{{asset('assets_admin/css/tictac.css')}}">
 <div class="score">
     Team X --- <span id="playerXScore">0</span> Team O ---
     <span id="playerOScore">0</span>
@@ -26,7 +26,7 @@
 
 <style>
     body {
-        background:url('{{ asset("/assets/bg.jpg")}}') no-repeat;
+        background:url('{{ asset("/assets_admin/bg.jpg")}}') no-repeat;
         height: 100vh;
       
     }

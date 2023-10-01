@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jokes;
+use App\Models\JokesCategory;
 use Illuminate\Http\Request;
 
 class GamesController extends Controller
@@ -11,6 +12,8 @@ class GamesController extends Controller
     {
 
         $_jokes = Jokes::with('user')->where('status', 1)->inRandomOrder()->take(10)->get();
+
+        $jokes_category = JokesCategory::where('status',1)->get();
 
         $jokes = [];
 
@@ -23,7 +26,7 @@ class GamesController extends Controller
             }
         }
         
-        return view('index', compact('jokes'));
+        return view('index', compact('jokes','jokes_category'));
     }
     public function index()
     {

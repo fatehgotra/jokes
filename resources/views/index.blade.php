@@ -1,95 +1,73 @@
 @extends('layouts.app')
 @section('title', 'Home | Jokes')
 @section('content')
-<link rel="stylesheet" href="{{ asset('/assets/css/spin.css') }}">
-<div class="container text-center mb-5 mt-5">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="title_spin zoom-in-zoom-out">Spin wheel to read jokes</h2>
-        </div>
-    </div>
-</div>
-
 <div class="container">
     <div class="row">
+      <div class="col-lg-12">
+        <div class="page-content">
 
-        <div class="col-md-12 text-center">
-            <div class="wheel-spin-box">
-                <div id="spinwheel">
-                    <div class="wheeldotsround">
-                        <div class="wheeldots"></div>
-                        <div class="wheeldots"></div>
-                        <div class="wheeldots"></div>
-                        <div class="wheeldots"></div>
-                        <div class="wheeldots"></div>
-                        <div class="wheeldots"></div>
-                        <div class="wheeldots"></div>
-                        <div class="wheeldots"></div>
-                        <div class="wheeldots"></div>
-                        <div class="wheeldots"></div>
-                        <div class="wheeldots"></div>
-                        <div class="wheeldots"></div>
+          <!-- ***** Banner Start ***** -->
+          <div class="main-banner">
+            <div class="row">
+              <div class="col-lg-7">
+                <div class="header-text">
+                  <h6>Welcome To SHOP N SAVE</h6>
+                  <h4><em>Browse</em> Our Popular Games Here</h4>
+                  <div class="main-button">
+                    <a href="browse.html">Browse Now</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ***** Banner End ***** -->
+
+         
+
+          <!-- ***** Most Popular Start ***** -->
+          <div class="most-popular">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="heading-section">
+                  <h4><em>Popular</em> Jokes Categories</h4>
+                </div>
+                <div class="row">
+                
+                @if( count($jokes_category) > 0 )
+                @foreach( $jokes_category as $jc )
+
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="item" style="text-align:center">
+                   
+                      <h4>{{ $jc->category }}</h4>
+                    
                     </div>
+                  </div>
+
+                @endforeach
+                @endif
+                 
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="main-button">
+                      <a href="browse.html">Discover Popular</a>
+                    </div>
+                  </div>
                 </div>
-                <div id="spin-arrow" class="wheel-spin-arrow">
-                    <svg width="83" height="74" viewBox="0 0 83 74" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M32.9489 5.12466C33.8289 3.59888 35.0943 2.3319 36.618 1.45104C38.1417 0.570174 39.8701 0.106445 41.6294 0.106445C43.3888 0.106445 45.1171 0.570174 46.6409 1.45104C48.1646 2.3319 49.43 3.59888 50.31 5.12466L80.9178 58.1922C81.7993 59.7185 82.264 61.4504 82.265 63.2137C82.2659 64.9769 81.8032 66.7094 80.9234 68.2366C80.0435 69.7639 78.7776 71.0322 77.2529 71.9139C75.7282 72.7955 73.9986 73.2595 72.238 73.2591H11.0223C9.26269 73.259 7.53405 72.7951 6.01016 71.9139C4.48627 71.0327 3.22083 69.7653 2.34102 68.2391C1.46121 66.7128 0.998036 64.9815 0.998047 63.2192C0.998058 61.4569 1.46125 59.7256 2.34108 58.1994L32.9489 5.12466Z" fill="#2F911E" />
-                    </svg>
-                </div>
+              </div>
             </div>
+          </div>
+          <!-- ***** Most Popular End ***** -->
 
         </div>
-        <div class="col-md-12 text-center mb-4">
-            <button id="spin" class="spin-click-button zoom-in-zoom-out">Spin the Wheel</button>
-        </div>
-
+      </div>
     </div>
-    <div class="row">
-        <div class="col-md-4 text-left mt-2">
-            <a href="{{ url('user/login') }}" class="rainbow-btn"><span>Login</span></a>
-        </div>
+  </div>
 
-        <div class="col-md-4 text-center mt-2">
-            <a href="{{ url('games') }}" class="rainbow-btn"><span>More Games</span></a>
-        </div>
-
-        <div class="col-md-4 text-right mt-2">
-            <a href="{{ url('user/signup') }}" class="rainbow-btn"><span>Signup</span></a>
-        </div>
-    </div>
-
-</div>
+@endsection
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-
-        <div class="modal-content" style="text-align:center;font-size:23px">
-            <div class="modal-body">
-              
-            </div>
-            <div class="text-right m-1">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<style>
-    body {
-        background: url('{{ asset("/assets/bg.jpg")}}') no-repeat;
-        background-size: cover;
-      
-    }
-</style>
-<div>
-    @endsection
-
-    @push('scripts')
+@push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script>

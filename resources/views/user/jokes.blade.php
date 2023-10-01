@@ -1,8 +1,8 @@
 @extends('layouts.user')
 @section('title', 'Jokes')
 @section('head')
-<link href="{{ asset('assets/css/vendor/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('assets/css/vendor/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets_admin/css/vendor/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets_admin/css/vendor/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -79,10 +79,10 @@
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-end">
 
-                                                <a href="javascript:void(0)" onclick="viewJoke({{  $joke->id }},'view')" class="dropdown-item"><i class="mdi mdi-eye"></i>
+                                                <a href="javascript:void(0)" onclick="viewJoke({{  $joke->id }},'view', {{ $joke->category_id }})" class="dropdown-item"><i class="mdi mdi-eye"></i>
                                                     View</a>
 
-                                                <a href="javascript:void(0)" onclick="viewJoke({{ $joke->id, }},'edit')" class="dropdown-item"><i class="mdi mdi-pencil"></i>
+                                                <a href="javascript:void(0)" onclick="viewJoke({{ $joke->id, }},'edit',{{ $joke->category_id }})" class="dropdown-item"><i class="mdi mdi-pencil"></i>
                                                     Edit</a>
 
 
@@ -133,6 +133,18 @@
             <div class="modal-body">
                 <input type="hidden" id="jokeid" name="id" value="">
                 <textarea id="jokearea" name="jokearea" class="form-control" value=""></textarea>
+
+                <div class="mb-2">
+                    <label for="confirm" class="form-label">Category</label>
+                    <select class="form-control" name="category_id" id="category_id">
+                        @if( count($jokes_categories) > 0 )
+                        @foreach( $jokes_categories as $jc)
+                        <option value="{{ $jc->id }}">{{ $jc->category }}</option>
+                        @endforeach
+                        @endif
+                    </select>
+                </div>
+
             </div>
             <div class="text-right m-1">
                 <button type="button" class="btn btn-success" data-dismiss="modal" onclick="editJoke()">
@@ -157,6 +169,18 @@
             <div class="modal-body">
                 <input type="hidden" id="jokeid" name="id" value="">
                 <textarea id="addjokearea" name="addjokearea" class="form-control" value=""></textarea>
+                
+                <div class="mb-2">
+                    <label for="confirm" class="form-label">Category</label>
+                    <select class="form-control" name="category_id" id="category_id">
+                        @if( count($jokes_categories) > 0 )
+                        @foreach( $jokes_categories as $jc)
+                        <option value="{{ $jc->id }}">{{ $jc->category }}</option>
+                        @endforeach
+                        @endif
+                    </select>
+                </div>
+
             </div>
             <div class="text-right m-1">
                 <button type="button" class="btn btn-success" data-dismiss="modal" onclick="addJoke()">
@@ -183,10 +207,10 @@
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Datatables js -->
-<script src="{{ asset('assets/js/vendor/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/dataTables.bootstrap4.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets_admin/js/vendor/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets_admin/js/vendor/dataTables.bootstrap4.js') }}"></script>
+<script src="{{ asset('assets_admin/js/vendor/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets_admin/js/vendor/responsive.bootstrap4.min.js') }}"></script>
 
 
 <!-- Datatable Init js -->
@@ -216,7 +240,7 @@
 
 
 <script>
-    function viewJoke(id, mode) {
+    function viewJoke(id, mode,cat) {
 
 
         let url = '{{ route("admin.view-joke",  ":id" ) }}';
@@ -241,6 +265,7 @@
 
                     CKEDITOR.instances.jokearea.setData(res.joke.joke);
                     $('#editJokeModal').find('#jokeid').val(id);
+                    $('#editJokeModal').find('#category_id option[value="'+cat+'"]').prop('selected',true);
                     $('#editJokeModal').modal('show');
                 }
              

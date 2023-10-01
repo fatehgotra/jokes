@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Breakout')
 @section('content')
-<link rel="stylesheet" href="{{asset('assets/css/breakout.css')}}">
+<link rel="stylesheet" href="{{asset('assets_admin/css/breakout.css')}}">
 <div id='rail'></div>
 <div id='combo_display'>
     <span id='combo_span'>0</span>
