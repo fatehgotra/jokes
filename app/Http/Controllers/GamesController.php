@@ -16,6 +16,7 @@ class GamesController extends Controller
         $jokes_category = JokesCategory::where('status',1)->get();
 
         $jokes = [];
+        
 
         if (count($_jokes)) {
             foreach ($_jokes as $j) {

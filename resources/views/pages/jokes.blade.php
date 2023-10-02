@@ -18,7 +18,7 @@
                         @if( count($jokes) > 0 )
                         @foreach( $jokes as $joke )
 
-                        <div class="card card-body m-2 bg-black">
+                        <div class="card card-body m-2 jcards">
 
                             <div class="text-white">{!! $joke->joke !!}</div>
                             <p class="text-white">~ {{ $joke->user->name }}</p>
@@ -40,8 +40,6 @@
 
                     </div>
                     
-
-
                     <!----Jokes Artist------->
                     <div class="col-lg-4">
 
@@ -58,7 +56,7 @@
                                     <img src="{{ $user->avatar }}" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
                                     <h6><i class="fa fa-check"></i> {{ $user->name }} </h6>
                                     <div class="main-button">
-                                        <a href="#">Browse</a>
+                                        <a href="{{ route('jokes',['a'=>$user->id ]) }}">Browse</a>
                                     </div>
                                 </li>
                                 @endforeach
@@ -79,7 +77,7 @@
                                 <li>
                                     <h6><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{ $cat->category }} </h6>
                                     <div class="main-button">
-                                        <a href="#">Browse</a>
+                                        <a href="{{ route('jokes',['c'=>$cat->id ]) }}" >Browse</a>
                                     </div>
                                 </li>
                                 @endforeach

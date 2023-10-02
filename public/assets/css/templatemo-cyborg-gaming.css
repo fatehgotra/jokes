@@ -335,7 +335,7 @@ Header Style
 */
 
 .background-header {
-  background-color: #fff !important;
+  background-color: #1e1e1e !important;
   height: 70px!important;
   position: fixed!important;
   top: 0!important;
@@ -669,7 +669,7 @@ Header Style
     width: 100%;
   }
   .header-area {
-    background-color: #f7f7f7;
+    background-color: #1e1e1e;
     padding: 0px 15px;
     height: 80px;
     box-shadow: none;
@@ -1730,6 +1730,41 @@ body {
   min-height: 457px;
   overflow: auto;
 
+}
+
+.jcards{
+  background-color: #1e1e1e!important;
+}
+
+.page-link{
+  background-color: #1e1e1e!important;
+  color:#fff!important;
+}
+
+
+.active>.page-link{
+  border-color: #E75E8D!important;
+  background-color: #b45274!important;
+}
+
+#accordion .card, #accordion2 .card{
+  margin: 3%!important;
+}
+
+#accordion .card-header, #accordion2 .card-header{
+  background-color: #1e1e1e!important;
+}
+
+#headingOne, #headingTwo{
+  cursor: pointer;
+}
+
+.rclr{
+  color: #D74C7D;
+}
+
+.lbg{
+ background-color: #E75E8D!important;
 }
 
 @media (max-width: 1200px) {

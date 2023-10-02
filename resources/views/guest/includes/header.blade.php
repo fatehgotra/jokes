@@ -6,7 +6,7 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="{{ url('/') }}" class="logo">
-                    <h3 class="logo">SHOP N SAVE</h3>
+                    <h3>SHOP N SAVE</h3>
                     </a>
                     <!-- <a href="index.html" class="logo">
                         <img src="assets/images/logo.png" alt="">
@@ -23,7 +23,7 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="{{ url('/') }}" class="active">Home</a></li>
-                        <li><a href="{{ url('#') }}">Games</a></li>
+                        <li><a href="{{ url('/#games') }}">Games</a></li>
                         <li><a href="{{ url('jokes') }}">Jokes</a></li>
                         <li><a href="https://webmediaclients.com/shopnsaveecom/index.php/product-category/ticket-purchases/l">Drua</a></li>
                         <li><a href="https://webmediaclients.com/shopnsaveecom/index.php/product-category/merchandise-purchases/">Health</a></li>

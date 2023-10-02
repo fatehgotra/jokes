@@ -28,7 +28,7 @@ Route::get('planet-defence', [GamesController::class, 'planetDefence'])->name('p
 
 /* JOKES ROUTE */
 
-Route::get('jokes', [JokesController::class, 'front'])->name('front');
+Route::get('jokes', [JokesController::class, 'front'])->name('jokes');
 
 // Route::get('/dashboard', function () {
 //     return view('admin.auth.dashboard');

@@ -150,16 +150,27 @@ class JokesController extends Controller
         return redirect()->back()->with('success','Category deleted succesfully!');
     }
 
-    public function front(){
+    public function front(Request $request){
         
-        $jokes = Jokes::where('status',1)->paginate(10);
+        $jokeUsers = Jokes::where('status',1)->get();
+
+        $jokes = Jokes::where('status',1);
+
+        if( !is_null($request->c) ){
+            $jokes = $jokes->where('category_id',$request->c);
+        }
+        if( !is_null($request->a) ){
+            $jokes = $jokes->where('user_id',$request->a);
+        }
+        
+        $jokes = $jokes->paginate(10);
 
         $jokes_categories = JokesCategory::where('status',1)->get();
         
         $_users = [];
 
-        if( count($jokes) > 0 ):
-        foreach( $jokes as $joke ):
+        if( count($jokeUsers) > 0 ):
+        foreach( $jokeUsers as $joke ):
          $_users[] = $joke->user;
         endforeach;
         endif;
