@@ -9,10 +9,11 @@
 
         <!-- ***** Banner Start ***** -->
         <div class="main-banner">
+          <h3 class="mbh3">Welcome to SHOP N SAVE</h3>
           <div class="row">
             <div class="col-lg-7">
-              <div class="header-text">
-                <h6>Welcome To SHOP N SAVE</h6>
+              <div class="header-text bantext">
+              
                 <h4><em>Browse</em> Our Popular Games Here</h4>
                 <div class="main-button">
                   <a href="{{ url('/#games') }}">Browse Now</a>
@@ -227,7 +228,7 @@
                 @if( count($jokes_category) > 0 )
                 @foreach( $jokes_category as $jc )
 
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-sm-6 jokeCat">
                   <a href="{{ route('jokes',['c'=>$jc->id]) }}">
                     <div class="item" style="text-align:center">
 

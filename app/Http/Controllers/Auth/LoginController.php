@@ -49,7 +49,7 @@ class LoginController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if ($user->status == 0) {
+        if (!is_null($user) && $user->status == 0) {
 
             return redirect()->back()->with('error', 'Sorry your account is disabled.');
         }
