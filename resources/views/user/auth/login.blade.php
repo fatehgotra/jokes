@@ -280,7 +280,7 @@
     align-items: center;
     width: 100%;
     height: auto;
-    padding: 0.35rem 1.25rem;
+    padding: 0.8rem 1.25rem;
     outline: none;
     border: 2px solid var(--color-grayish);
     border-radius: 2rem;
