@@ -49,17 +49,13 @@ class DatabaseSeeder extends Seeder
         }
 
         $jokes = [
-            '<p><b>What do a tick and the Eiffel tower have in common?</b></p><p>They’re both Paris sites.</p>',
-            '<p><b>What did the ocean say to the shore?</b></p><p>Nothing, it just waved.</p>',
-            '<p><b>When does a joke become a dad joke?</b></p><p>When it’s apparent.</p>',
-            '<p><b>What did summer say to spring?</b></p><p>I’m going to fall!</p>',
-            '<p><b>What did one snowman say to another?</b></p><p>Wait, do you smell carrots?</p>',
-            '<p><b>What did the hungry clock do?</b></p><p>It went back 4 seconds.</p>',
-            '<p><b>What’s the tallest building in the world? A library, of course. It has so many stories!</b></p>',
-            '<p><b>I always take life with a grain of salt. And a slice of lemon. And a shot of tequila!</b></p>',
-            '<p><b>I know they say that money talks… ...But all mine says is “Goodbye!”</b></p>',
-            '<p><b>I tried to catch fog the other day.</b></p><p>But I mist.</p>',
-            '<p><b>Let’s start telling people their brain is an app.</b></p><p>Maybe then they’ll want to use it!</p>',
+            '9962.mp3',
+            '9963.mp3',
+            '9964.mp3',
+            '9965.mp3',
+            '9966.mp3',
+            '9967.mp3',
+
         ];
 
        $user =  User::create([

@@ -41,6 +41,11 @@ figure, header, nav, section, article, aside, footer, figcaption {
   outline: 0;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .clearfix:after {
   content: ".";
   display: block;
@@ -123,8 +128,14 @@ Global Styles
 */
 html,
 body {
-  background: #418be066;
+  /* background: #418be066; */
   font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: #418be066;
+    margin: 0%;
+    padding: 0%;
 }
 
 body .page-content {
@@ -142,12 +153,12 @@ p {
 }
 
 ::selection {
-  background: #e75e8d;
+  background: #FFDF3A;
   color: #fff;
 }
 
 ::-moz-selection {
-  background: #e75e8d;
+  background: #FFDF3A;
   color: #fff;
 }
 
@@ -664,7 +675,7 @@ Header Style
   }
   .header-area.header-sticky .nav li a:hover,
   .header-area.header-sticky .nav li a.active {
-    color: #e75e8d!important;
+    color: #FFDF3A!important;
     opacity: 1;
   }
   .header-area.header-sticky .nav li.search-icon a {
@@ -726,7 +737,7 @@ Header Style
   }
   .header-area .main-nav .nav li a:hover {
     background: #fff !important;
-    color: #e75e8d!important;
+    color: #FFDF3A!important;
   }
   .header-area .main-nav .nav li:last-child a img {
     display: none;
@@ -1533,7 +1544,7 @@ Profile Style
 .main-profile .main-info span {
   font-size: 14px;
   color: #fff;
-  background-color: #e75e8d;
+  background-color: #FFDF3A;
   padding: 8px 20px;
   display: inline-block;
   border-radius: 25px;
@@ -1756,7 +1767,7 @@ body {
 }
 
 .active1>.page-link1{
-  border-color: #E75E8D!important;
+  border-color: #FFDF3A!important;
   background-color: #b45274!important;
 }
 

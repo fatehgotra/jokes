@@ -12,7 +12,8 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>User Name</th>
+                                    <th>Joke</th>
+                                    <th>Category</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -23,7 +24,14 @@
 
                                 <tr>
                                     <td>{{ $joke->id }}</td>
-                                    <td>{{ $joke->user->name }}</td>
+                                    <td>
+                                    <audio controls>
+                                                <source src="{{ asset('audios/'.$joke->joke) }}" type="audio/mp3">
+                                                Your browser does not support the audio tag.
+                                        </audio>
+                                    </td>
+
+                                    <td>{{ $joke->category->category }}</td>
 
                                     <td>
                                         @if($joke->status == 1)
@@ -40,11 +48,11 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end">
 
-                                            <a href="javascript:void(0)" onclick="viewJoke({{  $joke->id }},'view')" class="dropdown-item"><i class="mdi mdi-eye"></i>
+                                            <!-- <a href="javascript:void(0)" onclick="viewJoke({{  $joke->id }},'view')" class="dropdown-item"><i class="mdi mdi-eye"></i>
                                                 View</a>
 
                                             <a href="javascript:void(0)" onclick="viewJoke({{ $joke->id, }},'edit')" class="dropdown-item"><i class="mdi mdi-pencil"></i>
-                                                Edit</a>
+                                                Edit</a> -->
 
                                             @if($joke->status == 1)
                                             <a href="javascript:void(0)" onclick="markJoke({{ $joke->id,'ds' }})" class="dropdown-item"><i class="mdi mdi-block-helper"></i>

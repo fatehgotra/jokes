@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jokes;
 use App\Models\JokesCategory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,7 @@ class JokesController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:admin')->except('front','viewJoke', 'editJoke', 'deleteJoke', 'index','addJoke');
+        $this->middleware('auth:admin')->except('saveAudio', 'front', 'viewJoke', 'editJoke', 'deleteJoke', 'index', 'addJoke');
     }
     public function index(Request $request)
     {
@@ -24,7 +25,7 @@ class JokesController extends Controller
 
         $jokes = Jokes::with('category')->where('user_id', Auth::guard('user')->id());
 
-        $jokes_categories = JokesCategory::where('status',1)->get();
+        $jokes_categories = JokesCategory::where('status', 1)->get();
 
         if ($status == 'published') {
 
@@ -38,10 +39,11 @@ class JokesController extends Controller
 
         $jokes = $jokes->orderBy('id', 'desc')->get();
 
-        return view('user.jokes', compact('jokes','jokes_categories'));
+        return view('user.jokes', compact('jokes', 'jokes_categories'));
     }
 
-    public function addJoke(Request $request){
+    public function addJoke(Request $request)
+    {
 
         Jokes::create([
             'user_id' => Auth::guard('user')->id(),
@@ -49,7 +51,7 @@ class JokesController extends Controller
             'status'  => 0,
         ]);
 
-        return redirect()->back()->with('success','Thanks, Joke is added successfully, Please wait for publish it.');
+        return redirect()->back()->with('success', 'Thanks, Joke is added successfully, Please wait for publish it.');
     }
 
 
@@ -59,9 +61,9 @@ class JokesController extends Controller
 
         $status = $request->status;
 
-        $jokes_categories = JokesCategory::where('status',1)->get();
+        $jokes_categories = JokesCategory::where('status', 1)->get();
 
-        $jokes = Jokes::with('user','category');
+        $jokes = Jokes::with('user', 'category');
 
         if ($status == 'published') {
 
@@ -75,7 +77,7 @@ class JokesController extends Controller
 
         $jokes = $jokes->orderBy('id', 'desc')->get();
 
-        return view('admin.jokes.index', compact('jokes','jokes_categories'));
+        return view('admin.jokes.index', compact('jokes', 'jokes_categories'));
     }
 
     public function viewJoke($id)
@@ -91,7 +93,7 @@ class JokesController extends Controller
     public function editJoke(Request $request)
     {
 
-        Jokes::where('id', $request->id)->update(['joke' => $request->joke,'category_id'=>$request->category_id]);
+        Jokes::where('id', $request->id)->update(['joke' => $request->joke, 'category_id' => $request->category_id]);
 
         return redirect()->back()->with('success', 'Joke update successfully!!');
     }
@@ -114,71 +116,101 @@ class JokesController extends Controller
         return redirect()->back()->with('success', 'Joke deleted successfully!!');
     }
 
-    public function adminJokesCategories(){
+    public function adminJokesCategories()
+    {
 
         $categories = JokesCategory::all();
 
-        return view('admin.jokes.categories.index',compact('categories'));
+        return view('admin.jokes.categories.index', compact('categories'));
     }
 
-    public function addJokeCategory(Request $request){
-       
+    public function addJokeCategory(Request $request)
+    {
+
         JokesCategory::create([
             'category' => $request->category,
             'status' => $request->status
         ]);
 
-        return redirect()->back()->with('success','Category added succesfully!');
+        return redirect()->back()->with('success', 'Category added succesfully!');
     }
 
-    public function editJokeCategory(Request $request){
+    public function editJokeCategory(Request $request)
+    {
 
-       
-        JokesCategory::where('id',$request->editId)->update([
+
+        JokesCategory::where('id', $request->editId)->update([
             'category' => $request->category,
             'status' => $request->status
         ]);
 
-        return redirect()->back()->with('success','Category updated succesfully!');
+        return redirect()->back()->with('success', 'Category updated succesfully!');
     }
 
-    public function deleteCategory(Request $request){
+    public function deleteCategory(Request $request)
+    {
 
-       
+
         JokesCategory::find($request->id)->delete();
 
-        return redirect()->back()->with('success','Category deleted succesfully!');
+        return redirect()->back()->with('success', 'Category deleted succesfully!');
     }
 
-    public function front(Request $request){
-        
-        $jokeUsers = Jokes::where('status',1)->get();
+    public function front(Request $request)
+    {
 
-        $jokes = Jokes::where('status',1);
+        $jokeUsers = Jokes::where('status', 1)->get();
 
-        if( !is_null($request->c) ){
-            $jokes = $jokes->where('category_id',$request->c);
+        $jokes = Jokes::where('status', 1);
+
+        if (!is_null($request->c)) {
+            $jokes = $jokes->where('category_id', $request->c);
         }
-        if( !is_null($request->a) ){
-            $jokes = $jokes->where('user_id',$request->a);
+        if (!is_null($request->a)) {
+            $jokes = $jokes->where('user_id', $request->a);
         }
-        
+
         $jokes = $jokes->paginate(10);
 
-        $jokes_categories = JokesCategory::where('status',1)->get();
-        
+        $jokes_categories = JokesCategory::where('status', 1)->get();
+
         $_users = [];
 
-        if( count($jokeUsers) > 0 ):
-        foreach( $jokeUsers as $joke ):
-         $_users[] = $joke->user;
-        endforeach;
+        if (count($jokeUsers) > 0) :
+            foreach ($jokeUsers as $joke) :
+                $_users[] = $joke->user;
+            endforeach;
         endif;
 
         $users = array_unique($_users);
-        
 
-        return view('pages.jokes',compact('jokes','jokes_categories','users'));
+
+        return view('pages.jokes', compact('jokes', 'jokes_categories', 'users'));
     }
 
+    public function saveAudio(Request $request)
+    {
+
+        $uid = Auth::guard('user')->id();
+
+        if ($request->hasFile('audio_data')) {
+          
+            $file = $request->file('audio_data');
+            //$filename = time() . '.' . $request->file('audio_data')->getClientOriginalExtension();
+            $filename = time() . '.mp3';
+            $file->move('audios', $filename);
+
+            Jokes::create([
+                'user_id'     => $uid,
+                'joke'        => $filename,
+                'category_id' => $request->category_id,
+                'status'      => 0,
+            ]);
+
+            return redirect()->back()->with('successs','Joke added successfully! Please wait for publish it. ');
+
+        } else {
+            return redirect()->back()->with('error','Something went wrong!! please try again');
+        } 
+    }
 }

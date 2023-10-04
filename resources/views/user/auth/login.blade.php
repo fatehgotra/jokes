@@ -2,7 +2,7 @@
 @section('title', 'Home | Jokes')
 @section('content')
 
-<div class="container">
+<div class="form-container">
     <div class="row justify-content-center">
         <div class="col-lg-5">
             @include('guest.includes.flash-message')

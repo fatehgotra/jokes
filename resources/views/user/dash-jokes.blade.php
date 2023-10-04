@@ -13,6 +13,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Joke</th>
+                                    <th>Category</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -23,7 +24,14 @@
 
                                 <tr>
                                     <td>{{ $joke->id }}</td>
-                                    <td>{!! $joke->joke !!}</td>
+                                    <td>
+                                        <audio controls>
+                                            <source src="{{ asset('audios/'.$joke->joke) }}" type="audio/mp3">
+                                            Your browser does not support the audio tag.
+                                        </audio>
+                                    </td>
+
+                                    <td>{{ $joke->category->category }}</td>
 
                                     <td>
                                         @if($joke->status == 1)
@@ -40,11 +48,6 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end">
 
-                                            <a href="javascript:void(0)" onclick="viewJoke({{  $joke->id }},'view')" class="dropdown-item"><i class="mdi mdi-eye"></i>
-                                                View</a>
-
-                                            <a href="javascript:void(0)" onclick="viewJoke({{ $joke->id, }},'edit')" class="dropdown-item"><i class="mdi mdi-pencil"></i>
-                                                Edit</a>
 
                                             <a href="javascript:void(0);" onclick="confirmDelete({{ $joke->id }})" class="dropdown-item"><i class="mdi mdi-trash-can"></i>
                                                 Delete
@@ -79,7 +82,7 @@
 
             </div>
             <div class="text-right m-1">
-           
+
                 <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="{$('#exampleModal').modal('hide')}">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -132,8 +135,8 @@
 
         url = url.replace(':id', id);
 
-        if( mode == 'view'){
-            localStorage.setItem('view',id);
+        if (mode == 'view') {
+            localStorage.setItem('view', id);
         }
 
         $.ajax({
@@ -152,7 +155,7 @@
                     $('#editJokeModal').find('#jokeid').val(id);
                     $('#editJokeModal').modal('show');
                 }
-              
+
             }
         });
     }
@@ -162,27 +165,27 @@
     function editJoke(id) {
 
         let url = '{{ route("admin.edit-joke" ) }}';
-     
+
         $.ajax({
             url: url,
             type: "POST",
             dataType: "JSON",
-            data:{
+            data: {
                 id: $("#jokeid").val(),
-                joke:CKEDITOR.instances.jokearea.getData(),
-                _token:"{{ csrf_token() }}"
+                joke: CKEDITOR.instances.jokearea.getData(),
+                _token: "{{ csrf_token() }}"
             },
             success: function(res) {
-              location.reload(true);
+                location.reload(true);
             }
         });
 
-        setTimeout(()=>{
+        setTimeout(() => {
             location.reload(true);
-        },100);
+        }, 100);
     }
 
-  
+
 
     function confirmDelete(no) {
         Swal.fire({

@@ -20,7 +20,11 @@
 
                         <div class="card card-body m-2 jcards">
 
-                            <div class="text-white">{!! $joke->joke !!}</div>
+                            <div class="text-white"> <audio controls>
+                                    <source src="{{ asset('audios/'.$joke->joke) }}" type="audio/mp3">
+                                    Your browser does not support the audio tag.
+                            </audio>
+                            </div>
                             <p class="text-white">~ {{ $joke->user->name }}</p>
                             <div class="main-border-button1">
                                 <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -33,13 +37,13 @@
                         @endforeach
                         @endif
 
-                    <div class="nav1">
-                    {{ $jokes->appends(request()->query())->links('pagination::bootstrap-5') }}
-                    </div>
+                        <div class="nav1">
+                            {{ $jokes->appends(request()->query())->links('pagination::bootstrap-5') }}
+                        </div>
 
 
                     </div>
-                    
+
                     <!----Jokes Artist------->
                     <div class="col-lg-4">
 
@@ -77,7 +81,7 @@
                                 <li>
                                     <h6><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{ $cat->category }} </h6>
                                     <div class="main-button">
-                                        <a href="{{ route('jokes',['c'=>$cat->id ]) }}" >Browse</a>
+                                        <a href="{{ route('jokes',['c'=>$cat->id ]) }}">Browse</a>
                                     </div>
                                 </li>
                                 @endforeach
@@ -92,9 +96,6 @@
 
                 </div>
                 <!-- ***** Featured Games End ***** -->
-
-
-
             </div>
         </div>
     </div>

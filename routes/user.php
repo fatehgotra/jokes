@@ -71,4 +71,6 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 
     Route::get('jokes',[JokesController::class,'index'])->name('jokes');
     Route::post('add-joke',[JokesController::class,'addJoke'])->name('add-joke');
+
+    Route::post('save-audio',[JokesController::class,'saveAudio'])->name('save-audio');
 });
