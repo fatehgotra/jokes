@@ -96,9 +96,9 @@ class GamesController extends Controller
             'user_id' => Auth::guard('user')->id(),
             'game' => $request->game,
             'score' => $request->score,
-            'status' => 0,
         ]);
 
+    
         return response()->json([
             'success' => true,
             'message' => 'score recorded'
