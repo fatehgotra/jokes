@@ -35,7 +35,7 @@ data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebar
         <!-- ========== Content Section End ========= -->
 
     </div>
-     @include('admin.includes.end-bar') 
+   
     @include('admin.includes.script')
 </body>
 <style>

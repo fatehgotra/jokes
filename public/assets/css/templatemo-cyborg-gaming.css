@@ -91,17 +91,17 @@ html, body {
 }
 
 a {
-	color: #CCC;
+	color: #fff;
   text-decoration: none !important;
 }
 a:hover {
-	color: #F99;
+	color: #fff;
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0px;
   margin-bottom: 0px;
-  color: #fff;
+  color: black;
   font-weight: 700;
 }
 
@@ -112,7 +112,7 @@ ul {
 p {
   font-size: 15px;
   line-height: 30px;
-  color: #fff;
+  /* color: #fff; */
 }
 
 img {
@@ -919,11 +919,11 @@ Gaming Library Style
 
 .gaming-library .item ul li {
   display: inline-block;
-  width: 17%;
+  width: 25%;
 }
 
 .gaming-library .item ul li:first-child {
-  width: 110px;
+  width: 25%;
 }
 
 .gaming-library .item ul li:last-child {
@@ -936,9 +936,15 @@ Gaming Library Style
   margin-bottom: 5px;
 }
 
+.gaming-library .item ul li h3,
+.gaming-library .item ul li h4 {
+  color:#fff !important
+}
+
 .gaming-library .item ul li span {
-  color: #666;
+  color: #FFDF3A;
   font-size: 14px;
+  font-weight: bold;
 }
 
 .gaming-library .main-button {
@@ -1656,7 +1662,7 @@ body {
 
 @media (max-width: 767px) {
   body .page-content {
-    padding: 0px 30px;
+    padding: 29px 0px;
   }
   .main-banner {
     text-align: center;
@@ -1667,7 +1673,7 @@ body {
   .gaming-library .item ul li,
   .gaming-library .item ul li:first-child,
   .gaming-library .item ul li:last-child {
-    width: 100% !important;
+    /* width: 100% !important; */
     text-align: center !important;
   }
   .gaming-library .item ul li {
@@ -1696,7 +1702,7 @@ body {
   .top-streamers,
   .top-downloaded {
     max-height: 100%;
-    min-height: 100%;
+    /* min-height: 100%; */
   }
   .most-popular .item .inner-item {
     margin-bottom: 20px;
@@ -1784,7 +1790,7 @@ body {
 }
 
 .rclr{
-  color: #fff;
+  color: black;
 }
 
 .lbg{
@@ -1804,6 +1810,11 @@ body {
 
 .jokeCat .item:hover{
   background-color: #418BE0;
+  color: #fff;
+}
+
+.most-popular .item h4:hover{
+  color: #fff;
 }
 
 
@@ -1841,6 +1852,7 @@ body {
   text-decoration: none;
   display: block;
 }
+
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #FFDF3A}

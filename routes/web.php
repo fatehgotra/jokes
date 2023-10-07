@@ -41,3 +41,9 @@ Route::get('jokes', [JokesController::class, 'front'])->name('jokes');
 // });
 
 //require __DIR__ . '/auth.php';
+
+
+Route::get('game-trivia', [GamesController::class, 'viewTriviaGame'])->name('game-trivia');
+Route::post('save-leader',[GamesController::class,'saveLeader'])->name('save-leader');
+Route::post('enable-leader',[GamesController::class,'enableLeader'])->name('enable-leader');
+

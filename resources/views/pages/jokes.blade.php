@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-lg-8">
 
-                        <div class="heading-section">
+                        <div class="heading-section text-center">
                             <h4> <em>Popular</em> Jokes</h4>
                         </div>
 
@@ -20,7 +20,7 @@
 
                         <div class="card card-body m-2 jcards">
 
-                            <div class="text-white"> <audio controls>
+                            <div class="text-white"> <audio style="width:234px" controls>
                                     <source src="{{ asset('audios/'.$joke->joke) }}" type="audio/mp3">
                                     Your browser does not support the audio tag.
                             </audio>
@@ -48,7 +48,7 @@
                     <div class="col-lg-4">
 
                         <div class="top-streamers">
-                            <div class="heading-section">
+                            <div class="heading-section text-center">
                                 <h4> <em>Top</em> Artists</h4>
                             </div>
                             <ul class="spanel">
@@ -70,7 +70,7 @@
                         </div>
 
                         <div class="top-streamers mt-3">
-                            <div class="heading-section">
+                            <div class="heading-section text-center">
                                 <h4> <em>popular</em> Categories</h4>
                             </div>
                             <ul class="spanel">
