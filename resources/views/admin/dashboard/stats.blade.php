@@ -31,7 +31,7 @@
                 <div class="float-end">
                 <i class="mdi mdi-account-group-outline widget-icon"></i>
                 </div>
-                <h5 class="text-dark fw-normal mt-0" title="Approved Suppliers">Request Publishing</h5>
+                <h5 class="text-dark fw-normal mt-0" title="Approved Suppliers">Request Publishing Jokes</h5>
                 <h3 class="mt-2 mb-2">{{ \App\Models\Jokes::where('status',0)->count() }}</h3>
                
             </div>

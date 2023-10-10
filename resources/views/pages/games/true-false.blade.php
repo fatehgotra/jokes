@@ -12,7 +12,7 @@
                     <div class="col-lg-12">
 
                         <div class="heading-section text-center">
-                            <h4> {{ $localtrivia->name }} </h4>
+                            <h4> {{$truefalse->name }} </h4>
                         </div>
 
 
@@ -41,14 +41,14 @@
                                         <li>
                                             <h4>Score</h4><span>{{ $l->score }}</span>
                                         </li>
-                                     
-                                      
+
+
                                     </ul>
                                 </div>
                                 @endforeach
 
                             </div>
-                         
+
                         </div>
                         @endif
 
@@ -58,7 +58,7 @@
                         <div class="info_box">
                             <div class="info-title"><span>Some Rules of this game</span></div>
                             <div class="info-list">
-                                <div class="info"> {!! $localtrivia->rules !!}</div>
+                                <div class="info"> {!!$truefalse->rules !!}</div>
                                 <!-- <div class="info">1. You will have only <span>15 seconds</span> per each question.</div>
                                 <div class="info">2. Once you select your answer, it can't be undone.</div>
                                 <div class="info">3. You can't select any option once time goes off.</div>
@@ -74,14 +74,14 @@
                         <!-- Quiz Box -->
                         <div class="quiz_box">
                             <header>
-                                @if( $localtrivia->lifeline != 0 )
-                                <div class="title">
+                                @if( $truefalse->lifeline != 0 )
+                                <!-- <div class="title">
                                     <button class="btn btn-info btn50"> </button>
-                                </div>
+                                </div> -->
                                 @endif
                                 <div class="timer">
                                     <div class="time_left_txt">Time Left</div>
-                                    <div class="timer_sec"> {{ $localtrivia->ques_time_limit }}</div>
+                                    <div class="timer_sec"> {{$truefalse->ques_time_limit }}</div>
                                 </div>
                                 <div class="time_line"></div>
                             </header>
@@ -122,7 +122,7 @@
                                 <button class="restart">Replay Game</button>
                                 <button class="quit">Quit Game</button>
                             </div>
-                            <button  class="submitleader p-2 btn btn-success" onclick="event.preventDefault(); document.getElementById('enlead').submit();" >Submit score for leader board</button>
+                            <button class="submitleader p-2 btn btn-success" onclick="event.preventDefault(); document.getElementById('enlead').submit();">Submit score for leader board</button>
                             <form id="enlead" action="{{ route('enable-leader') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="game" value="local-trivia">
@@ -594,7 +594,7 @@
     const time_line = document.querySelector("header .time_line");
     const timeText = document.querySelector(".timer .time_left_txt");
     const timeCount = document.querySelector(".timer .timer_sec");
-    const btn50 = document.querySelector('.btn50');
+    //const btn50 = document.querySelector('.btn50');
     // if startQuiz button clicked
     start_btn.onclick = () => {
         info_box.classList.add("activeInfo"); //show info box
@@ -607,8 +607,8 @@
 
 
 
-    let timeValue = '{{ $localtrivia->ques_time_limit }}';
-    let lifelineNo = '{{ $localtrivia->lifeline }}';
+    let timeValue = '{{$truefalse->ques_time_limit }}';
+    let lifelineNo = 0;
     let que_count = 0;
     let que_numb = 1;
     let userScore = 0;
@@ -633,7 +633,7 @@
     restart_quiz.onclick = () => {
         quiz_box.classList.add("activeQuiz"); //show quiz box
         result_box.classList.remove("activeResult"); //hide result box
-        timeValue = '{{ $localtrivia->ques_time_limit }}';
+        timeValue = '{{$truefalse->ques_time_limit }}';
         que_count = 0;
         que_numb = 1;
         userScore = 0;
@@ -669,14 +669,13 @@
             startTimerLine(widthValue); //calling startTimerLine function
             timeText.textContent = "Time Left"; //change the timeText to Time Left
             next_btn.classList.remove("show"); //hide the next button
-            if( lifelineNo != 0)
-            btn50.removeAttribute('disabled');
+           
+           // btn50.removeAttribute('disabled');
         } else {
             clearInterval(counter); //clear counter
             clearInterval(counterLine); //clear counterLine
             showResult(); //calling showResult function
-            if( lifelineNo != 0)
-            btn50.disabled = false;
+          //  btn50.disabled = false;
         }
     }
 
@@ -703,36 +702,34 @@
     function showQuetions(index) {
         const que_text = document.querySelector(".que_text");
         const ques_img = document.querySelector(".ques_img");
-
+        
         //creating a new span and div tag for question and option and passing the value using array index
         let que_tag = '<span>' + questions[index].numb + ". " + questions[index].question + '</span>';
         let option_tag = '<div class="option"><span>' + questions[index].options[0] + '</span></div>' +
-            '<div class="option"><span>' + questions[index].options[1] + '</span></div>' +
-            '<div class="option"><span>' + questions[index].options[2] + '</span></div>' +
-            '<div class="option"><span>' + questions[index].options[3] + '</span></div>';
-        let img = questions[index].image != '' ? "<img style='width:70%;padding:3%' src='" + questions[index].image + "'>" : '';
-        ques_img.innerHTML = img;
+            '<div class="option"><span>' + questions[index].options[1] + '</span></div>';
+
+        //let img = questions[index].image != '' ? "<img style='width:70%;padding:3%' src='" + questions[index].image + "'>" : '';
+       // ques_img.innerHTML = img;
         que_text.innerHTML = que_tag; //adding new span tag inside que_tag
         option_list.innerHTML = option_tag; //adding new div tag inside option_tag
-        if( lifelineNo != 0){
-        btn50.innerHTML = "Take lifeline (" + lifelineNo + " chance left)";
+      //  if (lifelineNo != 0)
+          //  btn50.innerHTML = "Take lifeline (" + lifelineNo + " chance left)";
 
-        btn50.onclick = () => {
-            lifelineNo -= 1;
-            btn50.innerHTML = "Take lifeline (" + lifelineNo + " chance left)";
-            if (lifelineNo == 0) {
-                btn50.style.display = "none";
-            }
-            if (lifelineNo >= 0) {
-                let op = lifeline(questions[index].options, questions[index].options[questions[index].answer - 1]);
+        // btn50.onclick = () => {
+        //     lifelineNo -= 1;
+        //     btn50.innerHTML = "Take lifeline (" + lifelineNo + " chance left)";
+        //     if (lifelineNo == 0) {
+        //         btn50.style.display = "none";
+        //     }
+        //     if (lifelineNo >= 0) {
+        //         let op = lifeline(questions[index].options, questions[index].options[questions[index].answer - 1]);
 
-                option_list.innerHTML =
-                    '<div class="option" onclick="optionSelected(this)"><span>' + op[0] + '</span></div>' +
-                    '<div class="option" onclick="optionSelected(this)"><span>' + op[1] + '</span></div>';
-                btn50.disabled = true;
-            }
-        }
-    }
+        //         option_list.innerHTML =
+        //             '<div class="option" onclick="optionSelected(this)"><span>' + op[0] + '</span></div>' +
+        //             '<div class="option" onclick="optionSelected(this)"><span>' + op[1] + '</span></div>';
+        //         btn50.disabled = true;
+        //     }
+        // }
 
         const option = option_list.querySelectorAll(".option");
 
@@ -750,8 +747,8 @@
         clearInterval(counter); //clear counter
         clearInterval(counterLine); //clear counterLine
         let userAns = answer.textContent; //getting user selected option
-        let correcAnsRaw = questions[que_count].answer; //getting correct answer from array
-        let correcAns = questions[que_count].options[correcAnsRaw - 1];
+        let correcAns = questions[que_count].answer; //getting correct answer from array
+        //let correcAns = questions[que_count].options[correcAnsRaw - 1];
 
         const allOptions = option_list.children.length; //getting all option items
 
@@ -776,8 +773,7 @@
         }
         for (i = 0; i < allOptions; i++) {
             option_list.children[i].classList.add("disabled");
-            if( lifelineNo != 0)
-            btn50.disabled = true;
+            //btn50.disabled = true;
             //once user select an option then disabled all options
         }
         next_btn.classList.add("show"); //show the next button if user selected any option
@@ -804,7 +800,7 @@
 
         var data = new FormData();
 
-        data.append('game', 'local-trivia');
+        data.append('game', 'true-false');
         data.append('score', userScore);
         data.append('_token', '{{ csrf_token() }}');
 

@@ -10,6 +10,8 @@ use App\Models\JokesCategory;
 use App\Models\LeaderBoard;
 use App\Models\LocalTrivia;
 use App\Models\LocalTriviaQues;
+use App\Models\TrueFalse;
+use App\Models\TrueFalseQues;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -193,5 +195,39 @@ class DatabaseSeeder extends Seeder
                 'status' => 1,
             ]);
         }
+
+        /*True False */
+
+            /** Local Trivia */
+
+            TrueFalse::create([
+                'name' => 'True or False',
+                'description' =>  'start the game to receive statements related to various topics. Swipe right for "True" and left for "False" within a set time limit for each statement. Use lifelines like "Skip" or "50/50" when stuck, and aim for a high score.',
+                'ques_time_limit' => '10',
+                'lifeline'  => 0,
+                'rules' => '<p>1. You will have only&nbsp;15 seconds&nbsp;per each question.</p>
+    
+                <p>2. Once you select your answer, it can&#39;t be undone.</p>
+                
+                <p>3. You can&#39;t select any option once time goes off.</p>
+                
+                <p>4. You can&#39;t exit from the game while you&#39;re playing.</p>
+                
+                <p>5. You&#39;ll get points on the basis of your correct answers.</p>',
+                'game_question_limit' => '10',
+                'qualified_score' => '4',
+                'status' => 1,
+            ]);
+    
+            for ($i = 1; $i <= 40; $i++) {
+                TrueFalseQues::create([
+    
+                    'statement' => 'Dummy Statement no. ' . $i . '',
+                    'correct_option' => 'true',
+                    'status'   => 1,
+                ]);
+            }
+    
+        
     }
 }

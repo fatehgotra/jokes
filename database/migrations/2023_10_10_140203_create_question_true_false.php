@@ -11,18 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('game_local_trivia', function (Blueprint $table) {
-            
+        Schema::create('question_true_false', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->longText('description');
-            $table->string('ques_time_limit');
-            $table->string('game_question_limit');
-            $table->integer('lifeline');
-            $table->longText('rules');
-            $table->integer('qualified_score');
+
+            $table->string('statement')->nullable();
+            $table->string('correct_option');
+            $table->longText('image')->nullable();
             $table->integer('status')->default(1);
-            
+
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('game_local_trivia');
+        Schema::dropIfExists('question_true_false');
     }
 };

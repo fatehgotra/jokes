@@ -59,22 +59,27 @@
                     @endif
 
 
+                    @if( isset($truefalse) )
+
                     <div class="card">
                       <div class="card-header" id="headingOne">
                         <h5 class="mb-0 text-center" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
                           <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                          True or False
+                         {{ $truefalse->name }}
                         </h5>
                       </div>
                       <div id="collapse2" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
-                          start the game to receive statements related to various topics. Swipe right for "True" and left for "False" within a set time limit for each statement. Use lifelines like "Skip" or "50/50" when stuck, and aim for a high score.
+                        {{ $truefalse->description }}
                         </div>
                         <div class="text-center mb-1">
-                          <a class="btn btn-success lbg">Play</a>
+                        <a class="btn btn-success lbg" href="{{ route('game-true-false') }}">Play</a>
                         </div>
                       </div>
                     </div>
+
+                    @endif
+
                     <div class="card">
                       <div class="card-header" id="headingOne">
                         <h5 class="mb-0 text-center" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">

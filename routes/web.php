@@ -44,6 +44,8 @@ Route::get('jokes', [JokesController::class, 'front'])->name('jokes');
 
 
 Route::get('game-trivia', [GamesController::class, 'viewTriviaGame'])->name('game-trivia');
+Route::get('game-true-false', [GamesController::class, 'viewTrueFalseGame'])->name('game-true-false');
+
 Route::post('save-leader',[GamesController::class,'saveLeader'])->name('save-leader');
 Route::post('enable-leader',[GamesController::class,'enableLeader'])->name('enable-leader');
 

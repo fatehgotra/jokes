@@ -20,6 +20,7 @@ class LocalTriviaQues extends Model
         'option_4',
         'correct_option',
         'image',
+        'status',
 
     ];
 

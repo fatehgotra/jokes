@@ -6,7 +6,8 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="{{ url('/') }}" class="logo">
-                        <h3 style="font-weight: 400;">SHOP N SAVE</h3>
+                        <img src="{{ asset('assets/images/logo.png') }}" >
+                        <!-- <h3 style="font-weight: 400;">SHOP N SAVE</h3> -->
                     </a>
                     <!-- <a href="index.html" class="logo">
                         <img src="assets/images/logo.png" alt="">
@@ -77,5 +78,9 @@
         background-color: #418BE0;
         border-radius: 23px;
     }
+    /* .logo{
+        background-image: url('{{asset("assets/images/logo.png")}}') no-repeat;
+        background-size: cover;
+    } */
 </style>
 <!-- ***** Header Area End ***** -->

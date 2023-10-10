@@ -7,6 +7,8 @@ use App\Models\JokesCategory;
 use App\Models\LeaderBoard;
 use App\Models\LocalTrivia;
 use App\Models\LocalTriviaQues;
+use App\Models\TrueFalse;
+use App\Models\TrueFalseQues;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,8 +25,9 @@ class GamesController extends Controller
         $jokes_category = JokesCategory::where('status', 1)->get();
 
         $localtrivia = LocalTrivia::first();
+        $truefalse = TrueFalse::first();
 
-        return view('index', compact('jokes_category', 'localtrivia'));
+        return view('index', compact('jokes_category', 'localtrivia','truefalse'));
     }
     public function index()
     {
@@ -85,6 +88,38 @@ class GamesController extends Controller
 
         return view('pages.games.local-trivia', compact('localtrivia', 'questions','leaders'));
     }
+
+    public function viewTrueFalseGame()
+    {
+
+        $truefalse = TrueFalse::first();
+
+        $_questions = TrueFalseQues::where('status', 1)->inRandomOrder()->limit($truefalse->game_question_limit)->get();
+        
+        $leaders = LeaderBoard::with('user')->where('game', 'true-false')->where('score','>=',$truefalse->qualified_score)->where('status',1)->get();
+
+        $questions = [];
+
+
+        if (count($_questions) > 0) {
+            foreach ($_questions as $k => $q) {
+
+                $questions[] = [
+                    'numb' => ($k + 1),
+                    'question' => $q->statement,
+                    'answer'   => $q->correct_option,
+                    'image'    => $q->image,
+                    'options' => [
+                       'true',
+                       'false'
+                    ],
+                ];
+            }
+        }
+
+        return view('pages.games.true-false', compact('truefalse', 'questions','leaders'));
+    }
+
 
     public function saveLeader(Request $request)
     {

@@ -114,4 +114,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
   Route::get('edit-trivia-question/{id}', [GamesController::class, 'editTriviaQuestion'])->name('edit-trivia-question');
   Route::post('update-trivia-question', [GamesController::class, 'updateTriviaQuestion'])->name('update-trivia-question');
   Route::post('delete-trivia-question', [GamesController::class, 'deleteTriviaQuestion'])->name('delete-trivia-question');
+
+  /* True false Game */
+
+  Route::get('true-false', [GamesController::class, 'trueFalse'])->name('true-false');
+  Route::post('store-true-false', [GamesController::class, 'storeTrueFalse'])->name('store-true-false');
+  Route::get('true-false-questions', [GamesController::class, 'trueFalseQuestions'])->name('true-false-questions');
+  Route::get('add-true-false-question', [GamesController::class, 'addTrueFalseQuestion'])->name('add-true-false-question');
+  Route::post('store-true-false--question', [GamesController::class, 'storeTrueFalseQuestion'])->name('store-true-false-question');
+  Route::get('edit-true-false-question/{id}', [GamesController::class, 'editTrueFalseQuestion'])->name('edit-true-false-question');
+  Route::post('update-true-false-question', [GamesController::class, 'updateTrueFalseQuestion'])->name('update-true-false-question');
+  Route::post('delete-true-false-question', [GamesController::class, 'deleteTrueFalseQuestion'])->name('delete-true-false-question');
+
 });

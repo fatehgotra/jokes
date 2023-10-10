@@ -85,7 +85,7 @@
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#local_trivia" aria-expanded="false" aria-controls="local_trivia" class="side-nav-link">
                    <i class=" mdi mdi-gamepad-circle"></i>
-                    <span> Local Trivia Game </span>
+                    <span> Local Trivia </span>
                 </a>
                     <div class="{{ request()->is('admin/local-trivia') || request()->is('admin/local-trivia/*') ? 'collapse show' : 'collapse' }}" id="local_trivia">
                         <ul class="side-nav-second-level">
@@ -94,6 +94,24 @@
                             </li>
                             <li>
                                 <a href="{{ route('admin.trivia-questions') }}">Questions</a>
+                            </li>
+                           
+                        </ul>
+                    </div>
+            </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#true_false" aria-expanded="false" aria-controls="true_false" class="side-nav-link">
+                   <i class=" mdi mdi-gamepad-circle"></i>
+                    <span> True False </span>
+                </a>
+                    <div class="{{ request()->is('admin/true-false') || request()->is('admin/true-false/*') ? 'collapse show' : 'collapse' }}" id="true_false">
+                        <ul class="side-nav-second-level">
+                        <li>
+                                <a href="{{ route('admin.true-false') }}">Setup</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.true-false-questions') }}">Questions</a>
                             </li>
                            
                         </ul>
