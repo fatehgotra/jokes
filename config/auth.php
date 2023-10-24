@@ -47,7 +47,11 @@ return [
         'user' => [
             'driver' => 'session',
             'provider' => 'users',
-        ],      
+        ], 
+        'group_user' => [
+            'driver'   => 'session',
+            'provider' => 'groups'
+        ],     
     ],
 
     /*
@@ -76,6 +80,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
+        'groups' => [
+
+            'driver' => 'eloquent',
+            'model' => App\Models\GroupMembers::class,
+        ]
 
 
         // 'users' => [
@@ -112,6 +121,12 @@ return [
         ],
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],   
+        'groups' => [
+            'provider' => 'groups',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

@@ -56,6 +56,7 @@ class LoginController extends Controller
         if (Auth::guard('user')->attempt(['email' => $request->email, 'password' => ($request->password)], $request->remember)) {
 
             return redirect()->intended(route('user.dashboard'));
+            
         } else {
 
             return $this->sendFailedLoginResponse($request);

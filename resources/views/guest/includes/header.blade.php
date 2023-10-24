@@ -41,12 +41,26 @@
                         <li><a href="https://webmediaclients.com/shopnsaveecom/index.php/product-category/store/">Store</a></li>
                         <li><a href="https://webmediaclients.com/shopnsaveecom/index.php/category/promotions/">Promotion</a></li>
 
-                        @if( is_null(Auth::guard('user')->user()) )
-                        <li class="logb"><a href="{{ route('user.login') }}">Login</a></li>
+                        @if( is_null(Auth::guard('user')->user()) && is_null(Auth::guard('group_user')->id() ))
+                        <li class="logb1"><a href="{{ route('user.login') }}">Login <i class="fa fa-sign-in" aria-hidden="true"></i>  </a></li>
+                        @elseif( !is_null(Auth::guard('group_user')->id() ) )
+                        
+                        <li class="dropdown">
+                            <a class="dropbtn" href="#">{{ Auth::guard('group_user')->user()->display_name }}</a>
+                            <div class="dropdown-content" style="min-width: 0px;">
+                                <a href="{{ route('user.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-logout mr-1"></i>
+                                    <span>Logout</span>
+                                </a>
+                                <form id="logout-form" action="{{  route('group.group-logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </div>
+                        </li>
                         @else
-                        <li class="dropdown logb">
+                        <li class="dropdown">
                             <a class="dropbtn" href="#">{{ Auth::guard('user')->user()->name }}</a>
-                            <div class="dropdown-content">
+                            <div class="dropdown-content" style="min-width: 0px;">
                                 <a href="{{ route('user.my-account.edit', Auth::guard('user')->id()) }}">My Profile</a>
                                 <a href="{{ route('user.dashboard') }}">Dashboard</a>
                                 <a href="{{ route('user.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
@@ -59,8 +73,6 @@
                             </div>
                         </li>
                         @endif
-
-                        <li></li>
 
 
                     </ul>

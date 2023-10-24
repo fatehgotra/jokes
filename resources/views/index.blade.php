@@ -132,7 +132,7 @@
                           tap the screen to spin a virtual wheel filled with various prizes or challenges. Wait for the wheel to stop to see what you've won or must do during your grog session. Accumulate points or rewards based on the wheel's outcome, aiming for high scores or rare prizes.
                         </div>
                         <div class="text-center mb-1">
-                          <a class="btn btn-success lbg">Play</a>
+                          <a class="btn btn-success lbg" href="{{ route('group.grog-spin-the-wheel')}}">Play</a>
                         </div>
                       </div>
                     </div>
@@ -148,7 +148,7 @@
                           view the displayed image of a place. Choose the correct location from multiple-choice options within a time limit.
                         </div>
                         <div class="text-center mb-1">
-                          <a class="btn btn-success lbg">Play</a>
+                          <a class="btn btn-success lbg" href="{{ route('group.guess-the-location')}}">Play</a>
                         </div>
                       </div>
                     </div>
@@ -164,7 +164,7 @@
                           Listen to short audio snippets and choose who you think the voice belongs to from multiple-choice options. Use lifelines like "Replay Voice" or "50/50" for help, and aim to top the local leaderboard. Whether it's local celebrities, politicians, famous local sports stars, influencers etc.
                         </div>
                         <div class="text-center mb-1">
-                          <a class="btn btn-success lbg">Play</a>
+                          <a class="btn btn-success lbg" href="{{ route('group.guess-the-voice')}}" >Play</a>
                         </div>
                       </div>
                     </div>
@@ -180,7 +180,7 @@
                           "Guess the Local Celebrity" is a fun and interactive mobile game that tests your knowledge of famous faces in your community. Identify the blurred or pixelated faces from multiple-choice options within a time limit. Use lifelines like "Hint" or "50/50" when stuck, and compete for the top spot on the local leaderboard.
                         </div>
                         <div class="text-center mb-1">
-                          <a class="btn btn-success lbg">Play</a>
+                          <a class="btn btn-success lbg" href="{{ route('group.guess-local-celebrity')}}">Play</a>
                         </div>
                       </div>
                     </div>
@@ -196,7 +196,7 @@
                           start a game to be presented with two options for various categories. Quickly tap your preferred choice between the two within a set time limit.
                         </div>
                         <div class="text-center mb-1">
-                          <a class="btn btn-success lbg">Play</a>
+                          <a class="btn btn-success lbg" href="{{ route('group.this-or-that')}}">Play</a>
                         </div>
                       </div>
                     </div>
@@ -212,7 +212,7 @@
                           gather around with friends, each taking turns to press the "Spin" button. Complete the challenge or dare displayed, or opt to take a sip of your drink as a forfeit. Keep playing in rounds, aiming for laughs and memorable moments while adhering to responsible drinking guidelines.
                         </div>
                         <div class="text-center mb-1">
-                          <a class="btn btn-success lbg">Play</a>
+                          <a class="btn btn-success lbg" href="{{ route('group.do-or-drink')}}">Play</a>
                         </div>
                       </div>
                     </div>

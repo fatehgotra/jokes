@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GamesController;
+use App\Http\Controllers\GroupGamesController;
 use App\Http\Controllers\JokesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [GamesController::class, 'home']);
+Route::get('/', [GamesController::class, 'home'])->name('home');
 
 Route::get('games', [GamesController::class, 'index'])->name('games');
 Route::get('breakout', [GamesController::class, 'breakout'])->name('breakout');
@@ -43,9 +44,9 @@ Route::get('jokes', [JokesController::class, 'front'])->name('jokes');
 //require __DIR__ . '/auth.php';
 
 
-Route::get('game-trivia', [GamesController::class, 'viewTriviaGame'])->name('game-trivia');
-Route::get('game-true-false', [GamesController::class, 'viewTrueFalseGame'])->name('game-true-false');
+Route::get('user/game-trivia', [GamesController::class, 'viewTriviaGame'])->name('game-trivia');
+Route::get('user/game-true-false', [GamesController::class, 'viewTrueFalseGame'])->name('game-true-false');
 
-Route::post('save-leader',[GamesController::class,'saveLeader'])->name('save-leader');
-Route::post('enable-leader',[GamesController::class,'enableLeader'])->name('enable-leader');
+Route::post('user/save-leader', [GamesController::class, 'saveLeader'])->name('save-leader');
+Route::post('user/enable-leader', [GamesController::class, 'enableLeader'])->name('enable-leader');
 

@@ -151,4 +151,9 @@ class GamesController extends Controller
 
         return redirect()->back()->with('success','Thanks, Your score is submitted.');
     }
+
+    public function GuessTheLoc(){
+
+        return view('pages.group_games.guess_location');
+    }
 }
