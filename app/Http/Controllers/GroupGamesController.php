@@ -102,7 +102,7 @@ class GroupGamesController extends Controller
 
         session()->put('step1', $s1);
 
-        return redirect()->route('group-members');
+        return redirect()->route('group.group-members');
     }
 
     public function signUpStep2(Request $request)
@@ -115,7 +115,7 @@ class GroupGamesController extends Controller
 
         if (!session()->get('step1')) {
 
-            return redirect()->route('group-login')->with('error', 'Please create group first.');
+            return redirect()->route('group.group-login')->with('error', 'Please create group first.');
         }
 
 
