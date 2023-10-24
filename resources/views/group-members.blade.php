@@ -7,7 +7,7 @@
         <section class="wrapper">
             <div class="heading">
                 <h1 class="text text-large">Group Members</h1>
-                <small class="text-danger bg-white p_2 border border-danger rounded">Min. 2 and max. 4 members are allowed.</small>
+                <small class="text-danger bg-white p-2 border border-danger rounded">Min. 2 and max. 4 members are allowed.</small>
             </div>
             <form name="signin" class="form" action="{{ route('group.signup-2') }}" method="POST">
                 @csrf
