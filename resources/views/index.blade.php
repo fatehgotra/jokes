@@ -13,7 +13,7 @@
           <div class="row">
             <div class="col-lg-7">
               <div class="header-text bantext">
-              
+
                 <h4><em>Browse</em> Our Popular Games Here</h4>
                 <div class="main-button">
                   <a style="background-color:#418BE0" href="{{ url('/#games') }}">Browse Now</a>
@@ -39,7 +39,7 @@
                   </div>
                   <div id="accordion">
 
-                  @if( isset($localtrivia) )
+                    @if( isset($localtrivia) )
                     <div class="card">
                       <div class="card-header" id="headingOne">
                         <h5 class="mb-0 text-center" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -49,7 +49,7 @@
                       </div>
                       <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
-                         {{ $localtrivia->description }}
+                          {{ $localtrivia->description }}
                         </div>
                         <div class="text-center mb-1">
                           <a class="btn btn-success lbg" href="{{ route('game-trivia') }}">Play</a>
@@ -65,37 +65,42 @@
                       <div class="card-header" id="headingOne">
                         <h5 class="mb-0 text-center" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
                           <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                         {{ $truefalse->name }}
+                          {{ $truefalse->name }}
                         </h5>
                       </div>
                       <div id="collapse2" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
-                        {{ $truefalse->description }}
+                          {{ $truefalse->description }}
                         </div>
                         <div class="text-center mb-1">
-                        <a class="btn btn-success lbg" href="{{ route('game-true-false') }}">Play</a>
+                          <a class="btn btn-success lbg" href="{{ route('game-true-false') }}">Play</a>
                         </div>
                       </div>
                     </div>
 
                     @endif
 
+                    @if( isset($guessTheVoice) )
+
                     <div class="card">
                       <div class="card-header" id="headingOne">
                         <h5 class="mb-0 text-center" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
                           <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                          Guess The Voice
+                          {{ $guessTheVoice->name }}
                         </h5>
                       </div>
                       <div id="collapse3" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
-                          Listen to short audio snippets and choose who you think the voice belongs to from multiple-choice options. Use lifelines like "Replay Voice" or "50/50" for help, and aim to top the local leaderboard. Whether it's local celebrities, politicians, famous local sports stars, influencers etc
+                        {{ $guessTheVoice->description }}
                         </div>
                         <div class="text-center mb-1">
-                          <a class="btn btn-success lbg">Play</a>
+                          <a class="btn btn-success lbg" href="{{ route('guess-the-voice') }}" >Play</a>
                         </div>
                       </div>
                     </div>
+
+                    @endif
+
                     <div class="card">
                       <div class="card-header" id="headingOne">
                         <h5 class="mb-0 text-center" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
@@ -136,22 +141,28 @@
                         </div>
                       </div>
                     </div>
+
+                    @if( isset($groupGuessLocation) )
+
                     <div class="card">
                       <div class="card-header" id="headingTwo">
                         <h5 class="mb-0 text-center" data-toggle="collapse" data-target="#collapse6" aria-expanded="true" aria-controls="collapse6">
                           <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                          Guess the location
+                          {{ $groupGuessLocation->name }}
                         </h5>
                       </div>
                       <div id="collapse6" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion2">
                         <div class="card-body">
-                          view the displayed image of a place. Choose the correct location from multiple-choice options within a time limit.
+                          {{ $groupGuessLocation->description }}
                         </div>
                         <div class="text-center mb-1">
-                          <a class="btn btn-success lbg" href="{{ route('group.guess-the-location')}}">Play</a>
+                          <a class="btn btn-success lbg" href="{{ route('group.guess-the-location') }}">Play</a>
                         </div>
                       </div>
                     </div>
+
+                    @endif
+
                     <div class="card">
                       <div class="card-header" id="headingTwo">
                         <h5 class="mb-0 text-center" data-toggle="collapse" data-target="#collapse7" aria-expanded="true" aria-controls="collapse7">
@@ -164,7 +175,7 @@
                           Listen to short audio snippets and choose who you think the voice belongs to from multiple-choice options. Use lifelines like "Replay Voice" or "50/50" for help, and aim to top the local leaderboard. Whether it's local celebrities, politicians, famous local sports stars, influencers etc.
                         </div>
                         <div class="text-center mb-1">
-                          <a class="btn btn-success lbg" href="{{ route('group.guess-the-voice')}}" >Play</a>
+                          <a class="btn btn-success lbg" href="{{ route('group.guess-the-voice')}}">Play</a>
                         </div>
                       </div>
                     </div>

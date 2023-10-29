@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('groups', function (Blueprint $table) {
+        Schema::create('group_guess_location', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('game_name')->nullable();
-            $table->string('avatar')->nullable();
-            $table->string('creator');
+            $table->longText('description');
+            $table->string('ques_time_limit');
+            $table->string('game_question_limit');
+            $table->integer('lifeline');
+            $table->longText('rules');
+            $table->integer('qualified_score');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('groups');
+        Schema::dropIfExists('group_guess_location');
     }
 };

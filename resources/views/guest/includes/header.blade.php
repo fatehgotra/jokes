@@ -41,9 +41,9 @@
                         <li><a href="https://webmediaclients.com/shopnsaveecom/index.php/product-category/store/">Store</a></li>
                         <li><a href="https://webmediaclients.com/shopnsaveecom/index.php/category/promotions/">Promotion</a></li>
 
-                        @if( is_null(Auth::guard('user')->user()) && is_null(Auth::guard('group_user')->id() ))
+                        @if( is_null( Auth::guard('user')->user() ) && is_null(Auth::guard('group_user')->user() ))
                         <li class="logb1"><a href="{{ route('user.login') }}">Login <i class="fa fa-sign-in" aria-hidden="true"></i>  </a></li>
-                        @elseif( !is_null(Auth::guard('group_user')->id() ) )
+                        @elseif( !is_null(Auth::guard('group_user')->user() ) )
                         
                         <li class="dropdown">
                             <a class="dropbtn" href="#">{{ Auth::guard('group_user')->user()->display_name }}</a>
@@ -59,7 +59,7 @@
                         </li>
                         @else
                         <li class="dropdown">
-                            <a class="dropbtn" href="#">{{ Auth::guard('user')->user()->name }}</a>
+                            <a class="dropbtn" href="#">{{  Auth::guard('user')->user()->name }}</a>
                             <div class="dropdown-content" style="min-width: 0px;">
                                 <a href="{{ route('user.my-account.edit', Auth::guard('user')->id()) }}">My Profile</a>
                                 <a href="{{ route('user.dashboard') }}">Dashboard</a>

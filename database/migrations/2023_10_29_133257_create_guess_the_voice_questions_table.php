@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('groups', function (Blueprint $table) {
+        Schema::create('guess_the_voice_questions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('game_name')->nullable();
-            $table->string('avatar')->nullable();
-            $table->string('creator');
+            $table->string('text')->nullable();
+            $table->string('file')->nullable();
+            $table->string('correct_option');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('groups');
+        Schema::dropIfExists('guess_the_voice_questions');
     }
 };

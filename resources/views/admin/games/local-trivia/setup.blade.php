@@ -55,8 +55,9 @@
                                 <label for="statuses" class="form-label">Status<span class="text-danger">*</span></label>
                                 <select name="status" id="statuses" class="form-select" value="{{ old('status') }}">
 
-                                    <option value="1" @if ( $game ? ( $game->status == 1 ? "selected" : '' ) : '') @endif>Active</option>
-                                    <option value="0" @if ( $game ? ( $game->status == 0 ? "selected" : '' ) : '') @endif >Inactive</option>
+                                <option value="1" {{  ( $game->status == '1' ? "selected" : '' )  }}>Active</option>
+                                <option value="0" {{  ( $game->status == '0' ? "selected" : '' )  }}>Inactive</option>
+
                                 </select>
                             </div>
 

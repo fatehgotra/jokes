@@ -5,6 +5,13 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Admin;
+use App\Models\GroupGuessLocation;
+use App\Models\GroupGuessLocationQues;
+use App\Models\GroupMembers;
+use App\Models\Groups;
+use App\Models\GroupScores;
+use App\Models\GuessTheVoice;
+use App\Models\GuessTheVoiceQues;
 use App\Models\Jokes;
 use App\Models\JokesCategory;
 use App\Models\LeaderBoard;
@@ -72,6 +79,24 @@ class DatabaseSeeder extends Seeder
             'status' => 1
         ]);
 
+        $gp = Groups::create([
+            'name' => 'Test Group',
+            'game_name' => 'group_location',
+            'avatar' => '',
+            'creator' => $user->id
+        ]);
+
+        GroupScores::create(
+            [
+                'group_id' => $gp->id,
+                'game'     => 'group_location',
+                'score'    =>  '7',
+                'status'   => 1,
+                'image'    => '',
+            ]
+        );
+
+
         for ($k = 0; $k < 4; $k++) {
 
             Jokes::create([
@@ -81,8 +106,6 @@ class DatabaseSeeder extends Seeder
                 'status'  => $faker->randomElement([0, 1]),
             ]);
         }
-
-
 
 
         for ($i = 0; $i < 10; $i++) {
@@ -108,7 +131,7 @@ class DatabaseSeeder extends Seeder
         }
 
 
-        for ($i = 0; $i < 3; $i++) {
+        for ($i = 0; $i < 4; $i++) {
 
             $user =  User::create([
                 'name' =>  $faker->name(),
@@ -128,6 +151,13 @@ class DatabaseSeeder extends Seeder
                     'status'  => $faker->randomElement([0, 1]),
                 ]);
             }
+
+            GroupMembers::create([
+                'group_id' => $gp->id,
+                'email' => ($i == 0) ? 'user@site.com' : $user->email,
+                'display_name' => $user->name,
+                'password' => Hash::make('password'),
+            ]);
         }
 
 
@@ -190,22 +220,20 @@ class DatabaseSeeder extends Seeder
             LeaderBoard::create([
 
                 'user_id' => $faker->randomElement([1, 2, 3, 4, 5, 6]),
-                'game' => $faker->randomElement(['local-trivia', 'true-false', 'solo-guess-voice', 'solo-guess-celebrity']),
+                'game' => $faker->randomElement(['local-trivia', 'true-false', 'guess-the-voice', 'guess-the-celebrity']),
                 'score' => $faker->randomElement([2, 3, 4, 10, 5, 6, 7]),
                 'status' => 1,
             ]);
         }
 
-        /*True False */
+        /*Guess The Voice */
 
-            /** Local Trivia */
-
-            TrueFalse::create([
-                'name' => 'True or False',
-                'description' =>  'start the game to receive statements related to various topics. Swipe right for "True" and left for "False" within a set time limit for each statement. Use lifelines like "Skip" or "50/50" when stuck, and aim for a high score.',
-                'ques_time_limit' => '10',
-                'lifeline'  => 0,
-                'rules' => '<p>1. You will have only&nbsp;15 seconds&nbsp;per each question.</p>
+        GuessTheVoice::create([
+            'name' => 'Guess The Voice',
+            'description' =>  'Listen to short audio snippets and choose who you think the voice belongs to from multiple-choice options. Use lifelines like "Replay Voice" or "50/50" for help, and aim to top the local leaderboard. Whether it\'s local celebrities, politicians, famous local sports stars, influencers etc',
+            'ques_time_limit' => '10',
+            'lifeline'  => 2,
+            'rules' => '<p>1. You will have only&nbsp;15 seconds&nbsp;per each question.</p>
     
                 <p>2. Once you select your answer, it can&#39;t be undone.</p>
                 
@@ -214,20 +242,92 @@ class DatabaseSeeder extends Seeder
                 <p>4. You can&#39;t exit from the game while you&#39;re playing.</p>
                 
                 <p>5. You&#39;ll get points on the basis of your correct answers.</p>',
-                'game_question_limit' => '10',
-                'qualified_score' => '4',
-                'status' => 1,
+            'game_question_limit' => '15',
+            'qualified_score' => '4',
+            'status' => 1,
+        ]);
+
+        for ($i = 1; $i <= 40; $i++) {
+            GuessTheVoiceQues::create([
+
+                'text' => 'Play and Gues The Voice no. ' . $i . '',
+                'file' => $faker->randomElement($jokes),
+                'correct_option' => 'true',
+                'status'   => 1,
             ]);
+        }
+
+         /*True False */
+
+        TrueFalse::create([
+            'name' => 'True or False',
+            'description' =>  'start the game to receive statements related to various topics. Swipe right for "True" and left for "False" within a set time limit for each statement. Use lifelines like "Skip" or "50/50" when stuck, and aim for a high score.',
+            'ques_time_limit' => '10',
+            'lifeline'  => 0,
+            'rules' => '<p>1. You will have only&nbsp;15 seconds&nbsp;per each question.</p>
     
-            for ($i = 1; $i <= 40; $i++) {
-                TrueFalseQues::create([
-    
-                    'statement' => 'Dummy Statement no. ' . $i . '',
-                    'correct_option' => 'true',
-                    'status'   => 1,
-                ]);
-            }
-    
-        
+                <p>2. Once you select your answer, it can&#39;t be undone.</p>
+                
+                <p>3. You can&#39;t select any option once time goes off.</p>
+                
+                <p>4. You can&#39;t exit from the game while you&#39;re playing.</p>
+                
+                <p>5. You&#39;ll get points on the basis of your correct answers.</p>',
+            'game_question_limit' => '10',
+            'qualified_score' => '4',
+            'status' => 1,
+        ]);
+
+        for ($i = 1; $i <= 40; $i++) {
+            TrueFalseQues::create([
+
+                'statement' => 'Dummy Statement no. ' . $i . '',
+                'correct_option' => 'true',
+                'status'   => 1,
+            ]);
+        }
+
+        /****************GroupGames************************* */
+
+        /** Group Guess Location */
+
+        GroupGuessLocation::create([
+            'name' => 'Guess The Location',
+            'description' =>  'view the displayed image of a place. Choose the correct location from multiple-choice options within a time limit.',
+            'ques_time_limit' => '10',
+            'lifeline'  => 2,
+            'rules' => '<p>1. You will have only&nbsp;15 seconds&nbsp;per each question.</p>
+
+            <p>2. Once you select your answer, it can&#39;t be undone.</p>
+            
+            <p>3. You can&#39;t select any option once time goes off.</p>
+            
+            <p>4. You can&#39;t exit from the game while you&#39;re playing.</p>
+            
+            <p>5. You&#39;ll get points on the basis of your correct answers.</p>',
+            'game_question_limit' => '10',
+            'qualified_score' => '4',
+            'status' => 1,
+        ]);
+
+        $imgs_gl = [
+            'https://quizizz.com/media/resource/gs/quizizz-media/quizzes/aeb46cb3-b3c0-46a4-8465-e68dd9d986d7?w=200&h=200',
+            'https://quizizz.com/media/resource/gs/quizizz-media/quizzes/36f36db3-bfb5-4b44-bbe4-ee4713e01113?w=900&h=900',
+            'https://quizizz.com/media/resource/gs/quizizz-media/quizzes/54dd4adc-d160-4ec1-aa1d-fd84c84e818e?w=900&h=900',
+        ];
+
+        for ($i = 1; $i <= 40; $i++) {
+            GroupGuessLocationQues::create([
+
+                'question' => 'Guess the following location in image ' . $i . '',
+                'option_1' => 'option 1',
+                'option_2' => 'option 2',
+                'option_3' => 'option 3',
+                'option_4' => 'option 4',
+                'correct_option' => 'option_2',
+                'image'    => $faker->randomElement($imgs_gl),
+                'status'   => 1,
+            ]);
+        }
     }
 }

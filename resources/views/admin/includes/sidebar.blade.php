@@ -42,80 +42,190 @@
                     </svg>
                     <span> Users </span>
                 </a>
-                    <div class="{{ request()->is('admin/users') || request()->is('admin/users/*') ? 'collapse show' : 'collapse' }}" id="users">
-                        <ul class="side-nav-second-level">
+                <div class="{{ request()->is('admin/users') || request()->is('admin/users/*') ? 'collapse show' : 'collapse' }}" id="users">
+                    <ul class="side-nav-second-level">
                         <li>
-                                <a href="{{ route('admin.users.index') }}">All users</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.users.index', ['status' => 'active']) }}">Active users</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.users.index', ['status' => 'inactive']) }}">Inactive users</a>
-                            </li>
+                            <a href="{{ route('admin.users.index') }}">All users</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.users.index', ['status' => 'active']) }}">Active users</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.users.index', ['status' => 'inactive']) }}">Inactive users</a>
+                        </li>
 
-                        </ul>
-                    </div>
+                    </ul>
+                </div>
             </li>
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#jokes" aria-expanded="false" aria-controls="jokes" class="side-nav-link">
-                   <i class=" mdi mdi-comment-outline"></i>
+                    <i class=" mdi mdi-comment-outline"></i>
                     <span> Jokes </span>
                 </a>
-                    <div class="{{ request()->is('admin/jokes') || request()->is('admin/jokes/*') ? 'collapse show' : 'collapse' }}" id="jokes">
-                        <ul class="side-nav-second-level">
+                <div class="{{ request()->is('admin/jokes') || request()->is('admin/jokes/*') ? 'collapse show' : 'collapse' }}" id="jokes">
+                    <ul class="side-nav-second-level">
                         <li>
-                                <a href="{{ route('admin.jokes') }}">All Jokes</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.jokes', ['status' => 'published']) }}">Published Jokes</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.jokes', ['status' => 'unpublished']) }}">UnPublished Jokes</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.jokes.categories') }}">Categories</a>
-                            </li>
+                            <a href="{{ route('admin.jokes') }}">All Jokes</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.jokes', ['status' => 'published']) }}">Published Jokes</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.jokes', ['status' => 'unpublished']) }}">UnPublished Jokes</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.jokes.categories') }}">Categories</a>
+                        </li>
 
-                        </ul>
-                    </div>
+                    </ul>
+                </div>
             </li>
 
-            <li class="side-nav-item">
+            <!-- <li class="side-nav-item">
+
                 <a data-bs-toggle="collapse" href="#local_trivia" aria-expanded="false" aria-controls="local_trivia" class="side-nav-link">
-                   <i class=" mdi mdi-gamepad-circle"></i>
+                    <i class=" mdi mdi-gamepad-circle"></i>
                     <span> Local Trivia </span>
                 </a>
-                    <div class="{{ request()->is('admin/local-trivia') || request()->is('admin/local-trivia/*') ? 'collapse show' : 'collapse' }}" id="local_trivia">
-                        <ul class="side-nav-second-level">
+                <div class="{{ request()->is('admin/local-trivia') || request()->is('admin/local-trivia/*') ? 'collapse show' : 'collapse' }}" id="local_trivia">
+                    <ul class="side-nav-second-level">
                         <li>
-                                <a href="{{ route('admin.local-trivia') }}">Setup</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.trivia-questions') }}">Questions</a>
-                            </li>
-                           
-                        </ul>
-                    </div>
+                            <a href="{{ route('admin.local-trivia') }}">Setup</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.trivia-questions') }}">Questions</a>
+                        </li>
+
+                    </ul>
+                </div>
+
             </li>
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#true_false" aria-expanded="false" aria-controls="true_false" class="side-nav-link">
-                   <i class=" mdi mdi-gamepad-circle"></i>
+                    <i class=" mdi mdi-gamepad-circle"></i>
                     <span> True False </span>
                 </a>
-                    <div class="{{ request()->is('admin/true-false') || request()->is('admin/true-false/*') ? 'collapse show' : 'collapse' }}" id="true_false">
-                        <ul class="side-nav-second-level">
+                <div class="{{ request()->is('admin/true-false') || request()->is('admin/true-false/*') ? 'collapse show' : 'collapse' }}" id="true_false">
+                    <ul class="side-nav-second-level">
                         <li>
-                                <a href="{{ route('admin.true-false') }}">Setup</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.true-false-questions') }}">Questions</a>
-                            </li>
-                           
-                        </ul>
-                    </div>
+                            <a href="{{ route('admin.true-false') }}">Setup</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.true-false-questions') }}">Questions</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li> -->
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages" class="side-nav-link">
+                    <i class="mdi mdi-gamepad-circle"></i>
+                    <span> Solo Games </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarPages">
+                    <ul class="side-nav-second-level">
+
+                        <li class="side-nav-item">
+
+                            <a data-bs-toggle="collapse" href="#local_trivia" aria-expanded="false" aria-controls="local_trivia" class="side-nav-link">
+                            <i class="mdi mdi-minus"></i>
+                                <span> Local Trivia </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="{{ request()->is('admin/local-trivia') || request()->is('admin/local-trivia/*') ? 'collapse show' : 'collapse' }}" id="local_trivia">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{{ route('admin.local-trivia') }}">Setup</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.trivia-questions') }}">Questions</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </li>
+
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#true_false" aria-expanded="false" aria-controls="true_false" class="side-nav-link">
+                            <i class="mdi mdi-minus"></i>   
+                            <span> True False </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="{{ request()->is('admin/true-false') || request()->is('admin/true-false/*') ? 'collapse show' : 'collapse' }}" id="true_false">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{{ route('admin.true-false') }}">Setup</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.true-false-questions') }}">Questions</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#guess_voice" aria-expanded="false" aria-controls="guess_voice" class="side-nav-link">
+                            <i class="mdi mdi-minus"></i>   
+                            <span> Guess The Voice </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="{{ request()->is('admin/guess-the-voice') || request()->is('admin/guest-the-voice/*') ? 'collapse show' : 'collapse' }}" id="guess_voice">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{{ route('admin.guess-the-voice') }}">Setup</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.guess-the-voice-questions') }}">Questions</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarPagesGroup" aria-expanded="false" aria-controls="sidebarPagesGroup" class="side-nav-link">
+                    <i class="mdi mdi-gamepad-circle"></i>
+                    <span> Group Games </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarPagesGroup">
+                    <ul class="side-nav-second-level">
+
+                        <li class="side-nav-item">
+
+                            <a data-bs-toggle="collapse" href="#group_location" aria-expanded="false" aria-controls="group_location" class="side-nav-link">
+                            <i class="mdi mdi-minus"></i>
+                                <span> Guess The Location </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="{{ request()->is('admin/local-trivia') || request()->is('admin/local-trivia/*') ? 'collapse show' : 'collapse' }}" id="group_location">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{{ route('admin.group-guess-location') }}">Setup</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.group-guess-location-questions') }}">Questions</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </li>
+
+                    </ul>
+                </div>
             </li>
 
 

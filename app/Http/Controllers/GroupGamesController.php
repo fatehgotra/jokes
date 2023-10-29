@@ -2,8 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GroupGuessLocation;
+use App\Models\GroupGuessLocationQues;
 use App\Models\GroupMembers;
+use App\Models\GroupQues;
 use App\Models\Groups;
+use App\Models\GroupScores;
+use App\Models\LeaderBoard;
+use App\Models\LocalTrivia;
+use App\Models\LocalTriviaQues;
+use App\Models\User;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -190,9 +198,189 @@ class GroupGamesController extends Controller
         return redirect()->route('home')->with('success', 'Logged out successfully from group.');
     }
 
+
+    //////////////////////GAMES FUNCTIONS
+
+
     public function GuessTheLoc()
     {
-        return view('pages.group_games.guess_location');
+        $groupGuessLocation = GroupGuessLocation::first();
+
+        $user = Auth::guard('group_user')->user();
+
+        
+        $_questions = GroupGuessLocationQues::where('status', 1)->inRandomOrder()->limit($groupGuessLocation->game_question_limit)->get();
+        
+        $leaders = GroupScores::with('group')->where('game', 'group_location')->where('score','>=',$groupGuessLocation->qualified_score)->where('status',1)->get();
+        
+        $check = GroupQues::where([ 'group_id' =>  $user->group_id, 'game' => 'group_location'])->first();
+
+        $questions = [];
+
+    if( !$check ){
+       
+       
+
+        if (count($_questions) > 0) {
+            foreach ($_questions as $k => $q) {
+
+                $questions[] = [
+                    'numb' => ($k + 1),
+                    'id'   => $q->id,
+                    'gid'  => $groupGuessLocation->id,
+                    'question' => $q->question,
+                    'answer' => (int)filter_var($q->correct_option, FILTER_SANITIZE_NUMBER_INT),
+                    'image'     => $q->image,
+                    'options' => [
+
+                        $q->option_1,
+                        $q->option_2,
+                        $q->option_3,
+                        $q->option_4,
+                    ],
+                ];
+
+                GroupQues::create([
+
+                    'group_id' => $groupGuessLocation->id,
+                    'ques_id'  => $q->id,
+                    'game'     => 'group_location',
+                    'current_que' => ($k == 0) ? $q->id : '',
+                    'selected_option' => '',
+                    'answer_by'=>'',
+                ]);
+            }
+        }
+
+     } else{
+            //////////////////
+         
+            $current = GroupQues::where(['game' => 'group_location','group_id' => $groupGuessLocation->id])->where('current_que','!=','')->first();
+          
+            $gques = GroupQues::where(['game' => 'group_location','group_id' => $groupGuessLocation->id])
+                                ->where('id','>=',$current->id)
+                                ->get()
+                                ->pluck('ques_id');
+            
+
+            foreach( $gques as $k => $q){
+
+
+                $qs = GroupGuessLocationQues::find($q);
+
+                $questions[] = [
+                    'numb' => ($k + 1),
+                    'id'   => $q,
+                    'gid'  => $groupGuessLocation->id,
+                    'question' => $qs->question,
+                    'answer' => (int)filter_var($qs->correct_option, FILTER_SANITIZE_NUMBER_INT),
+                    'image'     => $qs->image,
+                    'options' => [
+
+                        $qs->option_1,
+                        $qs->option_2,
+                        $qs->option_3,
+                        $qs->option_4,
+                    ],
+                ];
+
+            }
+
+    }
+        
+        return view('pages.group_games.guess_location', compact('groupGuessLocation', 'questions','leaders'));
+
+        //return view('pages.group_games.guess_location');
+    }
+
+    public function trackResult(Request $request){
+
+
+        $result = GroupQues::where(['group_id' => $request->gid,'ques_id' => $request->id])->first();
+
+        $result->answer_by = !is_null($request->email)  && $result->answer_by != "" ? candidate_name( $request->email ) : "";
+
+        return response()->json([
+            'result' => $result
+        ]);
+
+    }
+
+    public function updateCurrent( Request $request){
+
+        $last = GroupQues::where([
+
+            'group_id' =>$request->gid,
+            'game'     => $request->game,
+        ])->get()->last();
+
+       
+        GroupQues::where([
+
+            'group_id' =>$request->gid,
+            'game'     => $request->game,
+        ])->update([
+            'current_que' => '',
+        ]);
+
+        GroupQues::where([
+
+            'group_id' =>$request->gid,
+            'game'     => $request->game,
+            'ques_id'  => $request->id
+        ])->update([
+            'current_que' => $request->id,
+        ]);
+
+
+        return response()->json(['response' => 'current updated']);
+    }
+
+    public function gameResult( Request $request ){
+
+        $correct = GroupQues::where([
+
+            'group_id' => $request->gid,
+            'game'     => $request->game,
+            'correct'  => 1
+
+        ])->count();
+        
+        GroupScores::updateorCreate(
+            [
+                'group_id' => $request->gid,
+                'game'     => $request->game,
+            ],
+            [
+                'group_id' => $request->gid,
+                'game'     => $request->game,
+                'score'    => $correct,
+                'status'   => 1,
+                'image'    => '',   
+            ]
+        );
+        
+        GroupQues::where([
+
+            'group_id' =>$request->gid,
+            'game'     => $request->game,
+
+        ])->delete();
+
+    }
+
+    public function storeResult(Request $request){
+
+        $result = GroupQues::where(['group_id' => $request->gid,'ques_id' => $request->id])->update([
+            'answer_by' => $request->email,
+            'selected_option' => $request->selected,
+            'correct' => $request->correct,
+        ]);
+
+        return response()->json([
+            'response' => $result
+        ]);
+
     }
 
     public function GrogWheel(){

@@ -23,5 +23,12 @@ Route::group(['prefix' => 'group', 'as' => 'group.'], function () {
         Route::get('guess-local-celebrity', [GroupGamesController::class, 'GuessCelebrity'])->name('guess-local-celebrity');
         Route::get('this-or-that', [GroupGamesController::class, 'ThisThat'])->name('this-or-that');
         Route::get('do-or-drink', [GroupGamesController::class, 'DoDrink'])->name('do-or-drink');
+
+        Route::post('track-result', [GroupGamesController::class, 'trackResult'])->name('track-result');
+        Route::post('store-answer', [GroupGamesController::class, 'storeResult'])->name('store-answer');
+        Route::post('update-current', [GroupGamesController::class, 'updateCurrent'])->name('update-current');
+        Route::post('game-result', [GroupGamesController::class, 'gameResult'])->name('game-result');
+
     });
+    
 });

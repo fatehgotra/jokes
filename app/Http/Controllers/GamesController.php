@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GroupGuessLocation;
+use App\Models\GuessTheVoice;
 use App\Models\Jokes;
 use App\Models\JokesCategory;
 use App\Models\LeaderBoard;
@@ -23,11 +25,15 @@ class GamesController extends Controller
     {
 
         $jokes_category = JokesCategory::where('status', 1)->get();
+        
+        /* solo */
+        $localtrivia = LocalTrivia::where('status', 1)->first();
+        $truefalse = TrueFalse::where('status', 1)->first();
+        $guessTheVoice = GuessTheVoice::where('status',1)->first();
 
-        $localtrivia = LocalTrivia::first();
-        $truefalse = TrueFalse::first();
+        $groupGuessLocation = GroupGuessLocation::where('status', 1)->first();
 
-        return view('index', compact('jokes_category', 'localtrivia','truefalse'));
+        return view('index', compact('jokes_category', 'localtrivia','truefalse','groupGuessLocation','guessTheVoice'));
     }
     public function index()
     {
@@ -56,6 +62,40 @@ class GamesController extends Controller
     }
 
     public function viewTriviaGame()
+    {
+
+        $localtrivia = LocalTrivia::first();
+
+        $_questions = LocalTriviaQues::where('status', 1)->inRandomOrder()->limit($localtrivia->game_question_limit)->get();
+        
+        $leaders = LeaderBoard::with('user')->where('game', 'local-trivia')->where('score','>=',$localtrivia->qualified_score)->where('status',1)->get();
+
+        $questions = [];
+
+
+        if (count($_questions) > 0) {
+            foreach ($_questions as $k => $q) {
+
+                $questions[] = [
+                    'numb' => ($k + 1),
+                    'question' => $q->question,
+                    'answer' => (int)filter_var($q->correct_option, FILTER_SANITIZE_NUMBER_INT),
+                    'image'     => $q->image,
+                    'options' => [
+
+                        $q->option_1,
+                        $q->option_2,
+                        $q->option_3,
+                        $q->option_4,
+                    ],
+                ];
+            }
+        }
+
+        return view('pages.games.local-trivia', compact('localtrivia', 'questions','leaders'));
+    }
+
+    public function viewGuessVoice()
     {
 
         $localtrivia = LocalTrivia::first();
@@ -152,8 +192,4 @@ class GamesController extends Controller
         return redirect()->back()->with('success','Thanks, Your score is submitted.');
     }
 
-    public function GuessTheLoc(){
-
-        return view('pages.group_games.guess_location');
-    }
 }

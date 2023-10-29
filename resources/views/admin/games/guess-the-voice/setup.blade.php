@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'True False')
+@section('title', 'Guess The Voice')
 @section('head')
 <link href="{{ asset('assets_admin/css/vendor/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('assets_admin/css/vendor/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
@@ -16,11 +16,11 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">True False</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Guess The Voice</a></li>
                         <li class="breadcrumb-item active">Setup</li>
                     </ol>
                 </div>
-                <h4 class="page-title">True False Game</h4>
+                <h4 class="page-title">Guess The Voice Game</h4>
             </div>
         </div>
     </div>
@@ -30,7 +30,7 @@
 </div> <!-- container -->
 
 <div class="row">
-    <form method="POST" action="{{ route('admin.store-true-false') }}" id="courseForm" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('admin.store-guess-the-voice') }}" id="courseForm" enctype="multipart/form-data">
         @csrf
         <input hidden name="game_id" value="{{ $game ? $game->id : '' }}">
         <div class="row">
@@ -62,7 +62,7 @@
                             </div>
 
                             <div class="col-md-6 mb-2">
-                                <label for="game_question_limit" class="form-label"> No. of statements per game <span class="text-danger"> <small> </small> </span></label>
+                                <label for="game_question_limit" class="form-label"> No. of question per game <span class="text-danger"> <small> </small> </span></label>
                                 <input type="number" min="0" class="form-control" name="game_question_limit" placeholder="game questions limit" value="{{ old('game_question_limit', $game ? $game->game_question_limit : '' ) }}">
                                 @error('game_question_limit')
                                 <code class="text text-danger">{{ $message }}</code>
@@ -72,22 +72,22 @@
 
 
                             <div class="col-md-6 mb-2">
-                                <label for="ques_time_limit" class="form-label"> Game statement timeout limit <span class="text-danger"> <small>( in seconds) </small> </span></label>
+                                <label for="ques_time_limit" class="form-label"> Game question timeout limit <span class="text-danger"> <small>( in seconds) </small> </span></label>
                                 <input type="number" min="0" class="form-control" name="question_limit" placeholder="Question time limit" value="{{ old('question_limit', $game ? $game->ques_time_limit : '' ) }}">
                                 @error('question_limit')
                                 <code class="text text-danger">{{ $message }}</code>
                                 @enderror
                             </div>
 
-                            <!-- <div class="col-md-6 mb-2">
+                            <div class="col-md-6 mb-2">
                                 <label for="lifeline" class="form-label"> No. of lifeline <span class="text-danger"> <small> </small> </span></label>
                                 <input type="number" min="0" class="form-control" name="lifeline" placeholder="Enter lifelines" value="{{ old('lifeline', $game ? $game->lifeline : '' ) }}">
                                 @error('lifeline')
                                 <code class="text text-danger">{{ $message }}</code>
                                 @enderror
-                            </div> -->
+                            </div>
 
-                            <div class="col-md-12 mb-2">
+                            <div class="col-md-6 mb-2">
                                 <label for="qualified_score" class="form-label"> Qualified score for leader <span class="text-danger"> <small> </small>( greater than or equal to this ) </span></label>
                                 <input type="number" min="0" class="form-control" name="qualified_score" placeholder="Enter qualified score" value="{{ old('qualified_score', $game ? $game->qualified_score : '' ) }}">
                                 @error('qualified_score')

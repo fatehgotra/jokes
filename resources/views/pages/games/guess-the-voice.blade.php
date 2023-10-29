@@ -12,7 +12,7 @@
                     <div class="col-lg-12">
 
                         <div class="heading-section text-center">
-                            <h4> {{ $localtrivia->name }} </h4>
+                            <h4> {{ ' Guess The Voice '}} </h4>
                         </div>
 
 

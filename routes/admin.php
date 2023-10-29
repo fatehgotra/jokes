@@ -105,6 +105,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     | Settings > Joke Category Route
     |--------------------------------------------------------------------------
     */
+   /* Local Trivia */
 
   Route::get('local-trivia', [GamesController::class, 'localTrivia'])->name('local-trivia');
   Route::post('store-trivia', [GamesController::class, 'storeTrivia'])->name('store-trivia');
@@ -126,4 +127,31 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
   Route::post('update-true-false-question', [GamesController::class, 'updateTrueFalseQuestion'])->name('update-true-false-question');
   Route::post('delete-true-false-question', [GamesController::class, 'deleteTrueFalseQuestion'])->name('delete-true-false-question');
 
+  /* Guess The Voice */
+
+  Route::get('guess-the-voice', [GamesController::class, 'guessTheVoice'])->name('guess-the-voice');
+  Route::post('store-guess-the-voice', [GamesController::class, 'storeGuessTheVoice'])->name('store-guess-the-voice');
+  Route::get('guess-the-voice-questions', [GamesController::class, 'guessTheVoiceQuestions'])->name('guess-the-voice-questions');
+  Route::get('add-guess-the-voice-question', [GamesController::class, 'addGuessTheVoiceQuestion'])->name('add-guess-the-voice-question');
+  Route::post('store-guess-the-voice-question', [GamesController::class, 'storeGuessTheVoiceQuestion'])->name('store-guess-the-voice-question');
+  Route::get('edit-guess-the-voice-question/{id}', [GamesController::class, 'editGuessTheVoiceQuestion'])->name('edit-guess-the-voice-question');
+  Route::post('update-guess-the-voice-question', [GamesController::class, 'updateGuessTheVoiceQuestion'])->name('update-guess-the-voice-question');
+  Route::post('delete-guess-the-voice-question', [GamesController::class, 'deleteGuessTheVoiceQuestion'])->name('delete-guess-the-voice-question');
+
+   /*
+    |--------------------------------------------------------------------------
+    | Group Games
+    |--------------------------------------------------------------------------
+    */
+
+     /* Guess The Location */
+
+  Route::get('group-guess-location', [GamesController::class, 'groupGuessLocation'])->name('group-guess-location');
+  Route::post('store-group-guess-location', [GamesController::class, 'storegroupGuessLocation'])->name('store-group-guess-location');
+  Route::get('group-guess-location-questions', [GamesController::class, 'groupGuessLocationQues'])->name('group-guess-location-questions');
+  Route::get('add-group-guess-location-question', [GamesController::class, 'addGroupGuessLocationQues'])->name('add-group-guess-location-question');
+  Route::post('store-group-guess-location-question', [GamesController::class, 'storeGroupGuessLocationQues'])->name('store-group-guess-location-question');
+  Route::get('edit-group-guess-location-question/{id}', [GamesController::class, 'editGroupGuessLocationQues'])->name('edit-group-guess-location-question');
+  Route::post('update-group-guess-location-question', [GamesController::class, 'updateGroupGuessLocationQues'])->name('update-group-guess-location-question');
+  Route::post('delete-group-guess-location-question', [GamesController::class, 'deleteGroupGuessLocationQues'])->name('delete-group-guess-location-question');
 });
