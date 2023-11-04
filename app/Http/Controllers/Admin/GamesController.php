@@ -3,8 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\GroupGuessCelebrity;
+use App\Models\GroupGuessCelebrityQues;
 use App\Models\GroupGuessLocation;
 use App\Models\GroupGuessLocationQues;
+use App\Models\GroupGuessVoice;
+use App\Models\GroupGuessVoiceQues;
+use App\Models\GuessLocalCelb;
+use App\Models\GuessLocalCelbQues;
 use App\Models\GuessTheVoice;
 use App\Models\GuessTheVoiceQues;
 use App\Models\Jokes;
@@ -191,6 +197,184 @@ class GamesController extends Controller
         return redirect()->route('admin.trivia-questions')->with('success', 'Question deleted successfully!');
     }
 
+    /* Guess The Local Celebrity */
+
+    public function guessLocalCelebrity()
+    {
+
+        $game = GuessLocalCelb::first();
+
+        return view('admin.games.guess-local-celebrity.setup', compact('game'));
+    }
+
+    public function storeGuessLocalCelebrity(Request $request)
+    {
+
+     
+        $rules = [
+            'name' => 'required',
+            'question_limit' => 'required',
+            'description' => 'required',
+            'lifeline' =>'required',
+            'rules' =>'required',
+            'qualified_score' => 'required',
+            'game_question_limit' => 'required'
+        ];
+
+        $messages = [
+            'name.required' => 'Please enter game name',
+            'question_limit.required' => 'Please enter question time limit',
+            'description.required' => 'please enter description',
+            'game_question_limit.required' => 'Please set no. of question per game',
+            'lifeline.required' =>'Please enter number of lifelines',
+            'qualified_score.required' => 'Please enter qualified score',
+            'rules.required' =>'Please add rules',
+            
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        GuessLocalCelb::updateOrCreate(
+            ['id' => $request->game_id],
+            [
+                'name' => $request->name,
+                'description' => $request->description,
+                'status' => $request->status,
+                'ques_time_limit' => $request->question_limit,
+                'lifelines' => $request->lifeline,
+                'qualified_score' => $request->qualified_score,
+                'rules' => $request->rules,
+                'game_question_limit' => $request->game_question_limit
+            ]
+        );
+
+        return redirect()->back()->with('success', 'Game setup updated');
+    }
+
+    public function guessLocalCelebrityQuestions()
+    {
+
+        $game = GuessLocalCelb::first();
+
+        $questions = GuessLocalCelbQues::all();
+
+        return view('admin.games.guess-local-celebrity.question-list', compact('game', 'questions'));
+    }
+
+    public function addGuessLocalCelebrityQuestion()
+    {
+
+        $game = LocalTrivia::first();
+
+        return view('admin.games.guess-local-celebrity.add-question', compact('game'));
+    }
+
+    public function editGuessLocalCelebrityQuestion($id)
+    {
+
+        $game = GuessLocalCelb::first();
+
+        $question = GuessLocalCelbQues::find($id);
+
+        return view('admin.games.guess-local-celebrity.edit-question', compact('game', 'question'));
+    }
+
+    public function storeGuessLocalCelebrityQuestion(Request $request)
+    {
+
+        $rules = [
+
+            'question' => 'required',
+            'option_1' => 'required',
+            'option_2' => 'required',
+            'option_3' => 'required',
+            'option_4' => 'required',
+            'image'    => 'required',
+            'correct_option' => 'required',
+
+        ];
+
+        $messages = [
+
+            'question.required' => 'Please enter question',
+            'option_1.required' => 'Please set first option',
+            'option_2.required' => 'Please set second option',
+            'option_3.required' => 'Please set third option',
+            'option_4.required' => 'Please set fourth option',
+            'correct_option.required' => 'Please choose correct option',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        GuessLocalCelbQues::create([
+
+            'question' => $request->question,
+            'option_1' => $request->option_1,
+            'option_2' => $request->option_2,
+            'option_3' => $request->option_3,
+            'option_4' => $request->option_4,
+            'correct_option' => $request->correct_option,
+            'status'         =>  $request->status,
+            'image'          =>  $request->file('image') ? "data:image/png;base64," . base64_encode(file_get_contents($request->file('image')))  : '',
+
+        ]);
+
+        return redirect()->route('admin.guess-local-celebrity-questions')->with('success', 'Question added for game');
+    }
+
+    public function updateGuessLocalCelebrityQuestion(Request $request)
+    {
+   
+        $rules = [
+
+            'question' => 'required',
+            'option_1' => 'required',
+            'option_2' => 'required',
+            'option_3' => 'required',
+            'option_4' => 'required',
+            'image'    => 'required',
+            'correct_option' => 'required',
+
+        ];
+
+        $messages = [
+
+            'question.required' => 'Please enter question',
+            'option_1.required' => 'Please set first option',
+            'option_2.required' => 'Please set second option',
+            'option_3.required' => 'Please set third option',
+            'option_4.required' => 'Please set fourth option',
+            'correct_option.required' => 'Please choose correct option',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        $img = GuessLocalCelbQues::find($request->id)->image;
+
+        GuessLocalCelbQues::where('id', $request->id)->update([
+
+            'question' => $request->question,
+            'option_1' => $request->option_1,
+            'option_2' => $request->option_2,
+            'option_3' => $request->option_3,
+            'option_4' => $request->option_4,
+            'correct_option' => $request->correct_option,
+            'status'         =>  $request->status,
+            'image'          =>  $request->file('image') ? "data:image/png;base64," . base64_encode(file_get_contents($request->file('image')))  : $img,
+
+        ]);
+
+        return redirect()->route('admin.guess-local-celebrity-questions')->with('success', 'Question updated successfully');
+    }
+
+    public function deleteGuessLocalCelebrityQuestion(Request $request)
+    {
+
+        GuessLocalCelbQues::find($request->id)->delete();
+
+        return redirect()->route('admin.guess-local-celebrity-questions')->with('success', 'Question deleted successfully!');
+    }
+
     /* Guess The Voice */
 
     public function guessTheVoice()
@@ -275,6 +459,7 @@ class GamesController extends Controller
 
     public function storeGuessTheVoiceQuestion(Request $request)
     {
+        
 
         $rules = [
 
@@ -300,17 +485,27 @@ class GamesController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-        GuessTheVoiceQues::create([
+        $gv = GuessTheVoiceQues::create([
 
-            'question' => $request->question,
+            'text' => $request->text,
             'option_1' => $request->option_1,
             'option_2' => $request->option_2,
             'option_3' => $request->option_3,
             'option_4' => $request->option_4,
-            'file'     => $request->file,
             'correct_option' => $request->correct_option,
             'status'         =>  $request->status,
         ]);
+
+        if ($request->hasFile('file')) {
+          
+            $file = $request->file('file');
+            $filename = time() . '.mp3';
+            $file->move('audios', $filename);
+
+            GuessTheVoiceQues::where('id',$gv->id)->update([
+                'file' => $filename
+            ]);
+        }
 
         return redirect()->route('admin.guess-the-voice-questions')->with('success', 'Question added for game');
     }
@@ -320,18 +515,19 @@ class GamesController extends Controller
    
         $rules = [
 
-            'question' => 'required',
+            'text' => 'required',
             'option_1' => 'required',
             'option_2' => 'required',
             'option_3' => 'required',
             'option_4' => 'required',
+            'file'     => 'required',
             'correct_option' => 'required',
 
         ];
 
         $messages = [
 
-            'question.required' => 'Please enter question',
+            'text.required' => 'Please enter question',
             'option_1.required' => 'Please set first option',
             'option_2.required' => 'Please set second option',
             'option_3.required' => 'Please set third option',
@@ -341,18 +537,27 @@ class GamesController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-        $img = GuessTheVoice::find($request->id)->image;
+        if ($request->hasFile('file')) {
+         
+            $file = $request->file('file');
+            $filename = time() . '.mp3';
+            $file->move('audios', $filename);
+
+            GuessTheVoiceQues::where('id', $request->id )->update([
+                'file' => $filename
+            ]);
+        }
+
 
         LocalTriviaQues::where('id', $request->id)->update([
 
-            'question' => $request->question,
+            'text' => $request->text,
             'option_1' => $request->option_1,
             'option_2' => $request->option_2,
             'option_3' => $request->option_3,
             'option_4' => $request->option_4,
             'correct_option' => $request->correct_option,
             'status'         =>  $request->status,
-            'image'          =>  $request->file('image') ? "data:image/png;base64," . base64_encode(file_get_contents($request->file('image')))  : $img,
 
         ]);
 
@@ -695,5 +900,384 @@ class GamesController extends Controller
         GroupGuessLocationQues::find($request->id)->delete();
 
         return redirect()->route('admin.group-guess-location-questions')->with('success', 'Question deleted successfully!');
+    }
+
+    /*GROUP GUESS CELEBRITY */
+
+    public function groupGuessCelebrity()
+    {
+
+        $game = GroupGuessCelebrity::first();
+
+        return view('admin.games.group.guess-the-celebrity.setup', compact('game'));
+    }
+
+
+    public function storeGroupGuessCelebrity(Request $request)
+    {
+
+     
+        $rules = [
+            'name' => 'required',
+            'question_limit' => 'required',
+            'description' => 'required',
+            'lifeline' =>'required',
+            'rules' =>'required',
+            'qualified_score' => 'required',
+            'game_question_limit' => 'required'
+        ];
+
+        $messages = [
+            'name.required' => 'Please enter game name',
+            'question_limit.required' => 'Please enter question time limit',
+            'description.required' => 'please enter description',
+            'game_question_limit.required' => 'Please set no. of question per game',
+            'lifeline.required' =>'Please enter number of lifelines',
+            'qualified_score.required' => 'Please enter qualified score',
+            'rules.required' =>'Please add rules',
+            
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        GroupGuessCelebrity::updateOrCreate(
+            ['id' => $request->game_id],
+            [
+                'name' => $request->name,
+                'description' => $request->description,
+                'status' => $request->status,
+                'ques_time_limit' => $request->question_limit,
+                'lifelines' => $request->lifeline,
+                'qualified_score' => $request->qualified_score,
+                'rules' => $request->rules,
+                'game_question_limit' => $request->game_question_limit
+            ]
+        );
+
+        return redirect()->back()->with('success', 'Game setup updated');
+    }
+
+    public function groupGuessCelebrityQues()
+    {
+
+        $game = GroupGuessCelebrity::first();
+
+        $questions = GroupGuessCelebrityQues::all();
+
+        return view('admin.games.group.guess-the-celebrity.question-list', compact('game', 'questions'));
+    }
+
+    public function addGroupGuessCelebrityQues()
+    {
+
+        $game = GroupGuessCelebrity::first();
+
+        return view('admin.games.group.guess-the-celebrity.add-question', compact('game'));
+    }
+
+    public function editGroupGuessCelebrityQues($id)
+    {
+
+        $game = GroupGuessCelebrity::first();
+
+        $question = GroupGuessCelebrityQues::find($id);
+
+        return view('admin.games.group.guess-the-celebrity.edit-question', compact('game', 'question'));
+    }
+
+    public function storeGroupGuessCelebrityQues(Request $request)
+    {
+
+        $rules = [
+
+            'question' => 'required',
+            'option_1' => 'required',
+            'option_2' => 'required',
+            'option_3' => 'required',
+            'option_4' => 'required',
+            'correct_option' => 'required',
+
+        ];
+
+        $messages = [
+
+            'question.required' => 'Please enter question',
+            'option_1.required' => 'Please set first option',
+            'option_2.required' => 'Please set second option',
+            'option_3.required' => 'Please set third option',
+            'option_4.required' => 'Please set fourth option',
+            'correct_option.required' => 'Please choose correct option',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        GroupGuessCelebrityQues::create([
+
+            'question' => $request->question,
+            'option_1' => $request->option_1,
+            'option_2' => $request->option_2,
+            'option_3' => $request->option_3,
+            'option_4' => $request->option_4,
+            'correct_option' => $request->correct_option,
+            'status'         =>  $request->status,
+            'image'          =>  $request->file('image') ? "data:image/png;base64," . base64_encode(file_get_contents($request->file('image')))  : '',
+
+        ]);
+
+        return redirect()->route('admin.group-guess-celebrity-questions')->with('success', 'Question added for game');
+    }
+
+    public function updateGroupGuessCelebrityQues(Request $request)
+    {
+   
+        $rules = [
+
+            'question' => 'required',
+            'option_1' => 'required',
+            'option_2' => 'required',
+            'option_3' => 'required',
+            'option_4' => 'required',
+            'correct_option' => 'required',
+
+        ];
+
+        $messages = [
+
+            'question.required' => 'Please enter question',
+            'option_1.required' => 'Please set first option',
+            'option_2.required' => 'Please set second option',
+            'option_3.required' => 'Please set third option',
+            'option_4.required' => 'Please set fourth option',
+            'correct_option.required' => 'Please choose correct option',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        $img = GroupGuessCelebrityQues::find($request->id)->image;
+
+        GroupGuessCelebrityQues::where('id', $request->id)->update([
+
+            'question' => $request->question,
+            'option_1' => $request->option_1,
+            'option_2' => $request->option_2,
+            'option_3' => $request->option_3,
+            'option_4' => $request->option_4,
+            'correct_option' => $request->correct_option,
+            'status'         =>  $request->status,
+            'image'          =>  $request->file('image') ? "data:image/png;base64," . base64_encode(file_get_contents($request->file('image')))  : $img,
+
+        ]);
+
+        return redirect()->route('admin.group-guess-celebrity-questions')->with('success', 'Question updated successfully');
+    }
+
+    public function deleteGroupGuessCelebrityQues(Request $request)
+    {
+
+        GroupGuessCelebrityQues::find($request->id)->delete();
+
+        return redirect()->route('admin.group-guess-location-questions')->with('success', 'Question deleted successfully!');
+    }
+
+    /** GROUP GUESS THE VOICE */
+
+    public function groupGuessVoice()
+    {
+
+        $game = GroupGuessVoice::first();
+
+        return view('admin.games.group.guess-the-voice.setup', compact('game'));
+    }
+
+
+    public function storeGroupGuessVoice(Request $request)
+    {
+
+     
+        $rules = [
+            'name' => 'required',
+            'question_limit' => 'required',
+            'description' => 'required',
+            'lifeline' =>'required',
+            'rules' =>'required',
+            'qualified_score' => 'required',
+            'game_question_limit' => 'required'
+        ];
+
+        $messages = [
+            'name.required' => 'Please enter game name',
+            'question_limit.required' => 'Please enter question time limit',
+            'description.required' => 'please enter description',
+            'game_question_limit.required' => 'Please set no. of question per game',
+            'lifeline.required' =>'Please enter number of lifelines',
+            'qualified_score.required' => 'Please enter qualified score',
+            'rules.required' =>'Please add rules',
+            
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        GroupGuessVoice::updateOrCreate(
+            ['id' => $request->game_id],
+            [
+                'name' => $request->name,
+                'description' => $request->description,
+                'status' => $request->status,
+                'ques_time_limit' => $request->question_limit,
+                'lifelines' => $request->lifeline,
+                'qualified_score' => $request->qualified_score,
+                'rules' => $request->rules,
+                'game_question_limit' => $request->game_question_limit
+            ]
+        );
+
+        return redirect()->back()->with('success', 'Game setup updated');
+    }
+
+    public function groupGuessVoiceQues()
+    {
+
+        $game = GroupGuessVoice::first();
+
+        $questions = GroupGuessVoiceQues::all();
+
+        return view('admin.games.group.guess-the-voice.question-list', compact('game', 'questions'));
+    }
+
+    public function addGroupGuessVoiceQues()
+    {
+
+        $game = GroupGuessVoice::first();
+
+        return view('admin.games.group.guess-the-voice.add-question', compact('game'));
+    }
+
+    public function editGroupGuessVoiceQues($id)
+    {
+
+        $game = GroupGuessVoice::first();
+
+        $question = GroupGuessVoiceQues::find($id);
+
+        return view('admin.games.group.guess-the-voice.edit-question', compact('game', 'question'));
+    }
+
+    public function storeGroupGuessVoiceQues(Request $request)
+    {
+
+        $rules = [
+
+            'question' => 'required',
+            'option_1' => 'required',
+            'option_2' => 'required',
+            'option_3' => 'required',
+            'option_4' => 'required',
+            'file'    => 'required',
+            'correct_option' => 'required',
+
+        ];
+
+        $messages = [
+
+            'question.required' => 'Please enter question',
+            'option_1.required' => 'Please set first option',
+            'option_2.required' => 'Please set second option',
+            'option_3.required' => 'Please set third option',
+            'option_4.required' => 'Please set fourth option',
+            'correct_option.required' => 'Please choose correct option',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        $gv = GroupGuessVoiceQues::create([
+
+            'question' => $request->question,
+            'option_1' => $request->option_1,
+            'option_2' => $request->option_2,
+            'option_3' => $request->option_3,
+            'option_4' => $request->option_4,
+            'correct_option' => $request->correct_option,
+            'status'         =>  $request->status,
+
+        ]);
+
+
+        if ($request->hasFile('file')) {
+         
+            $file = $request->file('file');
+            $filename = time() . '.mp3';
+            $file->move('audios', $filename);
+
+            GuessTheVoiceQues::where('id', $gv->id )->update([
+                'file' => $filename
+            ]);
+        }
+
+        return redirect()->route('admin.group-guess-voice-questions')->with('success', 'Question added for game');
+    }
+
+    public function updateGroupGuessVoiceQues(Request $request)
+    {
+   
+        $rules = [
+
+            'question' => 'required',
+            'option_1' => 'required',
+            'option_2' => 'required',
+            'option_3' => 'required',
+            'option_4' => 'required',
+            'file'     => 'required',
+            'correct_option' => 'required',
+
+        ];
+
+        $messages = [
+
+            'question.required' => 'Please enter question',
+            'option_1.required' => 'Please set first option',
+            'option_2.required' => 'Please set second option',
+            'option_3.required' => 'Please set third option',
+            'option_4.required' => 'Please set fourth option',
+            'correct_option.required' => 'Please choose correct option',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        $img = GroupGuessVoiceQues::find($request->id)->image;
+
+        GroupGuessVoiceQues::where('id', $request->id)->update([
+
+            'question' => $request->question,
+            'option_1' => $request->option_1,
+            'option_2' => $request->option_2,
+            'option_3' => $request->option_3,
+            'option_4' => $request->option_4,
+            'correct_option' => $request->correct_option,
+            'status'         =>  $request->status,
+            'image'          =>  $request->file('image') ? "data:image/png;base64," . base64_encode(file_get_contents($request->file('image')))  : $img,
+
+        ]);
+
+
+        if ($request->hasFile('file')) {
+         
+            $file = $request->file('file');
+            $filename = time() . '.mp3';
+            $file->move('audios', $filename);
+
+            GuessTheVoiceQues::where('id', $request->id )->update([
+                'file' => $filename
+            ]);
+        }
+
+        return redirect()->route('admin.group-guess-voice-questions')->with('success', 'Question updated successfully');
+    }
+
+    public function deleteGroupGuessVoiceQues(Request $request)
+    {
+
+        GroupGuessVoiceQues::find($request->id)->delete();
+
+        return redirect()->route('admin.group-guess-voice-questions')->with('success', 'Question deleted successfully!');
     }
 }

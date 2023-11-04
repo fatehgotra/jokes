@@ -196,7 +196,6 @@ class JokesController extends Controller
         if ($request->hasFile('audio_data')) {
           
             $file = $request->file('audio_data');
-            //$filename = time() . '.' . $request->file('audio_data')->getClientOriginalExtension();
             $filename = time() . '.mp3';
             $file->move('audios', $filename);
 

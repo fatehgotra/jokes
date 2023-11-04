@@ -47,6 +47,8 @@ Route::get('jokes', [JokesController::class, 'front'])->name('jokes');
 Route::get('user/game-trivia', [GamesController::class, 'viewTriviaGame'])->name('game-trivia');
 Route::get('user/guess-the-voice', [GamesController::class, 'viewGuessVoice'])->name('guess-the-voice');
 Route::get('user/game-true-false', [GamesController::class, 'viewTrueFalseGame'])->name('game-true-false');
+Route::get('user/guess-local-celebrity',[GamesController::class,'viewGuessLocalCelebrity'])->name('guess-local-celebrity');
+
 
 Route::post('user/save-leader', [GamesController::class, 'saveLeader'])->name('save-leader');
 Route::post('user/enable-leader', [GamesController::class, 'enableLeader'])->name('enable-leader');

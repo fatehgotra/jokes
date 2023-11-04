@@ -17,6 +17,7 @@ Route::group(['prefix' => 'group', 'as' => 'group.'], function () {
         Route::post('signup-2',     [GroupGamesController::class, 'signUpStep2'])->name('signup-2');
         Route::get('group-members', [GroupGamesController::class, 'groupMembers'])->name('group-members');
         Route::post('group-logout', [GroupGamesController::class, 'logout'])->name('group-logout');
+       
         Route::get('guess-the-location', [GroupGamesController::class, 'GuessTheLoc'])->name('guess-the-location');
         Route::get('grog-spin-the-wheel', [GroupGamesController::class, 'GrogWheel'])->name('grog-spin-the-wheel');
         Route::get('guess-the-voice', [GroupGamesController::class, 'GuessVoice'])->name('guess-the-voice');

@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GroupGuessCelebrity;
+use App\Models\GroupGuessCelebrityQues;
 use App\Models\GroupGuessLocation;
 use App\Models\GroupGuessLocationQues;
+use App\Models\GroupGuessVoice;
+use App\Models\GroupGuessVoiceQues;
 use App\Models\GroupMembers;
 use App\Models\GroupQues;
 use App\Models\Groups;
@@ -290,8 +294,204 @@ class GroupGamesController extends Controller
         
         return view('pages.group_games.guess_location', compact('groupGuessLocation', 'questions','leaders'));
 
-        //return view('pages.group_games.guess_location');
     }
+
+    public function GuessVoice(){
+
+        $groupGuessLocation = GroupGuessVoice::first();
+
+        $user = Auth::guard('group_user')->user();
+
+        
+        $_questions = GroupGuessVoiceQues::where('status', 1)->inRandomOrder()->limit($groupGuessLocation->game_question_limit)->get();
+        
+        $leaders = GroupScores::with('group')->where('game', 'group_guess_voice')->where('score','>=',$groupGuessLocation->qualified_score)->where('status',1)->get();
+        
+        $check = GroupQues::where([ 'group_id' =>  $user->group_id, 'game' => 'group_guess_voice'])->first();
+
+        $questions = [];
+
+    if( !$check ){
+       
+       
+
+        if (count($_questions) > 0) {
+            foreach ($_questions as $k => $q) {
+
+                $questions[] = [
+                    'numb' => ($k + 1),
+                    'id'   => $q->id,
+                    'gid'  => $groupGuessLocation->id,
+                    'question' => $q->question,
+                    'answer' => (int)filter_var($q->correct_option, FILTER_SANITIZE_NUMBER_INT),
+                    'file'     => $q->file,
+                    'options' => [
+
+                        $q->option_1,
+                        $q->option_2,
+                        $q->option_3,
+                        $q->option_4,
+                    ],
+                ];
+
+                GroupQues::create([
+
+                    'group_id' => $groupGuessLocation->id,
+                    'ques_id'  => $q->id,
+                    'game'     => 'group_guess_voice',
+                    'current_que' => ($k == 0) ? $q->id : '',
+                    'selected_option' => '',
+                    'answer_by'=>'',
+                ]);
+            }
+        }
+
+     } else{
+            //////////////////
+         
+            $current = GroupQues::where(['game' => 'group_guess_voice','group_id' => $groupGuessLocation->id])->where('current_que','!=','')->first();
+          
+            $gques = GroupQues::where(['game' => 'group_guess_voice','group_id' => $groupGuessLocation->id])
+                                ->where('id','>=',$current->id)
+                                ->get()
+                                ->pluck('ques_id');
+            
+
+            foreach( $gques as $k => $q){
+
+
+                $qs = GroupGuessLocationQues::find($q);
+
+                $questions[] = [
+                    'numb' => ($k + 1),
+                    'id'   => $q,
+                    'gid'  => $groupGuessLocation->id,
+                    'question' => $qs->question,
+                    'answer' => (int)filter_var($qs->correct_option, FILTER_SANITIZE_NUMBER_INT),
+                    'file'     => $qs->file,
+                    'options' => [
+
+                        $qs->option_1,
+                        $qs->option_2,
+                        $qs->option_3,
+                        $qs->option_4,
+                    ],
+                ];
+
+            }
+
+    }
+        
+        return view('pages.group_games.guess-the-voice', compact('groupGuessLocation', 'questions','leaders'));
+
+    }
+
+   
+    public function GuessCelebrity(){
+
+        $groupGuessLocation = GroupGuessCelebrity::first();
+
+        $user = Auth::guard('group_user')->user();
+
+        
+        $_questions = GroupGuessCelebrityQues::where('status', 1)->inRandomOrder()->limit($groupGuessLocation->game_question_limit)->get();
+        
+        $leaders = GroupScores::with('group')->where('game', 'group_guess_celebrity')->where('score','>=',$groupGuessLocation->qualified_score)->where('status',1)->get();
+        
+        $check = GroupQues::where([ 'group_id' =>  $user->group_id, 'game' => 'group_guess_celebrity'])->first();
+
+        $questions = [];
+
+    if( !$check ){
+       
+       
+
+        if (count($_questions) > 0) {
+            foreach ($_questions as $k => $q) {
+
+                $questions[] = [
+                    'numb' => ($k + 1),
+                    'id'   => $q->id,
+                    'gid'  => $groupGuessLocation->id,
+                    'question' => $q->question,
+                    'answer' => (int)filter_var($q->correct_option, FILTER_SANITIZE_NUMBER_INT),
+                    'image'     => $q->image,
+                    'options' => [
+
+                        $q->option_1,
+                        $q->option_2,
+                        $q->option_3,
+                        $q->option_4,
+                    ],
+                ];
+
+                GroupQues::create([
+
+                    'group_id' => $groupGuessLocation->id,
+                    'ques_id'  => $q->id,
+                    'game'     => 'group_guess_celebrity',
+                    'current_que' => ($k == 0) ? $q->id : '',
+                    'selected_option' => '',
+                    'answer_by'=>'',
+                ]);
+            }
+        }
+
+     } else{
+            //////////////////
+         
+            $current = GroupQues::where(['game' => 'group_guess_celebrity','group_id' => $groupGuessLocation->id])->where('current_que','!=','')->first();
+          
+            $gques = GroupQues::where(['game' => 'group_guess_celebrity','group_id' => $groupGuessLocation->id])
+                                ->where('id','>=',$current->id)
+                                ->get()
+                                ->pluck('ques_id');
+            
+
+            foreach( $gques as $k => $q){
+
+
+                $qs = GroupGuessCelebrityQues::find($q);
+
+                $questions[] = [
+                    'numb' => ($k + 1),
+                    'id'   => $q,
+                    'gid'  => $groupGuessLocation->id,
+                    'question' => $qs->question,
+                    'answer' => (int)filter_var($qs->correct_option, FILTER_SANITIZE_NUMBER_INT),
+                    'image'     => $qs->image,
+                    'options' => [
+
+                        $qs->option_1,
+                        $qs->option_2,
+                        $qs->option_3,
+                        $qs->option_4,
+                    ],
+                ];
+
+            }
+
+    }
+        
+        return view('pages.group_games.guess_the_celebrity', compact('groupGuessLocation', 'questions','leaders'));
+
+    }
+
+    public function GrogWheel(){
+
+        return view('pages.group_games.grog-spin-wheel');
+    }
+    public function ThisThat(){
+
+        return view('pages.group_games.this-or-that');
+    }
+    public function DoDrink(){
+
+        return view('pages.group_games.do-or-drink');
+    }
+
+
+    ///////////////Tracking Functions
 
     public function trackResult(Request $request){
 
@@ -383,25 +583,6 @@ class GroupGamesController extends Controller
 
     }
 
-    public function GrogWheel(){
-
-        return view('pages.group_games.grog-spin-wheel');
-    }
-    public function GuessCelebrity(){
-
-        return view('pages.group_games.guess_the_celebrity');
-    }
-    public function GuessVoice(){
-
-        return view('pages.group_games.guess-the-voice');
-    }
-    public function ThisThat(){
-
-        return view('pages.group_games.this-or-that');
-    }
-    public function DoDrink(){
-
-        return view('pages.group_games.do-or-drink');
-    }
+   
     
 }

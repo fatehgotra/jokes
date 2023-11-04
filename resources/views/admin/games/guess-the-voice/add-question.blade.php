@@ -39,7 +39,7 @@
 
 
                             <div class="col-md-12 mb-2">
-                                <label for="question" class="form-label">Question <span class="text-danger">*</span></label>
+                                <label for="text" class="form-label">Question <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" name="text" id="question" placeholder="Question" value="{{ old('question') }}">
                                 @error('text')
                                 <code class="text text-danger">{{ $message }}</code>
@@ -48,8 +48,11 @@
 
 
                             <div class="col-md-12 mb-2">
-                                <label for="image" class="form-label">Audio File <span class="text-danger"><small>( if required )</small></span></label>
+                                <label for="file" class="form-label">Audio File <span class="text-danger"><small>( required )</small></span></label>
                                 <input type="file" class="form-control" name="file" id="image">
+                                @error('file')
+                                <code class="text text-danger">{{ $message }}</code>
+                                @enderror
                             </div>
 
                             <div class="col-md-6 mb-2">

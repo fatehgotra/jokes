@@ -12,7 +12,7 @@
                     <div class="col-lg-12">
 
                         <div class="heading-section text-center">
-                            <h4> {{'Guess The Location'}} </h4>
+                            <h4> {{ $groupGuessLocation->name }} </h4>
                         </div>
 
 

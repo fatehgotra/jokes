@@ -12,7 +12,7 @@
                     <div class="col-lg-12">
 
                         <div class="heading-section text-center">
-                            <h4> {{ ' Guess The Voice '}} </h4>
+                            <h4> {{ $localtrivia->name }} </h4>
                         </div>
 
 
@@ -706,12 +706,12 @@
         const ques_img = document.querySelector(".ques_img");
 
         //creating a new span and div tag for question and option and passing the value using array index
-        let que_tag = '<span>' + questions[index].numb + ". " + questions[index].text + '</span>';
+        let que_tag = '<span>' + questions[index].numb + ". " + questions[index].question + '</span>';
         let option_tag = '<div class="option"><span>' + questions[index].options[0] + '</span></div>' +
             '<div class="option"><span>' + questions[index].options[1] + '</span></div>' +
             '<div class="option"><span>' + questions[index].options[2] + '</span></div>' +
             '<div class="option"><span>' + questions[index].options[3] + '</span></div>';
-        let img = questions[index].file != '' ? '<div class="text-white"> <audio style="width:334px" controls><source src="../audios/'+questions[index].file+'" type="audio/mp3">Your browser does not support the audio tag.</audio></div>' : '';
+        let img = questions[index].image != '' ? "<img style='width:70%;padding:3%' src='" + questions[index].image + "'>" : '';
         ques_img.innerHTML = img;
         que_text.innerHTML = que_tag; //adding new span tag inside que_tag
         option_list.innerHTML = option_tag; //adding new div tag inside option_tag
@@ -805,7 +805,7 @@
 
         var data = new FormData();
 
-        data.append('game', 'guess-the-voice');
+        data.append('game', 'local-trivia');
         data.append('score', userScore);
         data.append('_token', '{{ csrf_token() }}');
 

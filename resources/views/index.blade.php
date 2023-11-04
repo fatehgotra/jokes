@@ -101,24 +101,31 @@
 
                     @endif
 
+                    @if( isset($guessLocalCelebrity) )
+
                     <div class="card">
                       <div class="card-header" id="headingOne">
                         <h5 class="mb-0 text-center" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
                           <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                          Guess the local celebrity
+                          {{ $guessLocalCelebrity->name }}
                         </h5>
                       </div>
                       <div id="collapse4" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
-                          "Guess the Local Celebrity" is a fun and interactive mobile game that tests your knowledge of famous faces in your community. Identify the blurred or pixelated faces from multiple-choice options within a time limit. Use lifelines like "Hint" or "50/50" when stuck, and compete for the top spot on the local leaderboard.
+                        {{ $guessLocalCelebrity->description }}
                         </div>
                         <div class="text-center mb-1">
-                          <a class="btn btn-success lbg">Play</a>
+                          <a class="btn btn-success lbg" href="{{ route('guess-local-celebrity')}}" >Play</a>
                         </div>
                       </div>
                     </div>
+
+                    @endif
+
                   </div>
                 </div>
+               
+
                 <!-------GROUP--------->
                 <div class="col-lg-6 col-sm-6">
                   <div class="text-center item">
@@ -163,38 +170,48 @@
 
                     @endif
 
+                    @if( isset($groupGuessVoice) )
+
                     <div class="card">
                       <div class="card-header" id="headingTwo">
                         <h5 class="mb-0 text-center" data-toggle="collapse" data-target="#collapse7" aria-expanded="true" aria-controls="collapse7">
                           <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                          Guess the voice
+                         {{ $groupGuessVoice->name }}
                         </h5>
                       </div>
                       <div id="collapse7" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion2">
                         <div class="card-body">
-                          Listen to short audio snippets and choose who you think the voice belongs to from multiple-choice options. Use lifelines like "Replay Voice" or "50/50" for help, and aim to top the local leaderboard. Whether it's local celebrities, politicians, famous local sports stars, influencers etc.
+                          {{ $groupGuessVoice->description }}
                         </div>
                         <div class="text-center mb-1">
                           <a class="btn btn-success lbg" href="{{ route('group.guess-the-voice')}}">Play</a>
                         </div>
                       </div>
                     </div>
+                  
+                    @endif
+
+                    @if( isset($groupGuessCelebrity) )
+
                     <div class="card">
                       <div class="card-header" id="headingTwo">
                         <h5 class="mb-0 text-center" data-toggle="collapse" data-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
                           <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                          Guess the local celebrity
+                         {{ $groupGuessCelebrity->name }}
                         </h5>
                       </div>
                       <div id="collapse8" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion2">
                         <div class="card-body">
-                          "Guess the Local Celebrity" is a fun and interactive mobile game that tests your knowledge of famous faces in your community. Identify the blurred or pixelated faces from multiple-choice options within a time limit. Use lifelines like "Hint" or "50/50" when stuck, and compete for the top spot on the local leaderboard.
+                         {{ $groupGuessCelebrity->description }}
                         </div>
                         <div class="text-center mb-1">
                           <a class="btn btn-success lbg" href="{{ route('group.guess-local-celebrity')}}">Play</a>
                         </div>
                       </div>
                     </div>
+
+                    @endif
+
                     <div class="card">
                       <div class="card-header" id="headingTwo">
                         <h5 class="mb-0 text-center" data-toggle="collapse" data-target="#collapse9" aria-expanded="true" aria-controls="collapse9">

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Guess The Voice')
+@section('title', 'Group Guess Voice')
 @section('head')
 <link href="{{ asset('assets_admin/css/vendor/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('assets_admin/css/vendor/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
@@ -16,11 +16,11 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Guess The Voice Add Question</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Group Guess Voice Add Question</a></li>
                         <li class="breadcrumb-item active">Setup</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Add Guess The Voice Question</h4>
+                <h4 class="page-title">Add Group Guess Voice Question</h4>
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
 
 </div> <!-- container -->
 <div class="row">
-    <form method="POST" enctype="multipart/form-data" action="{{ route('admin.update-guess-the-voice-question') }}" id="questionForm">
+    <form method="POST" enctype="multipart/form-data" action="{{ route('admin.update-group-guess-voice-question') }}" id="questionForm">
         @csrf
         <input type="hidden" name="id" value="{{ $question->id }}">
         <div class="row">
@@ -40,25 +40,24 @@
 
 
                             <div class="col-md-12 mb-2">
-                                <label for="text" class="form-label">Question <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="text" id="question" placeholder="Question" value="{{ old('question',$question->question) }}">
-                                @error('text')
+                                <label for="question" class="form-label">Question <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="question" id="question" placeholder="Question" value="{{ old('question',$question->question) }}">
+                                @error('question')
                                 <code class="text text-danger">{{ $message }}</code>
                                 @enderror
                             </div>
 
 
                             <div class="col-md-12 mb-2">
-                               
-                                <label for="image" class="form-label">Audio File <span class="text-danger"><small>( required )</small></span></label>
+
+                                <label for="file" class="form-label">Image <span class="text-danger"><small>( if required )</small></span></label>
                                 <input type="file" class="form-control" name="file" id="image">
-                                @if( ($question->file) != '' )
-                                <br>
+                                @if( ($question->image) != '' )
                                 <div class="text-white"> <audio style="width:234px" controls>
-                                                <source src="{{ asset('audios/'.$question->file) }}" type="audio/mp3">
-                                                Your browser does not support the audio tag.
-                                            </audio>
-                                        </div>
+                                        <source src="{{ asset('audios/'.$question->file) }}" type="audio/mp3">
+                                        Your browser does not support the audio tag.
+                                    </audio>
+                                </div>
                                 @endif
 
                                 @error('file')
@@ -107,10 +106,10 @@
                                 <label for="correct_option" class="form-label">Correct Option<span class="text-danger">*</span></label>
                                 <select name="correct_option" id="correct_option" class="form-select">
                                     <option value="">Please Select</option>
-                                    <option value="option_1" {{ ($question->correct_option  == "option_1" ? "selected" : '' ) }} >Option 1</option>
-                                    <option value="option_2" {{ ($question->correct_option  == "option_2" ? "selected" : '' ) }} >Option 2</option>
-                                    <option value="option_3" {{ ($question->correct_option  == "option_3" ? "selected" : '' ) }} >Option 3</option>
-                                    <option value="option_4" {{ ($question->correct_option  == "option_4" ? "selected" : '' ) }} >Option 4</option>
+                                    <option value="option_1" {{ ($question->correct_option  == "option_1" ? "selected" : '' ) }}>Option 1</option>
+                                    <option value="option_2" {{ ($question->correct_option  == "option_2" ? "selected" : '' ) }}>Option 2</option>
+                                    <option value="option_3" {{ ($question->correct_option  == "option_3" ? "selected" : '' ) }}>Option 3</option>
+                                    <option value="option_4" {{ ($question->correct_option  == "option_4" ? "selected" : '' ) }}>Option 4</option>
                                 </select>
 
                                 @error('correct_option')
@@ -129,7 +128,7 @@
 
                             <div class="col-md-12 mb-2 text-end">
                                 <button type="submit" class="btn btn-sm btn-warning" form="questionForm">Save</button>
-                                <a href="{{ route('admin.trivia-questions') }}" class="btn btn-sm btn-dark">Cancel</a>
+                                <a href="{{ route('admin.group-guess-voice-questions') }}" class="btn btn-sm btn-dark">Cancel</a>
                             </div>
                         </div>
                     </div>

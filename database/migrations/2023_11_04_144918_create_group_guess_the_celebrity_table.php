@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('guess_the_voice_questions', function (Blueprint $table) {
+        Schema::create('group_guess_celebrity', function (Blueprint $table) {
             $table->id();
-            $table->string('text')->nullable();
-            $table->string('file')->nullable();
-            $table->string('option_1');
-            $table->string('option_2');
-            $table->string('option_3');
-            $table->string('option_4');
-            $table->string('correct_option');
+            $table->string('name');
+            $table->longText('description');
+            $table->string('ques_time_limit');
+            $table->string('game_question_limit');
+            $table->integer('lifeline');
+            $table->longText('rules');
+            $table->integer('qualified_score');
             $table->integer('status')->default(1);
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('guess_the_voice_questions');
+        Schema::dropIfExists('group_guess_the_celebrity');
     }
 };

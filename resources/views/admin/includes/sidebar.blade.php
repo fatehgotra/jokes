@@ -2,11 +2,15 @@
 
     <!-- LOGO -->
     <a href="{{ route('admin.dashboard') }}" class="logo text-center logo-light">
-        <span class="logo-lg">
-            <img src="{{ asset('assets_admin/welcome.png') }}" alt="logo" height="50px">
+        <span class="logo-lg" style="margin: 2%;">
+
+            <img src="{{ asset('assets/images/logo.png') }}" height="50px">
+
         </span>
         <span class="logo-sm">
-            <img src="{{ asset('assets_admin/welcome.png') }}" alt="logo" class="img-fluid" height="50px">
+
+            <img src="{{ asset('assets/images/logo.png') }}" class="img-fluid" height="50px">
+
         </span>
     </a>
 
@@ -132,7 +136,7 @@
                         <li class="side-nav-item">
 
                             <a data-bs-toggle="collapse" href="#local_trivia" aria-expanded="false" aria-controls="local_trivia" class="side-nav-link">
-                            <i class="mdi mdi-minus"></i>
+                                <i class="mdi mdi-minus"></i>
                                 <span> Local Trivia </span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -153,8 +157,8 @@
 
                         <li class="side-nav-item">
                             <a data-bs-toggle="collapse" href="#true_false" aria-expanded="false" aria-controls="true_false" class="side-nav-link">
-                            <i class="mdi mdi-minus"></i>   
-                            <span> True False </span>
+                                <i class="mdi mdi-minus"></i>
+                                <span> True False </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <div class="{{ request()->is('admin/true-false') || request()->is('admin/true-false/*') ? 'collapse show' : 'collapse' }}" id="true_false">
@@ -173,8 +177,8 @@
 
                         <li class="side-nav-item">
                             <a data-bs-toggle="collapse" href="#guess_voice" aria-expanded="false" aria-controls="guess_voice" class="side-nav-link">
-                            <i class="mdi mdi-minus"></i>   
-                            <span> Guess The Voice </span>
+                                <i class="mdi mdi-minus"></i>
+                                <span> Guess The Voice </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <div class="{{ request()->is('admin/guess-the-voice') || request()->is('admin/guest-the-voice/*') ? 'collapse show' : 'collapse' }}" id="guess_voice">
@@ -184,6 +188,25 @@
                                     </li>
                                     <li>
                                         <a href="{{ route('admin.guess-the-voice-questions') }}">Questions</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#guess_lcelb" aria-expanded="false" aria-controls="guess_lcelb" class="side-nav-link">
+                                <i class="mdi mdi-minus"></i>
+                                <span> Guess Local Celebrity </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="{{ request()->is('admin/guess-local-celebrity') || request()->is('admin/guess-local-celebrity/*') ? 'collapse show' : 'collapse' }}" id="guess_lcelb">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{{ route('admin.guess-local-celebrity') }}">Setup</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.guess-local-celebrity-questions') }}">Questions</a>
                                     </li>
 
                                 </ul>
@@ -206,7 +229,7 @@
                         <li class="side-nav-item">
 
                             <a data-bs-toggle="collapse" href="#group_location" aria-expanded="false" aria-controls="group_location" class="side-nav-link">
-                            <i class="mdi mdi-minus"></i>
+                                <i class="mdi mdi-minus"></i>
                                 <span> Guess The Location </span>
                                 <span class="menu-arrow"></span>
                             </a>
