@@ -124,7 +124,7 @@
 
                             <div class="col-md-12 mb-2 text-end">
                                 <button type="submit" class="btn btn-sm btn-warning" form="questionForm">Save</button>
-                                <a href="{{ route('admin.guess-celebrity-questions') }}" class="btn btn-sm btn-dark">Cancel</a>
+                                <a href="{{ route('admin.group-guess-celebrity-questions') }}" class="btn btn-sm btn-dark">Cancel</a>
                             </div>
                         </div>
                     </div>

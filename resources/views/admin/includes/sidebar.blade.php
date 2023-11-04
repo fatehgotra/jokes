@@ -233,13 +233,55 @@
                                 <span> Guess The Location </span>
                                 <span class="menu-arrow"></span>
                             </a>
-                            <div class="{{ request()->is('admin/local-trivia') || request()->is('admin/local-trivia/*') ? 'collapse show' : 'collapse' }}" id="group_location">
+                            <div class="{{ request()->is('admin/group-guess-location') || request()->is('admin/group-guess-location/*') ? 'collapse show' : 'collapse' }}" id="group_location">
                                 <ul class="side-nav-second-level">
                                     <li>
                                         <a href="{{ route('admin.group-guess-location') }}">Setup</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('admin.group-guess-location-questions') }}">Questions</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </li>
+
+                        <li class="side-nav-item">
+
+                            <a data-bs-toggle="collapse" href="#group_voice" aria-expanded="false" aria-controls="group_voice" class="side-nav-link">
+                                <i class="mdi mdi-minus"></i>
+                                <span> Guess The Voice </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="{{ request()->is('admin/group-gues-voice') || request()->is('admin/group-guess-voice/*') ? 'collapse show' : 'collapse' }}" id="group_voice">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{{ route('admin.group-guess-voice') }}">Setup</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.group-guess-voice-questions') }}">Questions</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </li>
+
+                        <li class="side-nav-item">
+
+                            <a data-bs-toggle="collapse" href="#group_celeb" aria-expanded="false" aria-controls="group_celeb" class="side-nav-link">
+                                <i class="mdi mdi-minus"></i>
+                                <span> Guess The Celebrity </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="{{ request()->is('admin/group-guess-celebrity') || request()->is('admin/group-guess-celebrity/*') ? 'collapse show' : 'collapse' }}" id="group_celeb">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{{ route('admin.group-guess-celebrity') }}">Setup</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.group-guess-celebrity-questions') }}">Questions</a>
                                     </li>
 
                                 </ul>
