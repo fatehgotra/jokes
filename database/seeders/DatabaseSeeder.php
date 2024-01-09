@@ -229,16 +229,119 @@ class DatabaseSeeder extends Seeder
             '',
         ];
 
-        for ($i = 1; $i <= 40; $i++) {
+        $trivia = [
+            [
+                'q' => 'What is the capital city of Fiji?',
+                'o' => [
+                    'Nadi',
+                    'Suva',
+                    'Lautoka',
+                    'Labasa'
+                ],
+                'a' => 'option_2'
+            ],
+            [
+                'q' => 'Which famous reef, known for its diverse marine life, is located near the Fiji Islands?',
+                'o' => [
+                    'Great Barrier Reef',
+                    'Mesoamerican Barrier Reef',
+                    'Fiji Barrier Reef',
+                    'Great Astrolabe Reef'
+                ],
+                'a' => 'option_4'
+            ],
+            [
+                'q' => 'Fiji gained independence from British rule in which year?',
+                'o' => [
+                    '1967',
+                    '1970',
+                    '1985',
+                    '1992'
+                ],
+                'a' => 'option_2'
+            ],
+            [
+                'q' => 'What is the traditional Fijian drink made from the root of the yaqona plant?',
+                'o' => [
+                    'Kava',
+                    'Coconut Water',
+                    'Taro Juice',
+                    'Mango Lassi'
+                ],
+                'a' => 'option_1'
+            ],
+            [
+                'q' => 'Which popular festival celebrates Fijian culture and is often referred to as the "Fiji Day"?',
+                'o' => [
+                    'Hibiscus Festival',
+                    'Bula Festival',
+                    'Diwali Festival',
+                    'Independence Day Festival'
+                ],
+                'a' => 'option_4'
+            ],
+            [
+                'q' => 'What is the name of the famous Fijian dish made with marinated raw fish?',
+                'o' => [
+                    'Lovo',
+                    'Kokoda',
+                    'Bouma',
+                    'Rourou'
+                ],
+                'a' => 'option_2'
+            ],
+            [
+                'q' => 'Which group of islands is renowned for its luxury resorts and crystal-clear waters in Fiji?',
+                'o' => [
+                    'Yasawa Islands',
+                    'Kadavu Islands',
+                    'Mamanuca Islands',
+                    'Lau Islands'
+                ],
+                'a' => 'option_3'
+            ],
+            [
+                'q' => 'Fiji is made up of how many main islands?',
+                'o' => [
+                    '79',
+                    '152',
+                    '333',
+                    '600'
+                ],
+                'a' => 'option_3'
+            ],
+            [
+                'q' => 'What is the traditional Fijian method of cooking food underground using heated stones called?',
+                'o' => [
+                    'Lovo',
+                    'Bouma',
+                    'Rewa',
+                    'Nadi'
+                ],
+                'a' => 'option_1'
+            ],
+            [
+                'q' => 'Which Fijian word is commonly used to greet someone and means "hello" or "welcome"?',
+                'o' => [
+                    'Bula',
+                    'Vinaka',
+                    'Moce',
+                    'Malo'
+                ],
+                'a' => 'option_1'
+            ]
+        ];
+
+        foreach ($trivia as $k => $t) {
             LocalTriviaQues::create([
 
-                'question' => 'Qustion no. ' . $i . '',
-                'option_1' => 'option 1',
-                'option_2' => 'option 2',
-                'option_3' => 'option 3',
-                'option_4' => 'option 4',
-                'correct_option' => 'option_2',
-                'image'    => $faker->randomElement($imgs),
+                'question' => $t['q'],
+                'option_1' => $t['o'][0],
+                'option_2' => $t['o'][1],
+                'option_3' => $t['o'][2],
+                'option_4' => $t['o'][3],
+                'correct_option' => $t['a'],
+                'image'    => '',
                 'status'   => 1,
             ]);
         }
@@ -352,11 +455,25 @@ class DatabaseSeeder extends Seeder
             'status' => 1,
         ]);
 
-        for ($i = 1; $i <= 40; $i++) {
+        $trueFalse = [
+
+            ['q' => 'True or False: The traditional Fijian greeting, "Bula," means "goodbye."', 'a' =>'False'],
+            ['q' => 'True or False: The Bouma National Heritage Park is located on the island of Viti Levu.', 'a' =>'False'],
+            ['q' => 'True or False: Fiji was once a colony of France before becoming a British territory.', 'a' =>'False'],
+            ['q' => 'True or False: The Fijian archipelago is located in the South Pacific Ocean.', 'a' =>'True'],
+            ['q' => 'True or False: The Fijian Parliament is known as the "Bicameral Parliament.', 'a' =>'True'],
+            ['q' => 'True or False: The traditional Fijian dance, "Meke," is performed to celebrate special occasions and events.', 'a' =>'True'],
+            ['q' => 'True or False: The Yasawa Islands are known for their rugged landscapes and secluded beaches.', 'a' =>'True'],
+            ['q' => 'True or False: Fiji has never won an Olympic gold medal in any sport.', 'a' =>'False'],
+            ['q' => 'True or False: The Indo-Fijian community comprises a significant portion of Fiji\'s population.', 'a' =>'True'],
+            ['q' => 'True or False: The "Firewalking Ceremony" is a traditional Fijian ritual performed by the Sawau tribe.', 'a' =>'True'],
+        ];
+
+        foreach($trueFalse as $k => $tf) {
             TrueFalseQues::create([
 
-                'statement' => 'Dummy Statement no. ' . $i . '',
-                'correct_option' => 'true',
+                'statement' => $tf['q'],
+                'correct_option' => $tf['a'],
                 'status'   => 1,
             ]);
         }

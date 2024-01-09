@@ -171,8 +171,8 @@ class GamesController extends Controller
                     'answer'   => $q->correct_option,
                     'image'    => $q->image,
                     'options' => [
-                       'true',
-                       'false'
+                       'True',
+                       'False'
                     ],
                 ];
             }
