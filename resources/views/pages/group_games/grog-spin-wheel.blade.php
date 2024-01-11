@@ -19,9 +19,9 @@
 
 
                         <div id="chart"></div>
-                        <div id="question">
+                        <!-- <div id="question">
                             <h1></h1>
-                        </div>
+                        </div> -->
 
 
                         <!-----Wheel end here--------------------->
@@ -67,11 +67,11 @@
         text-align: center;
         /* width:500px;
         height:500px; */
-        top: 0;
-        left: 0;
+        /* top: 0;
+        left: 0; */
     }
 
-    #question {
+    /* #question {
         position: absolute;
         width: 400px;
         height: 500px;
@@ -89,7 +89,7 @@
         top: 50%;
         -webkit-transform: translate(0, -50%);
         transform: translate(0, -50%);
-    }
+    } */
 </style>
 @endsection
 
@@ -107,13 +107,13 @@
 </script>
 <script>
     var padding = {
-            top: 20,
-            right: 40,
+            top: 0,
+            right: 0,
             bottom: 0,
             left: 0
         },
-        w = 500 - padding.left - padding.right,
-        h = 500 - padding.top - padding.bottom,
+        w = 350 - padding.left - padding.right,
+        h = 400 - padding.top - padding.bottom,
         r = Math.min(w, h) / 2,
         rotation = 0,
         oldrotation = 0,
