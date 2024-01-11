@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GroupGrogWheel;
 use App\Models\GroupGuessCelebrity;
 use App\Models\GroupGuessLocation;
 use App\Models\GroupGuessVoice;
@@ -41,6 +42,7 @@ class GamesController extends Controller
         $groupGuessLocation  = GroupGuessLocation::where('status', 1)->first();
         $groupGuessVoice     = GroupGuessVoice::where('status',1)->first();
         $groupGuessCelebrity = GroupGuessCelebrity::where('status',1)->first(); 
+        $groupGrogWheel = GroupGrogWheel::where('status',1)->first(); 
 
         return view('index', compact(
 
@@ -52,7 +54,8 @@ class GamesController extends Controller
 
             'groupGuessLocation',
             'groupGuessVoice',
-            'groupGuessCelebrity'
+            'groupGuessCelebrity',
+            'groupGrogWheel'
 
         ));
     }

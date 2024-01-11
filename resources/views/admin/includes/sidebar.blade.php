@@ -289,6 +289,27 @@
 
                         </li>
 
+                        <li class="side-nav-item">
+
+                            <a data-bs-toggle="collapse" href="#group_grog" aria-expanded="false" aria-controls="group_grog" class="side-nav-link">
+                                <i class="mdi mdi-minus"></i>
+                                <span> Grog Spin The Wheel </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="{{ request()->is('admin/group-grog-wheel') || request()->is('admin/group-grog-wheel/*') ? 'collapse show' : 'collapse' }}" id="group_grog">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{{ route('admin.group-grog-wheel') }}">Setup</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.group-grog-wheel-questions') }}">Questions</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </li>
+
                     </ul>
                 </div>
             </li>

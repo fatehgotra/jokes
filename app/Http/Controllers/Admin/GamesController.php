@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\GroupGrogWheel;
+use App\Models\GroupGrogWheelQues;
 use App\Models\GroupGuessCelebrity;
 use App\Models\GroupGuessCelebrityQues;
 use App\Models\GroupGuessLocation;
@@ -34,13 +36,13 @@ class GamesController extends Controller
     public function storeTrivia(Request $request)
     {
 
-     
+
         $rules = [
             'name' => 'required',
             'question_limit' => 'required',
             'description' => 'required',
-            'lifeline' =>'required',
-            'rules' =>'required',
+            'lifeline' => 'required',
+            'rules' => 'required',
             'qualified_score' => 'required',
             'game_question_limit' => 'required'
         ];
@@ -50,10 +52,10 @@ class GamesController extends Controller
             'question_limit.required' => 'Please enter question time limit',
             'description.required' => 'please enter description',
             'game_question_limit.required' => 'Please set no. of question per game',
-            'lifeline.required' =>'Please enter number of lifelines',
+            'lifeline.required' => 'Please enter number of lifelines',
             'qualified_score.required' => 'Please enter qualified score',
-            'rules.required' =>'Please add rules',
-            
+            'rules.required' => 'Please add rules',
+
         ];
 
         $this->validate($request, $rules, $messages);
@@ -147,7 +149,7 @@ class GamesController extends Controller
 
     public function updateTriviaQuestion(Request $request)
     {
-   
+
         $rules = [
 
             'question' => 'required',
@@ -210,13 +212,13 @@ class GamesController extends Controller
     public function storeGuessLocalCelebrity(Request $request)
     {
 
-     
+
         $rules = [
             'name' => 'required',
             'question_limit' => 'required',
             'description' => 'required',
-            'lifeline' =>'required',
-            'rules' =>'required',
+            'lifeline' => 'required',
+            'rules' => 'required',
             'qualified_score' => 'required',
             'game_question_limit' => 'required'
         ];
@@ -226,10 +228,10 @@ class GamesController extends Controller
             'question_limit.required' => 'Please enter question time limit',
             'description.required' => 'please enter description',
             'game_question_limit.required' => 'Please set no. of question per game',
-            'lifeline.required' =>'Please enter number of lifelines',
+            'lifeline.required' => 'Please enter number of lifelines',
             'qualified_score.required' => 'Please enter qualified score',
-            'rules.required' =>'Please add rules',
-            
+            'rules.required' => 'Please add rules',
+
         ];
 
         $this->validate($request, $rules, $messages);
@@ -324,7 +326,7 @@ class GamesController extends Controller
 
     public function updateGuessLocalCelebrityQuestion(Request $request)
     {
-   
+
         $rules = [
 
             'question' => 'required',
@@ -388,13 +390,13 @@ class GamesController extends Controller
     public function storeGuessTheVoice(Request $request)
     {
 
-     
+
         $rules = [
             'name' => 'required',
             'question_limit' => 'required',
             'description' => 'required',
-            'lifeline' =>'required',
-            'rules' =>'required',
+            'lifeline' => 'required',
+            'rules' => 'required',
             'qualified_score' => 'required',
             'game_question_limit' => 'required'
         ];
@@ -404,10 +406,10 @@ class GamesController extends Controller
             'question_limit.required' => 'Please enter question time limit',
             'description.required' => 'please enter description',
             'game_question_limit.required' => 'Please set no. of question per game',
-            'lifeline.required' =>'Please enter number of lifelines',
+            'lifeline.required' => 'Please enter number of lifelines',
             'qualified_score.required' => 'Please enter qualified score',
-            'rules.required' =>'Please add rules',
-            
+            'rules.required' => 'Please add rules',
+
         ];
 
         $this->validate($request, $rules, $messages);
@@ -459,7 +461,7 @@ class GamesController extends Controller
 
     public function storeGuessTheVoiceQuestion(Request $request)
     {
-        
+
 
         $rules = [
 
@@ -497,12 +499,12 @@ class GamesController extends Controller
         ]);
 
         if ($request->hasFile('file')) {
-          
+
             $file = $request->file('file');
             $filename = time() . '.mp3';
             $file->move('audios', $filename);
 
-            GuessTheVoiceQues::where('id',$gv->id)->update([
+            GuessTheVoiceQues::where('id', $gv->id)->update([
                 'file' => $filename
             ]);
         }
@@ -512,7 +514,7 @@ class GamesController extends Controller
 
     public function updateGuessTheVoiceQuestion(Request $request)
     {
-   
+
         $rules = [
 
             'text' => 'required',
@@ -538,12 +540,12 @@ class GamesController extends Controller
         $this->validate($request, $rules, $messages);
 
         if ($request->hasFile('file')) {
-         
+
             $file = $request->file('file');
             $filename = time() . '.mp3';
             $file->move('audios', $filename);
 
-            GuessTheVoiceQues::where('id', $request->id )->update([
+            GuessTheVoiceQues::where('id', $request->id)->update([
                 'file' => $filename
             ]);
         }
@@ -585,13 +587,13 @@ class GamesController extends Controller
     public function storeTrueFalse(Request $request)
     {
 
-     
+
         $rules = [
             'name' => 'required',
             'question_limit' => 'required',
             'description' => 'required',
-            'lifeline' =>'required',
-            'rules' =>'required',
+            'lifeline' => 'required',
+            'rules' => 'required',
             'qualified_score' => 'required',
             'game_question_limit' => 'required'
         ];
@@ -601,10 +603,10 @@ class GamesController extends Controller
             'question_limit.required' => 'Please enter question time limit',
             'description.required' => 'please enter description',
             'game_question_limit.required' => 'Please set no. of question per game',
-            'lifeline.required' =>'Please enter number of lifelines',
+            'lifeline.required' => 'Please enter number of lifelines',
             'qualified_score.required' => 'Please enter qualified score',
-            'rules.required' =>'Please add rules',
-            
+            'rules.required' => 'Please add rules',
+
         ];
 
         $this->validate($request, $rules, $messages);
@@ -686,7 +688,7 @@ class GamesController extends Controller
 
     public function updateTrueFalseQuestion(Request $request)
     {
-   
+
         $rules = [
 
             'statement' => 'required',
@@ -739,13 +741,13 @@ class GamesController extends Controller
     public function storeGroupGuessLocation(Request $request)
     {
 
-     
+
         $rules = [
             'name' => 'required',
             'question_limit' => 'required',
             'description' => 'required',
-            'lifeline' =>'required',
-            'rules' =>'required',
+            'lifeline' => 'required',
+            'rules' => 'required',
             'qualified_score' => 'required',
             'game_question_limit' => 'required'
         ];
@@ -755,10 +757,10 @@ class GamesController extends Controller
             'question_limit.required' => 'Please enter question time limit',
             'description.required' => 'please enter description',
             'game_question_limit.required' => 'Please set no. of question per game',
-            'lifeline.required' =>'Please enter number of lifelines',
+            'lifeline.required' => 'Please enter number of lifelines',
             'qualified_score.required' => 'Please enter qualified score',
-            'rules.required' =>'Please add rules',
-            
+            'rules.required' => 'Please add rules',
+
         ];
 
         $this->validate($request, $rules, $messages);
@@ -852,7 +854,7 @@ class GamesController extends Controller
 
     public function updateGroupGuessLocationQues(Request $request)
     {
-   
+
         $rules = [
 
             'question' => 'required',
@@ -916,13 +918,13 @@ class GamesController extends Controller
     public function storeGroupGuessCelebrity(Request $request)
     {
 
-     
+
         $rules = [
             'name' => 'required',
             'question_limit' => 'required',
             'description' => 'required',
-            'lifeline' =>'required',
-            'rules' =>'required',
+            'lifeline' => 'required',
+            'rules' => 'required',
             'qualified_score' => 'required',
             'game_question_limit' => 'required'
         ];
@@ -932,10 +934,10 @@ class GamesController extends Controller
             'question_limit.required' => 'Please enter question time limit',
             'description.required' => 'please enter description',
             'game_question_limit.required' => 'Please set no. of question per game',
-            'lifeline.required' =>'Please enter number of lifelines',
+            'lifeline.required' => 'Please enter number of lifelines',
             'qualified_score.required' => 'Please enter qualified score',
-            'rules.required' =>'Please add rules',
-            
+            'rules.required' => 'Please add rules',
+
         ];
 
         $this->validate($request, $rules, $messages);
@@ -1029,7 +1031,7 @@ class GamesController extends Controller
 
     public function updateGroupGuessCelebrityQues(Request $request)
     {
-   
+
         $rules = [
 
             'question' => 'required',
@@ -1093,13 +1095,13 @@ class GamesController extends Controller
     public function storeGroupGuessVoice(Request $request)
     {
 
-     
+
         $rules = [
             'name' => 'required',
             'question_limit' => 'required',
             'description' => 'required',
-            'lifeline' =>'required',
-            'rules' =>'required',
+            'lifeline' => 'required',
+            'rules' => 'required',
             'qualified_score' => 'required',
             'game_question_limit' => 'required'
         ];
@@ -1109,10 +1111,10 @@ class GamesController extends Controller
             'question_limit.required' => 'Please enter question time limit',
             'description.required' => 'please enter description',
             'game_question_limit.required' => 'Please set no. of question per game',
-            'lifeline.required' =>'Please enter number of lifelines',
+            'lifeline.required' => 'Please enter number of lifelines',
             'qualified_score.required' => 'Please enter qualified score',
-            'rules.required' =>'Please add rules',
-            
+            'rules.required' => 'Please add rules',
+
         ];
 
         $this->validate($request, $rules, $messages);
@@ -1203,12 +1205,12 @@ class GamesController extends Controller
 
 
         if ($request->hasFile('file')) {
-         
+
             $file = $request->file('file');
             $filename = time() . '.mp3';
             $file->move('audios', $filename);
 
-            GuessTheVoiceQues::where('id', $gv->id )->update([
+            GuessTheVoiceQues::where('id', $gv->id)->update([
                 'file' => $filename
             ]);
         }
@@ -1218,7 +1220,7 @@ class GamesController extends Controller
 
     public function updateGroupGuessVoiceQues(Request $request)
     {
-   
+
         $rules = [
 
             'question' => 'required',
@@ -1260,12 +1262,12 @@ class GamesController extends Controller
 
 
         if ($request->hasFile('file')) {
-         
+
             $file = $request->file('file');
             $filename = time() . '.mp3';
             $file->move('audios', $filename);
 
-            GuessTheVoiceQues::where('id', $request->id )->update([
+            GuessTheVoiceQues::where('id', $request->id)->update([
                 'file' => $filename
             ]);
         }
@@ -1279,5 +1281,137 @@ class GamesController extends Controller
         GroupGuessVoiceQues::find($request->id)->delete();
 
         return redirect()->route('admin.group-guess-voice-questions')->with('success', 'Question deleted successfully!');
+    }
+
+    /** GROUP GROG WHEEl */
+
+    public function groupGrogWheel()
+    {
+
+        $game = GroupGrogWheel::first();
+
+        return view('admin.games.group.group-grog-wheel.setup', compact('game'));
+    }
+
+
+    public function storeGroupGrogWheel(Request $request)
+    {
+
+
+        $rules = [
+            'name' => 'required',
+            'description' => 'required',
+            'game_question_limit' => 'required'
+        ];
+
+        $messages = [
+            'name.required' => 'Please enter game name',
+            'description.required' => 'please enter description',
+            'game_question_limit.required' => 'Please set no. of question per game',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        GroupGuessVoice::updateOrCreate(
+            ['id' => $request->game_id],
+            [
+                'name' => $request->name,
+                'description' => $request->description,
+                'status' => $request->status,
+                'game_question_limit' => $request->game_question_limit
+            ]
+        );
+
+        return redirect()->back()->with('success', 'Game setup updated');
+    }
+
+    public function GroupGrogWheelQues()
+    {
+
+        $game = GroupGrogWheel::first();
+
+        $questions = GroupGrogWheelQues::all();
+
+        return view('admin.games.group.group-grog-wheel.question-list', compact('game', 'questions'));
+    }
+
+    public function addGroupGrogWheelQues()
+    {
+
+        $game = GroupGrogWheel::first();
+
+        return view('admin.games.group.group-grog-wheel.add-question', compact('game'));
+    }
+
+    public function editGroupGrogWheelQues($id)
+    {
+
+        $game = GroupGrogWheel::first();
+
+        $question = GroupGrogWheelQues::find($id);
+
+        return view('admin.games.group.group-grog-wheel.edit-question', compact('game', 'question'));
+    }
+
+    public function storeGroupGrogWheelQues(Request $request)
+    {
+
+        $rules = [
+
+            'name' => 'required',
+            'task' => 'required',
+
+        ];
+
+        $messages = [
+
+            'name.required' => 'Please enter name',
+            'task.required' => 'Please enter task',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        $gv = GroupGrogWheelQues::create([
+
+            'name'   => $request->name,
+            'task' =>  $request->task,
+
+        ]);
+
+        return redirect()->route('admin.group-grog-wheel-questions')->with('success', 'Question added for game');
+    }
+
+    public function updateGroupGrogWheelQues(Request $request)
+    {
+
+        $rules = [
+
+            'task' => 'required',
+            'name' => 'required',
+        ];
+
+        $messages = [
+
+            'name.required' => 'Please enter name',
+            'task.required' => 'Please enter task',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        GroupGrogWheelQues::where('id', $request->id)->update([
+
+            'name' => $request->name,
+            'task' => $request->task,
+        ]);
+
+        return redirect()->route('admin.group-grog-wheel-questions')->with('success', 'Question updated successfully');
+    }
+
+    public function deleteGroupGrogWheelQues(Request $request)
+    {
+
+        GroupGrogWheelQues::find($request->id)->delete();
+
+        return redirect()->route('admin.group-grog-wheel-questions')->with('success', 'Question deleted successfully!');
     }
 }

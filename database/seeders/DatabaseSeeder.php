@@ -5,6 +5,8 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Admin;
+use App\Models\GroupGrogWheel;
+use App\Models\GroupGrogWheelQues;
 use App\Models\GroupGuessCelebrity;
 use App\Models\GroupGuessCelebrityQues;
 use App\Models\GroupGuessLocation;
@@ -356,9 +358,9 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-           /** Guess The Local Celebrity */
+        /** Guess The Local Celebrity */
 
-           GuessLocalCelb::create([
+        GuessLocalCelb::create([
             'name' => 'Guess the local celebrity',
             'description' =>  '"Guess the Local Celebrity" is a fun and interactive mobile game that tests your knowledge of famous faces in your community. Identify the blurred or pixelated faces from multiple-choice options within a time limit. Use lifelines like "Hint" or "50/50" when stuck, and compete for the top spot on the local leaderboard.',
             'ques_time_limit' => '10',
@@ -434,7 +436,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-         /*True False */
+        /*True False */
 
         TrueFalse::create([
             'name' => 'True or False',
@@ -457,19 +459,19 @@ class DatabaseSeeder extends Seeder
 
         $trueFalse = [
 
-            ['q' => 'True or False: The traditional Fijian greeting, "Bula," means "goodbye."', 'a' =>'False'],
-            ['q' => 'True or False: The Bouma National Heritage Park is located on the island of Viti Levu.', 'a' =>'False'],
-            ['q' => 'True or False: Fiji was once a colony of France before becoming a British territory.', 'a' =>'False'],
-            ['q' => 'True or False: The Fijian archipelago is located in the South Pacific Ocean.', 'a' =>'True'],
-            ['q' => 'True or False: The Fijian Parliament is known as the "Bicameral Parliament.', 'a' =>'True'],
-            ['q' => 'True or False: The traditional Fijian dance, "Meke," is performed to celebrate special occasions and events.', 'a' =>'True'],
-            ['q' => 'True or False: The Yasawa Islands are known for their rugged landscapes and secluded beaches.', 'a' =>'True'],
-            ['q' => 'True or False: Fiji has never won an Olympic gold medal in any sport.', 'a' =>'False'],
-            ['q' => 'True or False: The Indo-Fijian community comprises a significant portion of Fiji\'s population.', 'a' =>'True'],
-            ['q' => 'True or False: The "Firewalking Ceremony" is a traditional Fijian ritual performed by the Sawau tribe.', 'a' =>'True'],
+            ['q' => 'True or False: The traditional Fijian greeting, "Bula," means "goodbye."', 'a' => 'False'],
+            ['q' => 'True or False: The Bouma National Heritage Park is located on the island of Viti Levu.', 'a' => 'False'],
+            ['q' => 'True or False: Fiji was once a colony of France before becoming a British territory.', 'a' => 'False'],
+            ['q' => 'True or False: The Fijian archipelago is located in the South Pacific Ocean.', 'a' => 'True'],
+            ['q' => 'True or False: The Fijian Parliament is known as the "Bicameral Parliament.', 'a' => 'True'],
+            ['q' => 'True or False: The traditional Fijian dance, "Meke," is performed to celebrate special occasions and events.', 'a' => 'True'],
+            ['q' => 'True or False: The Yasawa Islands are known for their rugged landscapes and secluded beaches.', 'a' => 'True'],
+            ['q' => 'True or False: Fiji has never won an Olympic gold medal in any sport.', 'a' => 'False'],
+            ['q' => 'True or False: The Indo-Fijian community comprises a significant portion of Fiji\'s population.', 'a' => 'True'],
+            ['q' => 'True or False: The "Firewalking Ceremony" is a traditional Fijian ritual performed by the Sawau tribe.', 'a' => 'True'],
         ];
 
-        foreach($trueFalse as $k => $tf) {
+        foreach ($trueFalse as $k => $tf) {
             TrueFalseQues::create([
 
                 'statement' => $tf['q'],
@@ -521,9 +523,9 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-          /** Group Guess Celebrity */
+        /** Group Guess Celebrity */
 
-          GroupGuessCelebrity::create([
+        GroupGuessCelebrity::create([
             'name' => 'Guess The Celebrity',
             'description' =>  '"Guess the Local Celebrity" is a fun and interactive mobile game that tests your knowledge of famous faces in your community. Identify the blurred or pixelated faces from multiple-choice options within a time limit. Use lifelines like "Hint" or "50/50" when stuck, and compete for the top spot on the local leaderboard.',
             'ques_time_limit' => '10',
@@ -591,6 +593,68 @@ class DatabaseSeeder extends Seeder
                 'correct_option' => 'option_2',
                 'file'    =>  $faker->randomElement($jokes),
                 'status'   => 1,
+            ]);
+        }
+
+        /**Group Grog Wheel */
+
+        GroupGrogWheel::create([
+            'name' => 'Grog spin the wheel',
+            'description' =>  'Tap the screen to spin a virtual wheel filled with various prizes or challenges. Wait for the wheel to stop to see what you\'ve won or must do during your grog session. Accumulate points or rewards based on the wheel\'s outcome, aiming for high scores or rare prizes.',
+            'status' => 1,
+        ]);
+
+        $grogQues = [
+            [
+                'name' => 'Sing a Song',
+                'task' => 'Belt out a line or two from a popular local fijian song.',
+            ],
+            [
+                'name' => 'Chaser Challenge',
+                'task' => 'Finish all your chaser that you have with you',
+            ],
+            [
+                'name' => 'Fashion Show',
+                'task' => 'Use available props to create a unique outfit and strut down a makeshift runway',
+            ],
+            [
+                'name' => 'Bula Bowl Shot',
+                'task' => 'Take one extra bula bowl.',
+            ],
+            [
+                'name' => 'Taki',
+                'task' => 'Call Taki for another round',
+            ],
+            [
+                'name' => 'Friendly Fire',
+                'task' => 'You get to decide who takes the Bula Bowl',
+            ],
+            [
+                'name' => 'Bankrupt',
+                'task' => 'You buy the next grog sessions grog',
+            ],
+            [
+                'name' => 'Danisi',
+                'task' => 'You have to dance for 30 seconds on a song choice given by the taki master( If taki master gets this person sitting on his right decides song)',
+            ],
+            [
+                'name' => 'Make a Toast',
+                'task' => 'Give a humorous or heartfelt toast',
+            ],
+            [
+                'name' => 'Roast Me',
+                'task' => 'Everyone gets to roast you for 60 seconds',
+            ],
+            [
+                'name' => 'Taki Master',
+                'task' => 'you become taki master for 1 hour and are exempt from challenge for that hour',
+            ],
+        ];
+
+        foreach ($grogQues as $g) {
+            GroupGrogWheelQues::create([
+                'name' => $g['name'],
+                'task' => $g['task']
             ]);
         }
     }

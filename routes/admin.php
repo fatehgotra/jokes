@@ -189,4 +189,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
   Route::get('edit-group-guess-voice-question/{id}', [GamesController::class, 'editGroupGuessVoiceQues'])->name('edit-group-guess-voice-question');
   Route::post('update-group-guess-voice-question', [GamesController::class, 'updateGroupGuessVoiceQues'])->name('update-group-guess-voice-question');
   Route::post('delete-group-guess-voice-question', [GamesController::class, 'deleteGroupGuessVoiceQues'])->name('delete-group-guess-voice-question');
+
+  /*Group Grog wheel */
+
+  Route::get('group-grog-wheel', [GamesController::class, 'groupGrogWheel'])->name('group-grog-wheel');
+  Route::post('store-group-grog-wheel', [GamesController::class, 'storeGroupGrogWheel'])->name('store-group-grog-wheel');
+  Route::get('group-grog-wheel-questions', [GamesController::class, 'GroupGrogWheelQues'])->name('group-grog-wheel-questions');
+  Route::get('add-group-grog-wheel-question', [GamesController::class, 'addGroupGrogWheelQues'])->name('add-group-grog-wheel-question');
+  Route::post('store-group-grog-wheel-question', [GamesController::class, 'storeGroupGrogWheelQues'])->name('store-group-grog-wheel-question');
+  Route::get('edit-group-grog-wheel-question/{id}', [GamesController::class, 'editGroupGrogWheelQues'])->name('edit-group-grog-wheel-question');
+  Route::post('update-group-grog-wheel-question', [GamesController::class, 'updateGroupGrogWheelQues'])->name('update-group-grog-wheel-question');
+  Route::post('delete-group-grog-wheel-question', [GamesController::class, 'deleteGroupGrogWheelQues'])->name('delete-group-grog-wheel-question');
+
 });

@@ -132,22 +132,25 @@
                     <h6 class="rclr">Group</h6>
                   </div>
                   <div id="accordion2">
+
+                  @if(isset($groupGrogWheel) )
                     <div class="card">
                       <div class="card-header" id="headingTwo">
                         <h5 class="mb-0 text-center" data-toggle="collapse" data-target="#collapse5" aria-expanded="true" aria-controls="collapse5">
                           <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                          Grog spin the wheel
+                          {{ $groupGrogWheel->name }}
                         </h5>
                       </div>
                       <div id="collapse5" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion2">
                         <div class="card-body">
-                          tap the screen to spin a virtual wheel filled with various prizes or challenges. Wait for the wheel to stop to see what you've won or must do during your grog session. Accumulate points or rewards based on the wheel's outcome, aiming for high scores or rare prizes.
+                         {{ $groupGrogWheel->description }}
                         </div>
                         <div class="text-center mb-1">
                           <a class="btn btn-success lbg" href="{{ route('group.grog-spin-the-wheel')}}">Play</a>
                         </div>
                       </div>
                     </div>
+                  @endif
 
                     @if( isset($groupGuessLocation) )
 

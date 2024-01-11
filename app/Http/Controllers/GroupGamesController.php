@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GroupGrogWheelQues;
 use App\Models\GroupGuessCelebrity;
 use App\Models\GroupGuessCelebrityQues;
 use App\Models\GroupGuessLocation;
@@ -479,7 +480,20 @@ class GroupGamesController extends Controller
 
     public function GrogWheel(){
 
-        return view('pages.group_games.grog-spin-wheel');
+        $_questions = GroupGrogWheelQues::all();
+        $questions = [];
+
+        if( isset($_questions) ){
+            foreach( $_questions as $q){
+                $questions[] = [
+                    'label' => $q->name,
+                    'value' => $q->id,
+                    'question' => $q->task
+                ];
+            }
+        }
+
+        return view('pages.group_games.grog-spin-wheel',compact('questions'));
     }
     public function ThisThat(){
 
