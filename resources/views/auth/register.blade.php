@@ -1,3 +1,7 @@
+@extends('layouts.app')
+@section('title', 'Reset password')
+@section('content')
+
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
@@ -67,3 +71,5 @@
         color: #fff!important;
     }
 </style>
+
+@endsection

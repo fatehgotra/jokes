@@ -9,7 +9,7 @@
 
                 <!-- ***** Featured Games Start ***** -->
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
 
                         <div class="heading-section text-center">
                             <h4> <em>Grog Spin The</em> Wheel</h4>
@@ -28,23 +28,6 @@
 
 
                     </div>
-
-                    <!----Jokes Artist------->
-                    <div class="col-lg-4">
-
-                        <div class="top-streamers">
-                            <div class="heading-section text-center">
-                                <h4> <em>Score</em> Board</h4>
-                            </div>
-                            <ul class="spanel">
-
-                                <!------Sidebar content here------->
-
-                            </ul>
-                        </div>
-
-                    </div>
-
 
                 </div>
                 <!-- ***** Featured Games End ***** -->

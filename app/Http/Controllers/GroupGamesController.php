@@ -33,7 +33,8 @@ class GroupGamesController extends Controller
             'groupMembers',
             'signUpStep1',
             'signUpStep2',
-            'groupValid'
+            'groupValid',
+            'GrogWheel'
         );
     }
 

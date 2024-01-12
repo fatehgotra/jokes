@@ -7,7 +7,7 @@
     <section class="wrapper">
       <div class="heading">
         <h1 class="text text-large">Sign In</h1>
-        <p class="text text-normal">New user? <span><a href="#" class="text text-links">Create an account</a></span>
+        <p class="text text-normal">New user? <span><a href="{{ route('user.signup') }}" class="text text-links">Create an account</a></span>
         </p>
       </div>
       <form name="signin" class="form" action="{{ route('user.login') }}" method="POST">
@@ -28,7 +28,7 @@
           <code id="password-error" class="text-white mb-1">{{ $message }}</code>
           @enderror
         <div class="input-control">
-          <a href="#" class="text text-links">Forgot Password</a>
+          <a href="{{ url('/user/password/reset') }}" class="text text-links">Forgot Password</a>
         </div>
         <div class="input-control">
           <input type="submit" name="submit" class="input-submit" value="Sign In">
